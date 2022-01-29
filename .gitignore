@@ -1,0 +1,10 @@
+#ignore TeX generated files
+*.aux
+*.bbl
+*.blg
+*.log
+main.pdf
+si.pdf
+#ignore swp and checkpoint files
+*.swp
+.ipynb_checkpoints/
