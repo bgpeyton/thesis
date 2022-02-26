@@ -1,0 +1,59 @@
+\documentclass[journal=jpcafh]{achemso}
+\setkeys{acs}{articletitle = true}
+\SectionNumbersOn
+\usepackage{amsmath}
+
+% Lin Resp equations
+\def\bra#1{\langle#1 |}
+\def\ket#1{| #1 \rangle}
+\def\linresp#1#2{\langle\langle#1;#2\rangle\rangle}
+
+% Lists
+\usepackage{enumitem}
+
+% Graphics
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+
+\title{Alternative Methods for the Calculation of Molecular Properties using Electronic Structure Theory}
+\author{Benjamin G. Peyton}
+\affiliation{Department of Chemistry, Virginia Tech, Blacksburg, VA 24061, USA}
+
+\begin{document}
+\section*{Outline} \label{outline}
+\begin{enumerate}
+    \item Abstract
+    \item Introduction
+        \begin{enumerate}
+            \item Conventional EST for molecular properties
+            \item Fragmentation
+            \item Machine learning
+            \item RT-EST
+        \end{enumerate}
+    \item Theory
+        \begin{enumerate}
+            \item Ground-state EST 
+                \begin{enumerate}
+                    \item Orbital-invariant MP2
+                    \item CC
+                    \item One/two particle density matrices
+                \end{enumerate}
+            \item Local correlation
+            \item Response theory
+                \begin{enumerate}
+                    \item Dipole expansions to property tensors 
+                    \item Quasi-energy to response functions
+                \end{enumerate}
+            \item Real-time CC
+            \item Fragmentation schemes
+            \item Machine learning
+        \end{enumerate}
+    \item Paper 1 
+    \item Paper 2 
+    \item Paper 3 
+    \item Conclusions
+\end{enumerate}
+
+\end{document}

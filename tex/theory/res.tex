@@ -1,0 +1,22 @@
+\section{Response theory} \label{se:res}
+Response theory combines adiabatic perturbation theory with a Fourier transformation of the 
+time-dependent equations into the frequency domain\cite{Pederson2020}. The prediction of the response 
+of molecular systems to an electromagnetic field (EMF) has important applications in organic synthesis and
+characterization. To explore these effects, we may relate properties to a perturbative expansion of a 
+total electric or magnetic moment, from which property tensors related to a host of properties may be defined. 
+These property tensors generally take the form of products of ground- and excited-state transition moments of 
+the electric or magnetic dipole operator. In this chapter we will summarize the derivation of these 
+response tensors and their relationships to field-induced molecular phenomena. We then present a method 
+for obtaining these tensors through Fourier transform of a time-dependent ``Quasi-energy'' which is 
+rigorously defined in the context of electronic structure theory, providing working equations for 
+predicting molecular responses to EMF.
+
+\subsection{Property tensors} \label{ss:prop}
+Under classical electrodynamics, the potential energy $V$ of a system of charges in a static electric field 
+may be written:
+\begin{equation} \label{eq:pot_V}
+V = e_i\Phi(r_i) = q(\Phi)_0 - \mu_\alpha(E_\alpha)_0 - \frac{1}{3}\Theta_{\alpha\beta}(E_{\alpha\beta}) + \ldots
+\end{equation}
+We can also expand $V$ in a Taylor series about the field-independent energy:
+\begin{equation} \label{eq:tay_V}
+V[E_0] = V_0 + \alpha(E_\alpha)_0\frac{\partial V}{\partial (\alpha(E_\alpha))_0} + \ldots

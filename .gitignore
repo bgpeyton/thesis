@@ -3,6 +3,9 @@
 *.bbl
 *.blg
 *.log
+*.nlo
+*.out
+acs-*.bib
 main.pdf
 si.pdf
 #ignore swp and checkpoint files

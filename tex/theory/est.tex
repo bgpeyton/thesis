@@ -1,0 +1,103 @@
+\section{Ground state electronic structure theory} \label{se:est}
+Electron correlation is defined in the present work to mean any additional effect beyond what is
+included in the ground state Hartree-Fock wave function. This anti-symmetrized, 
+single-determinant wave function, generally composed of linear combinations of atomic Gaussian basis functions, will be denoted by $\ket{0}$, and defines the canonical molecular orbital (MO) basis. 
+This section will briefly describe a selection of methods for recovering the correlation energy which are
+pertinent to this work.
+Correlation is usually included by considering the effects of substituted determinants in which electrons
+in their ground state occupied orbitals are ``excited'' into higher-energy virtual orbitals. These 
+occupied and virtual orbitals are often chosen to be the canonical MOs of the reference 
+wave function; however, as discussed later, some schemes apply a different approach. Therefore, this 
+chapter will focus on \textit{general} expressions, without assuming canonical or orthogonal orbital
+spaces except where mentioned.   
+
+\subsection{Orbital invariant MP2} \label{ss:mp2}
+A second-order correction to the Hartree-Fock energy can be obtained through perturbation theory.
+By partitioning the Hamiltonian and expanding the energy and wave function in orders of a perturbation, contributions to the correlation energy are obtained order-by-order. Specifying the Hylleraas partitioning of the normal-ordered electronic Hamiltonian,
+\begin{equation} \label{eq:H}
+    % I should invert an \underbrace to show which terms are included in which part of H
+    \hat{H}_N = E^{(0)} + \hat{F}_N + \hat{W}_N = \hat{H}^{(0)} + \hat{H}^{(1)} 
+\end{equation}
+where $E^{(0)}$ is the Hartree-Fock energy and $\hat{F}_N$ and $\hat{W}_N$ are the normal-ordered Fock 
+operator and fluctuation potential, respectively, the first non-zero contribution is the Hylleraas 
+functional form of the second-order energy,
+\begin{equation} \label{eq:hyll}
+    E^{(2)} = \bra{0}\hat{W}_N\ket{\Psi^{(1)}}
+\end{equation}
+where $\ket{\Psi^{(1)}}$ is the first-order correction to the reference wave function $\ket{0}$.
+The MP2 method is equivalent to an iterative minimization of ~Eq(\ref{eq:hyll}) through a residual expression defined by the first-order wave function equation,
+\begin{equation} \label{eq:mp2_res}
+    \hat{W}_N\ket{0} + \hat{F}_N\ket{\Psi^1} = 0.
+\end{equation}
+Since the Hamiltonian does not connect $\ket{0}$ to singly-substituted determinants due to the Brilloun condition, it follows that only double substitutions are present in $\ket{\Psi^{(1)}}$. 
+Projection of ~Eq(\ref{eq:mp2_res}) onto a basis of doubly-substituted determinants yields programmable expressions for the double excitation amplitudes, $t^{ab}_{ij}$. In the limit of canonical HF orbitals, ~Eq(\ref{eq:hyll}) reduces to the more commonly known MP2 expressions,
+\begin{subequations}
+    \begin{equation}
+        E^{(2)} = \frac{1}{4}t^{ab}_{ij}g^{ab}_{ij}
+    \end{equation}
+    \begin{equation}
+        t^{ab}_{ij} = - \frac{g^{ab}_{ij}}{\epsilon_a + \epsilon_b - \epsilon_i - \epsilon_j} 
+    \end{equation}
+\end{subequations}
+where $g^{ab}_{ij}$ is the antisymmetryized two-electron integral $\bra{ij}\ket{ab}$ and $\epsilon_p$ is
+the $p$th diagonal element of the Fock matrix. 
+This requires only one $O(N^5)$ step in the rotation of the two-electron integrals into the MO basis followed by a ``one-shot" energy calculation. 
+However, commonplace localizations of the occupied space requires the iterative evaluation of 
+~Eq(\ref{eq:mp2_res}). Furthermore, oftentimes reduced nonorthogonal virtual spaces are employed in the 
+projection basis (as will be explored in LATER SECTION), which necessitates the inclusion of overlap 
+matrices.  
+
+\subsection{Coupled Cluster} \label{ss:cc}
+The coupled-cluster family of electronic structure methods employ an exponential cluster operator $\hat{T}$ to include the effects of substituted determinants,
+\begin{equation} \label{eq:cc_TDSE}
+    \hat{H}e^{\hat{T}}\ket{\Psi} = Ee^{\hat{T}}\ket{\Psi}
+\end{equation}
+with
+\begin{equation} \label{eq:T}
+    \hat{T}_n = \left(\frac{1}{n!}\right)^2 t_{ij\ldots}^{ab\ldots}a_a^{\dagger}a_b^{\dagger}\ldots a_j a_i.
+\end{equation}
+Rather than perturbative expansion, the cluster operator is expanded in orders of substitutions (singles, doubles, \textit{et cetera}), then truncated to a given substitution level to produce tractable equations. Additional simplification is achieved by using the similarity-transformed Hamiltonian
+\begin{equation} \label{eq:Hbar}
+    \bar{H} = e^{-\hat{T}}\hat{H}e^{\hat{T}}
+\end{equation}
+which has the same eigenspectrum as $\bar{H}$, but naturally truncates at four nested commutators in a Cambell-Baker-Hausdorff expansion
+\begin{equation} \label{eq:cbh}
+    \bar{H} = \hat{H} + [\hat{H}, \hat{T}] + \frac{1}{2!}[[\hat{H}, \hat{T}], \hat{T}] + \frac{1}{3!}[[[\hat{H}, \hat{T}], \hat{T}], \hat{T}] + \frac{1}{4!}[[[[\hat{H}, \hat{T}], \hat{T}], \hat{T}], \hat{T}] + . . .
+\end{equation}
+As before, programmable expressions are obtained for the amplitudes $t_{ij\ldots}^{ab\ldots}$ by projection onto substituted determinants. Here also, the choice of projection basis may require the inclusion of overlap matrices in the iterative procedure. 
+
+\subsection{Reduced Density Matrices} \label{ss:rdm}
+A general expression for the ground-state energy of an arbitrary wave function $\ket{\Psi}$ can be written in terms of one- and two-particle reduced density matrices (1-RDM $D$ and 2-RDM $\Gamma$)
+\begin{equation} \label{eq:pdm_e}
+    \begin{aligned}
+    E & = \bra{\Psi}\hat{H}\ket{\Psi} \\
+      & = D_{pq}h_{p}^{q} + \Gamma_{pqrs}g_{pq}^{rs}
+    \end{aligned}
+\end{equation}
+where $h_{p}^{q}$ are the one-electron integrals of the electronic Hamiltonian, and $D$ and $\Gamma$ are defined according to the form of $\ket{\Psi}$ and the excitation operators of the second quantized Hamiltonian:
+\begin{subequations}
+\begin{equation} \label{eq:opdm}
+    D_{pq} = \bra{\Psi}a_p^{\dagger}a_q\ket{\Psi}
+\end{equation}
+\begin{equation} \label{eq:tpdm}
+    \Gamma_{pqrs} = \bra{\Psi}a_p^{\dagger}a_q^{\dagger}a_sa_r\ket{\Psi}.
+\end{equation}
+\end{subequations}
+Clearly, this requires the left-hand wave function expression $\bra{\Psi}$. For the electronic Hamiltonian, which is Hermitian, the left- and right-hand wave functions are identical, as is the case for MP2. However, due to the similarity transformation of the Hamiltonian in ~Eq(\ref{eq:Hbar}), this Hermiticity is destroyed. It is therefore necessary to solve for the CC left-hand wave function,
+\begin{equation} \label{eq:cc_lwfn}
+    \bra{\mathcal{L}} = \bra{\Psi}\hat{\mathcal{L}}
+\end{equation}
+where $\bra{\mathcal{L}}$ is a left-hand cluster operator analogous to ~Eq(\ref{eq:T}), with analogous amplitudes $t_{ij\ldots}^{ab\ldots}$. This additional set of coupled equations can be solved in the same manner as the right-hand amplitude expressions. We may then rewrite the coupled cluster energy expression using ~Eq(\ref{eq:cc_TDSE}): 
+\begin{equation} \label{eq:cc_energy_total}
+    \bra{\Psi}\hat{\mathcal{L}}\bar{H}\ket{\Psi} = E.
+\end{equation}
+
+As will be explored in [RESPONSE CHAPTER], properties may be expressed as derivatives of the electronic energy. Given the left- and right-hand wave functions and assuming the Hellmann-Feynman theorem holds (and thus $\ket{\Psi}$ carries no dependence on $\Omega$), the derivative of the energy with respect to an arbitrary operator $\Omega$ can be conveniently expressed
+\begin{equation} \label{eq:dE}
+    \begin{aligned}
+    \frac{\partial E}{\partial \Omega} &= \bra{\Psi}\frac{\partial \hat{H}}{\partial \Omega}\ket{\Psi}\\
+                                  &= D_{pq}\frac{\partial h_{pq}}{\partial \Omega} + \Gamma_{pqrs}\frac{\partial g_{pqrs}}{\partial \Omega}
+    \end{aligned}
+\end{equation}
+%% NOTE: a lot of notation to clean up here
+without further specification of the wave function or Hamiltonian. Thus, time-independent first-order properties may be expressed without differentiation of the RDMs. The cases of higher-order and time-dependent properties will be handled in [RESPONSE CHAPTER]. 

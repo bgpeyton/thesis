@@ -1,0 +1,76 @@
+\documentclass[doublespace,draft,nopageskip]{VTthesis} % nopageskip - Removes arbitrary blank pages.
+% Using the following header instead will create a draft copy of your thesis
+%\documentclass[doublespace,draft]{VTthesis}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Customized Definitions 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Math 
+\def\ket#1{| #1 \rangle}        %| >
+\def\bra#1{\langle#1 |}         %< |
+%\def\bm#1{\mbox{\boldmath$#1$}}
+\def\bm#1{\mathbf{#1}}
+\def\linresp#1#2{\langle\langle#1;#2\rangle\rangle}
+\def\quadresp#1#2#3{\langle\langle#1;#2;#3\rangle\rangle}
+\def\degrees{deg dm$^{-1}$ (g/mL)$^{-1}$}
+\def\optrot{$[\alpha]$}
+\def\crt#1{a_{#1}^{\dagger}}    % Creation operator
+\def\ann#1{a_{#1}^{\ }}         % annihilation operator 
+\def\cgs{($10^{-40}$ cgs)}      % units 
+\def\selfolap#1{\langle#1|#1\rangle} % <i|i>
+\def\olap#1#2{\langle#1|#2\rangle} %<i|j>
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\title{Alternative Methods for the Calculation of Molecular Properties using Electronic Structure Theory}
+\keywords{Electronic structure theory, machine learning, coupled cluster, local correlation}
+\author{Benjamin G. Peyton}
+\program{Chemistry} 
+\degree{Doctor of Philosophy} 
+\submitdate{June 9, 2022} 
+
+\principaladvisor{T. Daniel Crawford}
+\firstreader{Nicholas Mayhall}
+\secondreader{Diego Troya}
+\thirdreader{John Morris}
+
+%\dedication{This is where you put your dedications.}
+%\acknowledge{This is where you put your acknowledgments.}
+%\abstract{Give a brief description of your thesis here.}
+%\abstractgenaud{You are also required as of Spring 2016 to include a general audience abstract. This should be geared towards individuals outside of your field that may be reading seeking information about your work. You should avoid language that is particular to your field and clearly define any terms that may have special meaning in your discipline.}
+
+\begin{document}
+% The following lines set up the front matter of your thesis or dissertation and are required to ensure proper formatting per the VT ETD standards. 
+  \frontmatter
+  \maketitle
+%  \tableofcontents
+
+% The list of figures and tables are now optional per the official ETD standards.  Unless you have a very good reason for removing them, you should leave these lists in the document. Comment them out to remove them.
+%	\listoffigures
+%	\listoftables
+
+% The following sets up the document for the main part of the thesis or dissertation. Do not comment out or remove this line.
+	\mainmatter
+    \input{theory/theory.tex}
+
+      
+	% This is the standard bibtex file. Do not include the .bib extension in <bib_file_name>.
+	% Uncomment the following lines to include your bibliography: 
+	%\bibliography{<bib_file_name>}
+	%\bibliographystyle{plainnat}   
+
+	% This formats the chapter name to appendix to properly define the headers:
+%	\appendix
+	% Add your appendices here. You must leave the appendices enclosed in the appendices environment in order for the table of contents to be correct.
+%	\begin{appendices}
+%		\chapter{First Appendix} \label{app:appendix_one}
+%			\section{Section one} \label{ase:app_one_sect_1}
+%				\lipsum[1-3]
+%			\section{Section two} \label{ase:app_one_sect_2}
+%				\lipsum[1-3]
+%		\chapter{Second Appendix} \label{app:appendix_two}
+%			\lipsum[2]
+%	\end{appendices}
+
+\end{document}
+
