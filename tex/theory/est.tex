@@ -5,12 +5,14 @@ single-determinant wave function, generally composed of linear combinations of a
 This section will briefly describe a selection of methods for recovering the correlation energy which are
 pertinent to this work.
 Correlation is usually included by considering the effects of substituted determinants in which electrons
-in ground state occupied orbitals are ``excited'' into higher-energy virtual orbitals. These 
-occupied and virtual orbitals are often chosen to be the canonical MOs of the reference 
+in ground state occupied orbitals are ``excited'' into higher-energy unoccupied (or ``virtual'') orbitals. 
+These occupied and virtual orbitals are often chosen to be the canonical MOs of the reference 
 wave function, which in turn are linear combinations of atomic orbital basis functions.
-However, as discussed later, some schemes apply a different approach. Therefore, this 
+However, as discussed in [PAPER 3], some schemes apply a different approach. Therefore, this 
 chapter will focus on \textit{general} expressions, without assuming canonical or orthogonal orbital
 spaces except where mentioned.   
+Einstein summation notation will be used throughout this chapter, except in cases where an explicit sum
+is instructive.
 
 %\subsection{Orbital invariant MP2} \label{ss:mp2}
 \subsection{Many-Body Perturbation Theory} \label{ss:mp2}
@@ -55,7 +57,7 @@ Using the Hylleraas partitioning of the Hamiltonian,
         \hat{H}^{(1)} = \hat{W}
     \end{equation}
 \end{subequations}
-where $\hat{F}$ and $\hat{W}$ are the one- and two-particle components of $\hat{H}$, respectively, 
+where $\hat{F}$ and $\hat{W}$ are the one- and two-particle components of $\hat{H}^{(0)}$, respectively, 
 this is achieved through minimization of a residual expression defined by the first-order wave 
 function equation,
 \begin{equation} \label{eq:mp2_res}
@@ -83,7 +85,7 @@ and $\epsilon_p$ is the $p$th diagonal element of the Fock matrix.
 This requires only one $\mathcal{O}(N^5)$ step (where $N$ is a measure of system size) in the rotation of the two-electron atomic orbital integrals into the MO basis followed by a ``one-shot" energy calculation. 
 However, commonplace localizations of the occupied space require instead the iterative evaluation of 
 ~Eq(\ref{eq:mp2_res}). Furthermore, oftentimes reduced nonorthogonal virtual spaces are employed in the 
-projection basis (as will be explored in LATER SECTION), which necessitates the inclusion of additional overlap 
+projection basis (as will be explored in [PAPER 3]), which necessitates the inclusion of additional overlap 
 matrices between nonorthogonal orbital spaces in these equations. While this increases the cost by adding 
 iterations and additional expressions to evaluate, these additional costs are heavily outweighed by the 
 computational savings due to the reduction of $N$ in large systems.
@@ -95,14 +97,15 @@ The coupled-cluster family of electronic structure methods employ an exponentiat
 \end{equation}
 with
 \begin{subequations}
-    \begin{equation}
+    \begin{equation} \label{eq:T}
         \hat{T} = \sum_{n=1}^M\hat{T}_n
     \end{equation}
-    \begin{equation} \label{eq:T}
+    \begin{equation} \label{eq:T_n}
         \hat{T}_n = \left(\frac{1}{n!}\right)^2 t_{ij\ldots}^{ab\ldots}a_a^{\dagger}a_b^{\dagger}\ldots a_j a_i
     \end{equation}
 \end{subequations}
-where $M$ is the number of electrons in the system.
+where $M$ is the number of electrons in the system, and $a_p$ are the standard second-quantized 
+excitation operators.
 Rather than perturbative expansion, the cluster operator is expanded in orders of substitutions (singles, doubles, \textit{et cetera} in ~Eq.(\ref{eq:T})), then truncated to a given substitution level to produce tractable equations. Additional simplification is achieved by using the similarity-transformed Hamiltonian
 \begin{equation} \label{eq:Hbar}
     \bar{H} = e^{-\hat{T}}\hat{H}e^{\hat{T}}
@@ -111,7 +114,7 @@ which has the same eigenspectrum as $\hat{H}$, but naturally truncates at four n
 \begin{equation} \label{eq:cbh}
     \bar{H} = \hat{H} + [\hat{H}, \hat{T}] + \frac{1}{2!}[[\hat{H}, \hat{T}], \hat{T}] + \frac{1}{3!}[[[\hat{H}, \hat{T}], \hat{T}], \hat{T}] + \frac{1}{4!}[[[[\hat{H}, \hat{T}], \hat{T}], \hat{T}], \hat{T}].
 \end{equation}
-Projecting ~Eq.(\ref{eq:cc_TISE}) on the left by $\bra{0}e^{-\hat{T}}$ yields the coupled cluster energy expression. As before, programmable expressions for the amplitudes $t_{ij\ldots}^{ab\ldots}$ are obtained by projection onto substituted determinants:
+Projecting ~Eq.(\ref{eq:cc_TISE}) on the left by $\bra{0}e^{-\hat{T}}$ yields the coupled cluster energy expression. As in Section \ref{ss:mp2}, programmable expressions for the amplitudes $t_{ij\ldots}^{ab\ldots}$ are obtained by projection onto substituted determinants $\ket{\mu}$:
 \begin{subequations}
     \begin{equation} \label{eq:cc_E}
         \bra{0}\bar{H}\ket{0} = E_{CC}
@@ -121,25 +124,27 @@ Projecting ~Eq.(\ref{eq:cc_TISE}) on the left by $\bra{0}e^{-\hat{T}}$ yields th
     \end{equation}
 \end{subequations}
 Here also, the choice of projection basis may require the inclusion of overlap matrices in the iterative 
-procedure. 
+evaluation of the amplitude expressions. 
 
 Untruncated, ~Eqs.(\ref{eq:cc_E}) and (\ref{eq:cc_res}) produce exact solutions to the time-independent 
 Schr\"odinger equation for the electronic Hamiltonian in a given basis set. Perhaps the most common 
 truncation of ~Eq.(\ref{eq:T}) is to single and double substitutions, defining the CCSD method. 
 The computational cost of this method scales as $\mathcal{O}(N^6)$. In terms of MBPT, CCSD may be viewed 
 as correct through infinite order, but only within the space of single and double substitutions.
-A perturbative correction for triples produces the "gold standard'' in quantum chemistry, 
+A perturbative correction for triples produces the ``gold standard'' in quantum chemistry, 
 the CCSD(T) method, which scales as $\mathcal{O}(N^7)$. Aside from these, additional truncation schemes exist 
 for a variety of purposes. For example, the CCD method includes only double substitutions, but the 
 complexity of the resulting equations is far simpler. Another method, CC2, is tuned for the calculation
 of molecular response properties, such as dipoles and polarizabilities. This method retains the singles
 expressions from CCSD, but truncates the doubles expression at first order by considering the $\hat{T}_2$ 
 operator as first order (the one- and two-electron terms of the Hamiltonian are still considered to be
-zeroth and first order, as in the previous section). The resulting iterative equations scale as 
-$\mathcal{O}(N^5)$ but, unlike the similarly-scaling MP2 method, includes the effects of singles, which 
-have been shown to be crucial for computing accurate molecular properties. It is important to note that
-the while the studies in [PAPER 2] and [PAPER 3] utilize CCSD, many other flavors of CC may be used as
-drop-in replacements, both in theory and in the implementation of their codes. 
+zeroth and first order, as in Section \ref{ss:mp2}). Solving the resulting iterative amplitude expressions 
+for CC2
+scale as $\mathcal{O}(N^5)$ but, unlike the similarly-scaling MP2 method, includes the effects of singles, 
+which have been shown to be crucial for computing accurate molecular properties. 
+It is important to note that the while the studies in [PAPER 2] and [PAPER 3] utilize CCSD, 
+many other flavors of CC may be used as drop-in replacements, both in theory and in the implementation 
+of their codes. 
 
 \subsection{Reduced Density Matrices} \label{ss:rdm}
 A general expression for the ground-state energy of an arbitrary wave function $\ket{\Psi}$ can be written in terms of one- and two-particle reduced density matrices (1-RDM $D$ and 2-RDM $\Gamma$)
@@ -158,16 +163,17 @@ where $h_{p}^{q}$ are the one-electron integrals of the electronic Hamiltonian, 
     \Gamma_{pqrs} = \bra{\Psi}a_p^{\dagger}a_q^{\dagger}a_sa_r\ket{\Psi}.
 \end{equation}
 \end{subequations}
-Clearly, this requires the left-hand wave function $\bra{\Psi}$. For the electronic Hamiltonian, which is Hermitian, the left- and right-hand wave functions are identical, as is the case for MP2. However, due to the similarity transformation of the Hamiltonian in ~Eq(\ref{eq:Hbar}), this Hermiticity is destroyed. It is therefore necessary to solve for the CC left-hand wave function,
+Clearly, this requires the left-hand wave function $\bra{\Psi}$. For the electronic Hamiltonian, which is Hermitian, the left- and right-hand wave functions are identical, as is the case for MP2. However, this Hermiticity is destroyed for standard CC methods due to the similarity transformation of the Hamiltonian 
+in ~Eq(\ref{eq:Hbar}). It is therefore necessary to solve for the CC left-hand wave function,
 \begin{equation} \label{eq:cc_lwfn}
     \bra{\mathcal{L}} = \bra{\Psi}\hat{\mathcal{L}}
 \end{equation}
-where $\bra{\mathcal{L}}$ is a left-hand cluster operator analogous to ~Eq(\ref{eq:T}), with analogous amplitudes $t_{ij\ldots}^{ab\ldots}$. This additional set of coupled equations can be solved in the same manner as the right-hand amplitude expressions. We may then rewrite the coupled cluster energy expression using ~Eq(\ref{eq:cc_TISE}): 
+where $\bra{\mathcal{L}}$ is a left-hand cluster operator analogous to ~Eq(\ref{eq:T_n}), with analogous amplitudes $\lambda_{ij\ldots}^{ab\ldots}$. This additional set of coupled equations can be solved in the same manner as the right-hand amplitude expressions. We may then rewrite the coupled cluster energy expression using ~Eq(\ref{eq:cc_TISE}): 
 \begin{equation} \label{eq:cc_energy_total}
     \bra{\Psi}\hat{\mathcal{L}}\bar{H}\ket{\Psi} = E.
 \end{equation}
 
-As will be explored in Section \ref{se:res}, properties may be expressed as derivatives of the electronic energy. Given the left- and right-hand wave functions and assuming the Hellmann-Feynman theorem holds (and thus $\ket{\Psi}$ carries no dependence on $\Omega$), the derivative of the energy with respect to an arbitrary operator $\hat\Omega$ can be conveniently expressed
+As will be explored in Section \ref{se:res}, molecular properties may be expressed as derivatives of the electronic energy. Given the left- and right-hand wave functions and assuming the Hellmann-Feynman theorem holds (and thus $\ket{\Psi}$ carries no dependence on $\hat{\Omega}$), the derivative of the energy with respect to an arbitrary operator $\hat\Omega$ can be conveniently expressed
 \begin{equation} \label{eq:dE}
     \begin{aligned}
     \frac{\partial E}{\partial \hat\Omega} &= \bra{\Psi}\frac{\partial \hat{H}}{\partial \hat\Omega}\ket{\Psi}\\
@@ -175,6 +181,7 @@ As will be explored in Section \ref{se:res}, properties may be expressed as deri
     \end{aligned}
 \end{equation}
 %% NOTE: a lot of notation to clean up here
-without further specification of the wave function or Hamiltonian. Thus, time-independent first-order properties may be expressed without differentiation of the RDMs. This is important for the machine-learning 
-methods discussed in [PAPER 2]. The cases of higher-order and time-dependent properties, which are the
-focus of [PAPER 1] and [PAPER 3], will be handled in Sections \ref{se:res} and \ref{se:rtcc}. 
+without further specification of the wave function or Hamiltonian. Thus, time-independent first-order properties may be expressed without differentiation of the RDMs. This was a driving force behind the study in 
+[PAPER 1], and is important for the machine-learning methods discussed in [PAPER 2]. The cases of 
+higher-order and time-dependent properties, which are the
+focus of [PAPER 1] and [PAPER 3], will be handled in the following section. 

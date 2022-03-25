@@ -63,10 +63,11 @@ optical rotation, and circular dichroism (which are the primary targets of [PAPE
 For these and other time-dependent response properties, some description of the time evolution of the wave function is
 required. 
 These properties may be solved directly from the time-dependent analogue of ~Eq.(\ref{eq:mu_tot}). 
-To compute the dynamic dipole, one must compute the dipole moment expectation value of a system in the presence of an explicitly
-time-dependent electric field.
+To compute the now-time-dependent dipole, one must compute the dipole moment expectation value of a system 
+in the presence of an explicitly time-dependent EMF.
 Fourier transforming the dynamic dipole into the frequency domain would produce broadband spectra.
-However, explicit time propagation of the wave function is exceedingly expensive. This is the topic of chapters [TDCC] and [PAPER 3]. 
+However, explicit time propagation of the wave function is exceedingly expensive. 
+This is the topic of [PAPER 3]. 
 For now, we will consider an alternative approach which computes properties at individual frequencies, 
 but does not require explicit propagation of the wave function. 
 
@@ -88,11 +89,11 @@ and an exponentiated phase. Expressing the Hamiltonian as in ~Eq{(\ref{eq:H}) as
 Hamiltonian $\hat{H}^{(0)}$ with a time-dependent perturbation $\hat{V}(t)$
 (generally taken to be an EMF) and inserting this and the wave function expansion into ~Eq.({\ref{eq:tdse}) yields
 \begin{equation} \label{eq:sub_tdse}
-    (\hat{H}^{(0)} + \hat{V}(t))d_n(t)e^{-iE_nt/\hbar}\ket{n} = i\hbar \partt{}[d_n(t)e^{-iE_nt/\hbar}]\ket{n}.
+    (\hat{H}^{(0)} + \hat{V}(t))d_n(t)e^{-iE_nt/\hbar}\ket{n} = i\hbar \partt{}\left[d_n(t)e^{-iE_nt/\hbar}\right]\ket{n}.
 \end{equation}
 It should be noted that, in the absence of a perturbation (time $t = 0$), this reduces to the time-independent Schr\"odinger equation ($d_n(0) = 1$). Using the chain rule, ~Eq.({\ref{eq:sub_tdse}}) becomes  
 \begin{equation} \label{eq:chain_tdse}
-    (\hat{H}^{(0)} + \hat{V}(t))d_n(t)e^{-iE_nt/\hbar}\ket{n} = [E_n d_n(t) + i\hbar \partt{d_n(t)}]e^{-iE_nt/\hbar}\ket{n}.
+    (\hat{H}^{(0)} + \hat{V}(t))d_n(t)e^{-iE_nt/\hbar}\ket{n} = \left[E_n d_n(t) + i\hbar \partt{d_n(t)}\right]e^{-iE_nt/\hbar}\ket{n}.
 \end{equation}
 If we assume we have \textit{exact} eigenstates $\ket{n}$ of the molecular Hamiltonian, \textit{i.e.} exact ground and excited state wave functions, then the second terms of both sides of ~Eq.(\ref{eq:chain_tdse}) cancel. Projecting on the left by 
 excited states $\bra{m}$ (which contains only one state nonorthogonal to $\ket{n}$ and thus collapses the sum on the 
@@ -141,8 +142,8 @@ value of the electric dipole operator $\hat{\mu}$. After rearrangement, we arriv
 \begin{equation} \label{eq:sos}
     \begin{aligned}
     \bra{\Psi(t)}\hat\mu\ket{\Psi(t)} &= \bra{0}\hat\mu\ket{0} \\ 
-    &- \sum_{m\neq0}[\frac{\bra{m}\hat\mu\ket{0}\bra{0}\hat{v}^\omega_\alpha\ket{m}}{\hbar(\omega_{mo}+\omega)}
-        + \frac{\bra{0}\hat\mu\ket{m}\bra{m}\hat{v}^\omega_\alpha\ket{0}}{\hbar(\omega_{mo}-\omega)}]
+    &- \sum_{m\neq0}\left[\frac{\bra{m}\hat\mu\ket{0}\bra{0}\hat{v}^\omega_\alpha\ket{m}}{\hbar(\omega_{mo}+\omega)}
+        + \frac{\bra{0}\hat\mu\ket{m}\bra{m}\hat{v}^\omega_\alpha\ket{0}}{\hbar(\omega_{mo}-\omega)}\right]
     e^{-i\omega t}F^\omega_\alpha
     \end{aligned}
 \end{equation}
@@ -156,17 +157,18 @@ response functions can be identified by the expansion of an operator $\hat\Omega
     &+ \ldots
     \end{aligned}
 \end{equation}
-where we have introduced notation for the linear $\linresp{\hat\Omega}{\hat{v}^{\omega_1}_\alpha}$, 
-quadratic $\quadresp{\hat\Omega}{\hat{v}^{\omega_1}_\alpha}{\hat{v}^{\omega_2}_\beta}$, and higher-order response functions.
+where we have introduced notation for the linear $\linresp{\hat\Omega}{\hat{v}^{\omega_1}_\alpha}$ 
+and quadratic $\quadresp{\hat\Omega}{\hat{v}^{\omega_1}_\alpha}{\hat{v}^{\omega_2}_\beta}$ response functions.
 
 \subsection{Approximate Response} \label{ss:apprx}
 Sum-over-states expressions like those in Eq.~(\ref{eq:sos}) can be solved by computing the excited state wave functions and 
 summing their individual contributions to the property. This poses a unique challenge in that the response tensor is not a product 
 of only one targeted excited state, but of all possible excited states. 
 While it is expected many high-energy states will have negligible contributions, the number of states 
-required to accurately model these properties makes this approach prohibitively expensive for excited-
-state extensions to ground-state  methods, such as equation-of-motion (EOM) CC. We can avoid this 
-problem by building response equations based on approximate ground-state wave functions, such as ~Eq.(\ref{eq:cc_TISE}).
+required to accurately model some properties such as optical rotation makes this approach prohibitively 
+expensive for excited-state extensions to ground-state methods, such as equation-of-motion (EOM) CC. 
+We can avoid this problem by building response equations based on approximate ground-state wave functions, 
+such as ~Eq.(\ref{eq:cc_TISE}).
 This eliminates the ability to compute excited-state wave functions, but allows us to replace the sum-over-states 
 expression with a set of coupled linear equations which are far more computationally tractable.
 
