@@ -6,7 +6,7 @@
 *.nlo
 *.out
 acs-*.bib
-main.pdf
+*.pdf
 si.pdf
 #ignore swp and checkpoint files
 *.swp

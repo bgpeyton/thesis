@@ -11,7 +11,7 @@
 %\def\bm#1{\mbox{\boldmath$#1$}}
 \def\bm#1{\mathbf{#1}}
 \def\linresp#1#2{\langle\langle#1;#2\rangle\rangle}
-\def\quadresp#1#2#3{\langle\langle#1;#2;#3\rangle\rangle}
+\def\quadresp#1#2#3{\langle\langle#1;#2,#3\rangle\rangle}
 \def\degrees{deg dm$^{-1}$ (g/mL)$^{-1}$}
 \def\optrot{$[\alpha]$}
 \def\crt#1{a_{#1}^{\dagger}}    % Creation operator
@@ -19,10 +19,12 @@
 \def\cgs{($10^{-40}$ cgs)}      % units 
 \def\selfolap#1{\langle#1|#1\rangle} % <i|i>
 \def\olap#1#2{\langle#1|#2\rangle} %<i|j>
+\def\partt#1{\frac{\partial#1}{\partial t}} % partial i / partial t
+\def\piw{\bar\psi(t)} % phase-isolated wfn
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\title{Alternative Methods for the Calculation of Molecular Properties using Electronic Structure Theory}
+\title{The Efficient Computation of Field-Dependent Molecular Properties in the Frequency and Time Domains}
 \keywords{Electronic structure theory, machine learning, coupled cluster, local correlation}
 \author{Benjamin G. Peyton}
 \program{Chemistry} 

@@ -1,0 +1,44 @@
+\section{Real-Time Coupled Cluster Theory} \label{se:rtcc}
+As mentioned in Section \ref{se:res}, a time-domain approach to the calculation of molecular properties
+is possible. Previous work has been done in the realms of configuration interaction (CI) and density
+functional theory (DFT), and more recently flavors of real-time coupled cluster theory (RT-CC) have been
+applied to small systems in a variety of field perturbations. Here we summarize the advantages,
+disadvantages, and theoretical underpinnings of real-time electronic structure theory, with a 
+specific focus on RT-CC techniques.
+
+CC theory, particularly the CC singles and doubles variant with a perturbative triples correction (CCSD(T)),
+has been called the ''gold standard" of electronic structure theory. Following its success in ground-state 
+theory, the application of CC to molecular response properties has been successful in the case of small 
+molecules in simple isotropic fields.
+However, two areas of extraordinary experimental interest have yet to be thoroughly explored with CC: 
+``strong" field perturbations (on the order of the strength of molecular interactions) such as X-Ray
+spectroscopy, and shaped-pulse perturbations, implicated in \textit{e.g.} so-called pump-probe experiments.
+These gaps in the literature are due to the failings of response theory under these conditions. 
+Hinging on the assumption of relatively weak perturbations, response theory breaks down in the case 
+of extremely strong fields [PROBABLY NEED A NUMBER HERE]. Also implicit in the perturbative treatment
+in both exact and approximate response theory is the broadband excitation of the system into any and 
+all possible excited states. This precludes the possibility of modeling the response to tuned laser pulses
+which target specific excited states or ranges of excited states. Both of these cases are possible in an
+explicitly time-dependent formalism.
+
+Extending ground-state CC to a time-dependent formalism is achieved through the introduction of 
+time-dependent amplitudes. This process is exactly analogous to the derivation of the wave function
+parameters in dynamic response theory, ~Eqs.(\ref{eq:tdse}) - (\ref{eq:sot}). The residual expression
+~Eq.(\ref{eq:cc_res}) for time-dependent cluster amplitudes $\tau^\mu$ becomes
+\begin{equation} \label{eq:rt_amps}
+    i\hbar\partt{\tau^\mu} = \bra{\mu}\bar H(t)\ket{0}
+\end{equation}
+where the right-hand-side of ~Eq.(\ref{eq:rt_amps}) is simply the usual CC residual expression in the
+presence of a time-dependent Hamiltonian. An expression for the time-evolution of the left-hand wave 
+function parameters $\lambda^\mu$ is obtained in the same manner.
+We adopt the field-perturbed Hamiltonian used in 
+Section \ref{ss:exact}; however, we are now free to define our field form at the time of computation,
+since we require no further simplification of these expressions to continue.
+
+Unfortunately, nonlinear differential equations like ~Eq.(\ref{eq:rt_amps}) do not have a closed-form 
+solution. Instead, we may utilize \textit{numerical integration} techniques to directly propagate 
+the amplitudes in time. One simple (and popular) class of approximate integrators is the Runge-Kutta 
+family of methods. 
+These methods take a ''step" forward in time by computing approximate intermediate steps
+and combining the solutions. The number of steps determines the ''order" of the propagation. For example,
+
