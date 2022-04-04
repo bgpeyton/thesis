@@ -9,7 +9,7 @@ These response tensors generally take the form of products of ground- and excite
 transition moments of the electric or magnetic dipole operator. In this chapter we will 
 summarize the derivation of these response tensors and their relationships to field-induced 
 molecular phenomena. We then present a method for obtaining these tensors through Fourier 
-transform of a time-dependent ``quasi-energy''
+transform of a time-dependent quasi-energy
 \cite{Christiansen1998,Norman2011,Helgaker2012}
 which is rigorously defined in the context of 
 electronic structure theory, providing working equations for predicting molecular responses 
@@ -48,12 +48,13 @@ where we have defined the response tensors for the permanent (field-independent)
     \beta_{\alpha\beta\gamma} = -\frac{\partial^3 V}{\partial (E_\alpha)_0 \partial (E_\beta)_0 \partial (E_\gamma)_0}.
     \end{equation}
 \end{subequations}
-Property tensors for magnetic and mixed electric-magnetic properties are defined in an 
+Property tensors for magnetic and mixed electric-magnetic properties, as well as higher-order
+multipoles in Eq.~(\ref{eq:pot_V}), are defined in an 
 analogous manner.\cite{Barron2004} 
 
 Quantum mechanical expressions for the property tensors may be obtained through perturbation theory. 
 For static-field properties, this process is straightforward, and expressions similar to those found for
-correlation energy corrections in ~Eq.({\ref{eq:E2}) arise in the perturbative expansion of the time-independent Schr\"odinger
+correlation energy corrections in Eq.~({\ref{eq:E2}) arise in the perturbative expansion of the time-independent Schr\"odinger
 equation, e.g., for the static polarizability tensor:
 \begin{equation} \label{eq:static_pol}
 \alpha_{\alpha\beta} = -2\sum_{j\neq n}\frac{\bra{n}\mu_\alpha\ket{j}\bra{j}\mu_\beta\ket{n}}{V_n - V_j} 
@@ -64,7 +65,7 @@ Of more practical application is the prediction of dynamic-field properties, suc
 optical rotation, and circular dichroism (which are the primary targets of [PAPER1] and [PAPER3]).
 For these and other time-dependent response properties, some description of the time evolution of the wave function is
 required. 
-These properties may be solved directly from the time-dependent analogue of ~Eq.(\ref{eq:mu_tot}). 
+These properties may be solved directly from the time-dependent analogue of Eq.~(\ref{eq:mu_tot}). 
 To compute the now-time-dependent dipole, one must compute the dipole moment expectation value of a system 
 in the presence of an explicitly time-dependent EMF.
 Fourier transforming the dynamic dipole into the frequency domain produces a  broadband spectrum.
@@ -87,17 +88,17 @@ we will, without loss of generality, assume a time-dependent wave function expan
     \end{equation}
 \end{subequations}
 where $\ket{\psi(t)}$ is an approximate wave function consisting of a set of known, time-independent functions $\ket{n}$
-and an exponentiated phase. Expressing the Hamiltonian as in ~Eq{(\ref{eq:H}) as a sum of the time-independent molecular
+and an exponentiated phase. Expressing the Hamiltonian as in Eq.~(\ref{eq:H}) as a sum of the time-independent molecular
 Hamiltonian $\hat{H}^{(0)}$ with a time-dependent perturbation $\hat{V}(t)$
-(generally taken to be an EMF) and inserting this and the wave function expansion into ~Eq.({\ref{eq:tdse}) yields
+(generally taken to be an EMF) and inserting this and the wave function expansion into Eq.~({\ref{eq:tdse}) yields
 \begin{equation} \label{eq:sub_tdse}
     (\hat{H}^{(0)} + \hat{V}(t))d_n(t)e^{-iE_nt/\hbar}\ket{n} = i\hbar \partt{}\left[d_n(t)e^{-iE_nt/\hbar}\right]\ket{n}.
 \end{equation}
-It should be noted that, in the absence of a perturbation (time $t = 0$), this reduces to the time-independent Schr\"odinger equation ($d_n(0) = 1$). Using the chain rule, ~Eq.({\ref{eq:sub_tdse}}) becomes  
+It should be noted that, in the absence of a perturbation (time $t = 0$), this reduces to the time-independent Schr\"odinger equation ($d_n(0) = 1$). Using the chain rule, Eq.~({\ref{eq:sub_tdse}}) becomes  
 \begin{equation} \label{eq:chain_tdse}
     (\hat{H}^{(0)} + \hat{V}(t))d_n(t)e^{-iE_nt/\hbar}\ket{n} = \left[E_n d_n(t) + i\hbar \partt{d_n(t)}\right]e^{-iE_nt/\hbar}\ket{n}.
 \end{equation}
-If we assume we have \textit{exact} eigenstates $\ket{n}$ of the molecular Hamiltonian, \textit{i.e.} exact ground- and excited-state wave functions, then the second terms of both sides of ~Eq.(\ref{eq:chain_tdse}) cancel. Projecting on the left by 
+If we assume we have \textit{exact} eigenstates $\ket{n}$ of the molecular Hamiltonian, \textit{i.e.} exact ground- and excited-state wave functions, then the second terms of both sides of Eq.~(\ref{eq:chain_tdse}) cancel. Projecting on the left by 
 excited-states $\bra{m}$ (which contains only one state nonorthogonal to $\ket{n}$ and thus collapses the sum on the 
 right-hand side) and rearranging, we arrive at the differential equation
 \begin{equation} \label{eq:diffeq}
@@ -106,10 +107,10 @@ right-hand side) and rearranging, we arrive at the differential equation
 which describes the time evolution of the wave function coefficient $d_m(t)$. We have also introduced the angular 
 frequency $\omega_{mn} = (E_m - E_n)/\hbar$. 
 
-Integration of ~Eq.(\ref{eq:diffeq}) from time $t' = 0$ to $t' = t$ yields a recursive equation for the 
+Integration of Eq.~(\ref{eq:diffeq}) from time $t' = 0$ to $t' = t$ yields a recursive equation for the 
 wave function parameter $d_m(t)$, due to the presence of $d_n(t)$ on the right-hand side. 
 However, as a consequence of our assumption that the system begins in its unperturbed ground-state, all
-coefficients at $t' = 0$ reduce to $\delta_{m,0}$. To linear order in $\hat{V}$, ~Eq.(\ref{eq:diffeq}) may be written
+coefficients at $t' = 0$ reduce to $\delta_{m,0}$. To linear order in $\hat{V}$, Eq.~(\ref{eq:diffeq}) may be written
 \begin{equation} \label{eq:irt}
     d_m(t') = \frac{1}{i\hbar}\int_0^t\bra{m}\hat{V}(t^{'})\ket{0}e^{i\omega_{m0}t^{'}}dt^{'}.
 \end{equation}
@@ -127,8 +128,8 @@ To continue, we choose our perturbation to be a simple, time-dependent field at 
 \hat{V}(t) = \hat{v}^\omega_\alpha F^\omega_\alpha e^{-i\omega t}
 \end{equation}
 with field strength $F^\omega_\alpha$ and arbitrary field operator $\hat{v}^\omega_\alpha$, such as the electric or magnetic dipole operator. 
-Note that the implicit summation runs over both $\omega$ and $\alpha$, and the sum in ~Eq.(\ref{eq:irt}) runs over excited-states $\ket{m}$.
-Finally, inserting ~Eq.(\ref{eq:field}) into ~Eq.(\ref{eq:irt}) and integrating, we arrive at the final expression for the
+Note that the implicit summation runs over both $\omega$ and $\alpha$, and the sum in Eq.~(\ref{eq:irt}) runs over excited-states $\ket{m}$.
+Finally, inserting Eq.~(\ref{eq:field}) into Eq.~(\ref{eq:irt}) and integrating, we arrive at the final expression for the
 wave function parameters
 \begin{equation} \label{eq:sot}
     \begin{aligned}
@@ -139,7 +140,7 @@ wave function parameters
     \end{aligned}
 \end{equation}
  
-To arrive at a dipole expression in the form of ~Eq.(\ref{eq:mu_tot}), we may compute the expectation 
+To arrive at a dipole expression in the form of Eq.~(\ref{eq:mu_tot}), we may compute the expectation 
 value of the electric dipole operator $\hat{\mu}$. After rearrangement, we arrive at
 \begin{equation} \label{eq:sos}
     \begin{aligned}
@@ -173,7 +174,7 @@ makes this approach prohibitively expensive for excited-state extensions to
 ground-state methods, such as equation-of-motion (EOM) CC.\cite{Wiberg2006}  
 We can avoid this
 problem by building response equations based on approximate ground-state wave
-functions, such as ~Eq.(\ref{eq:cc_TISE}).  This eliminates the ability to
+functions, such as Eq.~(\ref{eq:cc_TISE}).  This eliminates the ability to
 compute excited-state wave functions, but allows us to replace the
 sum-over-states expression with a set of coupled linear equations which are far
 more computationally tractable.\cite{Norman2011,Helgaker2012}
@@ -184,7 +185,7 @@ Beginning with a time-dependent wave function $\ket{\Psi(t)}$, we may separate t
 \end{equation}
 We may require that the phase of the projection of $\ket{\piw}$ onto the ground-state wave function be 
 zero - in other words, in the limit of zero time-dependent perturbation, $\ket{\piw}$ reduces to the
-ground-state wave function. This is analogous to our approach in ~Eq.(\ref{eq:td_wfn}), where our focus has
+ground-state wave function. This is analogous to our approach in Eq.~(\ref{eq:td_wfn}), where our focus has
 now shifted from the wave function parameters to the phase factor.
 Inserting these definitions into the time-dependent Schr\"odinger equation,
 we arrive at Eq.~(\ref{eq:quasi_schro}):
@@ -214,7 +215,7 @@ respectively, for an arbitrary perturbation $\hat\Omega$ (usually taken to be an
 In the preceding derivation, at no point was it assumed that we have \textit{exact} eigenfunctions 
 of the time-independent Hamiltonian. Thus, the above equations are valid for approximate 
 ground-state theories, such as CC. We may now define our approximate response functions as we did 
-in ~Eq.(\ref{eq:derivs}) as derivatives of this time-averaged quasi-energy,
+in Eq.~(\ref{eq:derivs}) as derivatives of this time-averaged quasi-energy,
 \begin{subequations}
     \begin{equation}
         \linresp{\hat\Omega}{\hat v^{\omega_1}_{\alpha}} = \frac{d^2Q_T}{d\hat\Omega dF^{\omega_1}_\alpha}
