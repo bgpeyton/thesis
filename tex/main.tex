@@ -23,6 +23,9 @@
 \def\piw{\bar\psi(t)} % phase-isolated wfn
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%% ADDED PER RUHEE'S ADVICE
+\usepackage[sort&compress,numbers,super]{natbib}
+
 
 \title{The Efficient Computation of Field-Dependent Molecular Properties in the Frequency and Time Domains}
 \keywords{Electronic structure theory, machine learning, coupled cluster, local correlation}
@@ -55,11 +58,15 @@
 	\mainmatter
     \input{intro/intro.tex}
     \input{theory/theory.tex}
+
+    %%%% ADDING TO TRY TO FIX BIB....
+    \bibliographystyle{achemso}
+
       
 	% This is the standard bibtex file. Do not include the .bib extension in <bib_file_name>.
 	% Uncomment the following lines to include your bibliography: 
-	%\bibliography{<bib_file_name>}
-	%\bibliographystyle{plainnat}   
+	\bibliography{thesis}
+%	\bibliographystyle{plainnat}   
 
 	% This formats the chapter name to appendix to properly define the headers:
 %	\appendix

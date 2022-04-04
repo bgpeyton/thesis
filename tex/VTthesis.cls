@@ -68,7 +68,7 @@
 \RequirePackage{amsmath,amsthm,amssymb,amsfonts}
 \RequirePackage[normalem]{ulem}
 \RequirePackage{enumerate}
-\RequirePackage[numbers,sort]{natbib}
+%\RequirePackage[numbers,sort]{natbib} %%%%%% REMOVED PER RUHEE'S ADVICE
 \RequirePackage{paralist}
 \RequirePackage[titletoc,page]{appendix}
 \RequirePackage[nottoc]{tocbibind}
@@ -272,8 +272,9 @@ frame=single,
   \ifbool{@dft}{\fancyfoot[C]{\textbf{DRAFT}}}{\fancyfoot[C]{}}
   \renewcommand\headrulewidth{0.0pt}}
   
-\newcommand{\biblio}{
-  \fancyhead[C]{\bibname}}
+  %%%%%%% REMOVING BECAUSE WEIRD
+%\newcommand{\biblio}{
+%  \fancyhead[C]{\bibname}}
   
 \newcommand{\backmatter}{
   \ifbool{@nopgskip}
