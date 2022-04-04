@@ -1,30 +1,31 @@
 \section{Response theory} \label{se:res}
 Response theory combines adiabatic perturbation theory with a Fourier transform of the 
-time-dependent equations into the frequency domain\cite{Pederson2020}. The prediction of the response 
-of molecular systems to an electromagnetic field (EMF) has important applications in organic synthesis and
-characterization. To explore these effects, we may relate properties to a perturbative expansion of a 
-total electric or magnetic moment, from which response tensors related to a host of properties may be defined. 
-These response tensors generally take the form of products of ground- and excited-state transition moments of 
-the electric or magnetic dipole operator. In this chapter we will summarize the derivation of these 
-response tensors and their relationships to field-induced molecular phenomena. We then present a method 
-for obtaining these tensors through Fourier transform of a time-dependent ``quasi-energy'' which is 
-rigorously defined in the context of electronic structure theory, providing working equations for 
-predicting molecular responses to EMF using approximate wave function-based theory.
+time-dependent equations into the frequency domain\cite{Barron2004,Pederson2021}. 
+The prediction of the response of molecular systems to an electromagnetic field (EMF) has 
+important applications in organic synthesis and characterization. To explore these 
+effects, we may relate properties to a perturbative expansion of a total electric or 
+magnetic moment, from which response tensors related to a host of properties may be defined. 
+These response tensors generally take the form of products of ground- and excited-state 
+transition moments of the electric or magnetic dipole operator. In this chapter we will 
+summarize the derivation of these response tensors and their relationships to field-induced 
+molecular phenomena. We then present a method for obtaining these tensors through Fourier 
+transform of a time-dependent ``quasi-energy''
+\cite{Christiansen1998,Norman2011,Helgaker2012}
+which is rigorously defined in the context of 
+electronic structure theory, providing working equations for predicting molecular responses 
+to EMF using approximate wave function-based theory.
 
 \subsection{Exact Response} \label{ss:exact}
 Under classical electrodynamics, the potential energy $V$ of a system of charges in a static electric field 
 may be written in a multipole expansion:
-
 \begin{equation} \label{eq:pot_V}
 V = q(\phi)_0 - \mu_\alpha(E_\alpha)_0 - \frac{1}{3}\Theta_{\alpha\beta}(E_{\alpha\beta})_0 + \ldots
 \end{equation}
 with the scalar potential $\phi$, the Cartesian component $\alpha$ of the electric field $E_\alpha$, and the electric field gradient with respect to two Cartesian coordinates $E_{\alpha\beta}$. Here we have defined the multipoles as the electric monopole or charge $q$, the electric dipole $\mu_\alpha$, and the electric quadrupole $\Theta_{\alpha\beta}$. The subscript $0$ indicates that the potential, field, or gradient is taken at the system origin.
-
 We may also expand the potential in a Taylor series about the zero-field potential:
 \begin{equation} \label{eq:tay_V}
     V[E_0] = V_0 + (E_\alpha)_0\frac{\partial V}{\partial (E_\alpha)_0} + \frac{1}{2}(E_\alpha)_0(E_\beta)_0\frac{\partial V^2}{\partial (E_\alpha) \partial (E_\beta)} + \ldots
 \end{equation}
-
 From Eq.~(\ref{eq:pot_V}), we see that a Cartesian component of the electric dipole may be written as the derivative of the potential with respect to the field, 
 \begin{equation} \label{eq:mu_part}
     \mu_\alpha = -\frac{\partial V}{\partial (E_\alpha)_0}.
@@ -47,7 +48,8 @@ where we have defined the response tensors for the permanent (field-independent)
     \beta_{\alpha\beta\gamma} = -\frac{\partial^3 V}{\partial (E_\alpha)_0 \partial (E_\beta)_0 \partial (E_\gamma)_0}.
     \end{equation}
 \end{subequations}
-Property tensors for magnetic and mixed electric-magnetic properties are defined in an analogous manner. 
+Property tensors for magnetic and mixed electric-magnetic properties are defined in an 
+analogous manner.\cite{Barron2004} 
 
 Quantum mechanical expressions for the property tensors may be obtained through perturbation theory. 
 For static-field properties, this process is straightforward, and expressions similar to those found for
@@ -65,8 +67,8 @@ required.
 These properties may be solved directly from the time-dependent analogue of ~Eq.(\ref{eq:mu_tot}). 
 To compute the now-time-dependent dipole, one must compute the dipole moment expectation value of a system 
 in the presence of an explicitly time-dependent EMF.
-Fourier transforming the dynamic dipole into the frequency domain would produce broadband spectra.
-However, explicit time propagation of the wave function is exceedingly expensive. 
+Fourier transforming the dynamic dipole into the frequency domain produces a  broadband spectrum.
+However, explicit time propagation of the wave function is exceedingly expensive.\cite{Goings2018} 
 This is the topic of [PAPER 3]. 
 For now, we will consider an alternative approach which computes properties at individual frequencies, 
 but does not require explicit propagation of the wave function. 
@@ -168,12 +170,13 @@ one targeted excited-state, but of all possible excited-states.  While it is
 expected many high-energy states will have negligible contributions, the number
 of states required to accurately model some properties such as optical rotation
 makes this approach prohibitively expensive for excited-state extensions to
-ground-state methods, such as equation-of-motion (EOM) CC.  We can avoid this
+ground-state methods, such as equation-of-motion (EOM) CC.\cite{Wiberg2006}  
+We can avoid this
 problem by building response equations based on approximate ground-state wave
 functions, such as ~Eq.(\ref{eq:cc_TISE}).  This eliminates the ability to
 compute excited-state wave functions, but allows us to replace the
 sum-over-states expression with a set of coupled linear equations which are far
-more computationally tractable.
+more computationally tractable.\cite{Norman2011,Helgaker2012}
 
 Beginning with a time-dependent wave function $\ket{\Psi(t)}$, we may separate this into two time-dependent pieces - the exponential of a phase factor $\phi(t)$, and a phase-isolated wave function $\ket{\piw}$:
 \begin{equation} \label{total_psi}
@@ -195,7 +198,10 @@ of the phase factor,
 \end{equation}
 It is important to note that, just as the phase-isolated wave function reduces to the ground-state wave function in the absence of a perturbation, the quasi-energy also reduces to the ground-state energy in this case. 
 
-It can be shown that the quasi-energy is manifestly real, and both a time-dependent variational principle and Hellmann-Feynman theorem apply. To obtain a time-independent quantity to perturbatively expand, the quasi-energy is integrated over time to form the time-averaged quasi-energy $Q_T$. The variational and Hellmann-Feynman theorems can then be written
+It can be shown that the quasi-energy is manifestly real, and both a time-dependent variational 
+principle and Hellmann-Feynman theorem apply.\cite{Norman2011} To obtain a time-independent 
+quantity to perturbatively expand, the quasi-energy is integrated over time to form the 
+time-averaged quasi-energy $Q_T$. The variational and Hellmann-Feynman theorems can then be written
 \begin{equation} \label{eq:var}
     \partial Q_T = 0
 \end{equation}
@@ -205,9 +211,10 @@ and
 \end{equation}
 respectively, for an arbitrary perturbation $\hat\Omega$ (usually taken to be an electromagnetic field).
 
-In the preceding derivation, at no point was it assumed that we have \textit{exact} eigenfunctions of the time-independent 
-Hamiltonian. Thus, the above equations are valid for approximate ground-state theories, such as CC. We may now define
-our approximate response functions as we did in ~Eq.(\ref{eq:derivs}) as derivatives of this time-averaged quasi-energy,
+In the preceding derivation, at no point was it assumed that we have \textit{exact} eigenfunctions 
+of the time-independent Hamiltonian. Thus, the above equations are valid for approximate 
+ground-state theories, such as CC. We may now define our approximate response functions as we did 
+in ~Eq.(\ref{eq:derivs}) as derivatives of this time-averaged quasi-energy,
 \begin{subequations}
     \begin{equation}
         \linresp{\hat\Omega}{\hat v^{\omega_1}_{\alpha}} = \frac{d^2Q_T}{d\hat\Omega dF^{\omega_1}_\alpha}
@@ -224,8 +231,10 @@ $\linresp{\hat\mu}{\hat{\mu}}$,
 and the magnetic dipole in an electric field
 $\linresp{\hat m}{\hat{\mu}}$. 
 These are responsible for the dynamic electric polarizability and chiroptical response (optical
-rotation and circular dichroism) respectively. The latter constitutes a long-standing challenge
-for response theory, requiring mixed electric- and magnetic-field derivatives and 
+rotation and circular dichroism) respectively.\cite{Helgaker2012} 
+The latter constitutes a long-standing challenge
+for response theory,\cite{Crawford2007,Crawford2019} 
+requiring mixed electric- and magnetic-field derivatives and 
 leaving minimal room for error, but is also a 
 prime candidate for comparisons to experiment. Some limitations of and alternatives to response
 theory will be explored in chapters [PAPER 1] and [PAPER 3].
