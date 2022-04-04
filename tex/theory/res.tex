@@ -68,11 +68,16 @@ required.
 These properties may be solved directly from the time-dependent analogue of Eq.~(\ref{eq:mu_tot}). 
 To compute the now-time-dependent dipole, one must compute the dipole moment expectation value of a system 
 in the presence of an explicitly time-dependent EMF.
-Fourier transforming the dynamic dipole into the frequency domain produces a  broadband spectrum.
+Fourier transformation of the dynamic dipole (and the corresponding EMF terms) 
+into the frequency domain produces a broadband spectrum.
 However, explicit time propagation of the wave function is exceedingly expensive.\cite{Goings2018} 
 This is the topic of [PAPER 3]. 
-For now, we will consider an alternative approach which computes properties at individual frequencies, 
-but does not require explicit propagation of the wave function. 
+For now, we will consider an alternative approach utilizing time-depending perturbation 
+theory. This approach avoids explicit propagation of the wave function, but limits our
+application to individual frequencies, rather than broadband spectra. Nevertheless, 
+some properties (such as optical rotation) are only experimentally measured at a select few
+frequencies, and spectra may still be approximated by computing values at 
+multiple frequencies. 
 
 Beginning from the time-dependent Schr\"odinger equation,
 \begin{equation} \label{eq:tdse}
@@ -167,14 +172,14 @@ and quadratic $\quadresp{\hat\Omega}{\hat{v}^{\omega_1}_\alpha}{\hat{v}^{\omega_
 like those in Eq.~(\ref{eq:sos}) can be solved by computing the excited-state
 wave functions and summing their individual contributions to the property. This
 poses a unique challenge in that the response tensor is not a product of only
-one targeted excited-state, but of all possible excited-states.  While it is
+one targeted excited-state, but of all possible excited-states. While it is
 expected many high-energy states will have negligible contributions, the number
 of states required to accurately model some properties such as optical rotation
 makes this approach prohibitively expensive for excited-state extensions to
 ground-state methods, such as equation-of-motion (EOM) CC.\cite{Wiberg2006}  
 We can avoid this
 problem by building response equations based on approximate ground-state wave
-functions, such as Eq.~(\ref{eq:cc_TISE}).  This eliminates the ability to
+functions, such as Eq.~(\ref{eq:cc_TISE}). This eliminates the ability to
 compute excited-state wave functions, but allows us to replace the
 sum-over-states expression with a set of coupled linear equations which are far
 more computationally tractable.\cite{Norman2011,Helgaker2012}
@@ -210,7 +215,9 @@ and
 \begin{equation} \label{eq:hf-theorem}
     \frac{dQ_T}{d\hat\Omega} = \frac{1}{T}\int_{t^{'}}^{t^{'}+T}\bra{\piw}\frac{\partial \hat{H}}{\partial\hat\Omega}\ket{\piw}dt^{'},
 \end{equation}
-respectively, for an arbitrary perturbation $\hat\Omega$ (usually taken to be an electromagnetic field).
+respectively, for an arbitrary perturbation $\hat\Omega$ (usually taken to be an 
+electromagnetic field). Thus, the quasi-energy is a well-defined dynamic analogue to the
+electronic energy. 
 
 In the preceding derivation, at no point was it assumed that we have \textit{exact} eigenfunctions 
 of the time-independent Hamiltonian. Thus, the above equations are valid for approximate 
