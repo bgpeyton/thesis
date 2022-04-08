@@ -4,7 +4,8 @@ time-dependent equations into the frequency domain\cite{Barron2004,Pedersen2021}
 The prediction of the response of molecular systems to an electromagnetic field (EMF) has 
 important applications in organic synthesis and characterization. To explore these 
 effects, we may relate properties to a perturbative expansion of a total electric or 
-magnetic moment, from which response tensors related to a host of properties may be defined. 
+magnetic multipole moment, from which response tensors related to a host of properties 
+may be defined. 
 These response tensors generally take the form of products of ground- and excited-state 
 transition moments of the electric or magnetic dipole operator. In this chapter we will 
 summarize the derivation of these response tensors and their relationships to field-induced 
@@ -17,35 +18,39 @@ to EMF using approximate wave function-based theory.
 
 \subsection{Exact Response} \label{ss:exact}
 Under classical electrodynamics, the potential energy $V$ of a system of charges in a static electric field 
-may be written in a multipole expansion:
+may be written in a multipole expansion:\cite{Barron2004}
 \begin{equation} \label{eq:pot_V}
-V = q(\phi)_0 - \mu_\alpha(E_\alpha)_0 - \frac{1}{3}\Theta_{\alpha\beta}(E_{\alpha\beta})_0 + \ldots
+V = q(\phi)_O - \mu_\alpha(E_\alpha)_O - \frac{1}{3}\Theta_{\alpha\beta}(E_{\alpha\beta})_O + \ldots
 \end{equation}
-with the scalar potential $\phi$, the Cartesian component $\alpha$ of the electric field $E_\alpha$, and the electric field gradient with respect to two Cartesian coordinates $E_{\alpha\beta}$. Here we have defined the multipoles as the electric monopole or charge $q$, the electric dipole $\mu_\alpha$, and the electric quadrupole $\Theta_{\alpha\beta}$. The subscript $0$ indicates that the potential, field, or gradient is taken at the system origin.
-We may also expand the potential in a Taylor series about the zero-field potential:
+with the scalar potential $\phi$, 
+the Cartesian component $\alpha$ of the electric field $E_\alpha$, and 
+the electric field gradient with respect to two Cartesian coordinates $E_{\alpha\beta}$. 
+Here we have defined the multipoles as the electric monopole or charge $q$, the electric dipole $\mu_\alpha$, and the electric quadrupole $\Theta_{\alpha\beta}$. 
+The subscript $O$ indicates that the potential, field, or gradient is taken at the system origin.
+We may also expand the potential in a Taylor series about the potential evaluated at zero field:
 \begin{equation} \label{eq:tay_V}
-    V[E_0] = V_0 + (E_\alpha)_0\frac{\partial V}{\partial (E_\alpha)_0} + \frac{1}{2}(E_\alpha)_0(E_\beta)_0\frac{\partial V^2}{\partial (E_\alpha) \partial (E_\beta)} + \ldots
+    V[E_O] = V_O + (E_\alpha)_O\frac{\partial V}{\partial (E_\alpha)_O}\Bigr|_0 + \frac{1}{2}(E_\alpha)_O(E_\beta)_O\frac{\partial V^2}{\partial (E_\alpha)_O \partial (E_\beta)_O}\Bigr|_0 + \ldots
 \end{equation}
 From Eq.~(\ref{eq:pot_V}), we see that a Cartesian component of the electric dipole may be written as the derivative of the potential with respect to the field, 
 \begin{equation} \label{eq:mu_part}
-    \mu_\alpha = -\frac{\partial V}{\partial (E_\alpha)_0}.
+    \mu_\alpha = -\frac{\partial V}{\partial (E_\alpha)_O}\Bigr|_0.
 \end{equation}
 By comparing Eqs.~(\ref{eq:tay_V}) and (\ref{eq:mu_part}), we see that the total electric dipole may be re-written 
 \begin{equation} \label{eq:mu_tot}
-\mu_\alpha = \mu_{0\alpha} + \alpha_{\alpha\beta}(E_\beta)_0 + \frac{1}{2}\beta_{\alpha\beta\gamma}(E_\beta)_0(E_\gamma)_0 + \ldots
+\mu_\alpha = \mu_{O\alpha} + \alpha_{\alpha\beta}(E_\beta)_O + \frac{1}{2}\beta_{\alpha\beta\gamma}(E_\beta)_O(E_\gamma)_O + \ldots
 \end{equation}
 where we have defined the response tensors for the permanent (field-independent) dipole moment $\mu_{0\alpha}$, electric polarizability $\alpha_{\alpha\beta}$, first electric hyperpolarizability $\beta_{\alpha\beta\gamma}$, and higher order terms as higher-order derivatives of the potential, \textit{viz.}
 \begin{subequations} \label{eq:derivs}
     \begin{equation} \label{eq:mu_0}
-    \mu_{0\alpha} = -\frac{\partial V}{\partial (E_\alpha)_0}
+    \mu_{0\alpha} = -\frac{\partial V}{\partial (E_\alpha)_O}\Bigr|_0
     \end{equation}
 
     \begin{equation} \label{eq:alpha}
-    \alpha_{\alpha\beta} = -\frac{\partial^2 V}{\partial (E_\alpha)_0 \partial (E_\beta)_0}
+    \alpha_{\alpha\beta} = -\frac{\partial^2 V}{\partial (E_\alpha)_O \partial (E_\beta)_O}\Bigr|_0
     \end{equation}
 
     \begin{equation} \label{eq:beta}
-    \beta_{\alpha\beta\gamma} = -\frac{\partial^3 V}{\partial (E_\alpha)_0 \partial (E_\beta)_0 \partial (E_\gamma)_0}.
+    \beta_{\alpha\beta\gamma} = -\frac{\partial^3 V}{\partial (E_\alpha)_O \partial (E_\beta)_O \partial (E_\gamma)_O}\Bigr|_0.
     \end{equation}
 \end{subequations}
 Property tensors for magnetic and mixed electric-magnetic properties, as well as higher-order
@@ -57,9 +62,9 @@ For static-field properties, this process is straightforward, and expressions si
 correlation energy corrections in Eq.~({\ref{eq:E2}) arise in the perturbative expansion of the time-independent Schr\"odinger
 equation, e.g., for the static polarizability tensor:
 \begin{equation} \label{eq:static_pol}
-\alpha_{\alpha\beta} = -2\sum_{j\neq n}\frac{\bra{n}\mu_\alpha\ket{j}\bra{j}\mu_\beta\ket{n}}{V_n - V_j} 
+\alpha_{\alpha\beta} = -2\sum_{j\neq 0}\frac{\bra{n}\mu_\alpha\ket{j}\bra{j}\mu_\beta\ket{n}}{V_n - V_j} 
 \end{equation}
-where the sum runs over excited-states $j$ and $n$.
+where the sum runs over excited-states $j$.
 
 Of more practical application is the prediction of dynamic-field properties, such as dynamic polarizabilities, 
 optical rotation, and circular dichroism (which are the primary targets of [PAPER1] and [PAPER3]).
@@ -86,38 +91,41 @@ Beginning from the time-dependent Schr\"odinger equation,
 we will, without loss of generality, assume a time-dependent wave function expansion of the form
 \begin{subequations} \label{eq:td_wfn}
     \begin{equation}
-        \ket{\Psi(t)} = d_n(t)\ket{\psi(t)}
+        \ket{\Psi(t)} = d_n(t)\ket{\psi_n(t)}
     \end{equation}
     \begin{equation}
-        \ket{\psi(t)} = e^{-iE_nt/\hbar}\ket{n}
+        \ket{\psi_n(t)} = e^{-iE_nt/\hbar}\ket{n}
     \end{equation}
 \end{subequations}
-where $\ket{\psi(t)}$ is an approximate wave function consisting of a set of known, time-independent functions $\ket{n}$
+where $\ket{\psi(t)}$ is an approximate wave function consisting of a weighted sum of known, time-independent functions $\ket{n}$
 and an exponentiated phase. Expressing the Hamiltonian as in Eq.~(\ref{eq:H}) as a sum of the time-independent molecular
 Hamiltonian $\hat{H}^{(0)}$ with a time-dependent perturbation $\hat{V}(t)$
 (generally taken to be an EMF) and inserting this and the wave function expansion into Eq.~({\ref{eq:tdse}) yields
 \begin{equation} \label{eq:sub_tdse}
     (\hat{H}^{(0)} + \hat{V}(t))d_n(t)e^{-iE_nt/\hbar}\ket{n} = i\hbar \partt{}\left[d_n(t)e^{-iE_nt/\hbar}\right]\ket{n}.
 \end{equation}
-It should be noted that, in the absence of a perturbation (time $t = 0$), this reduces to the time-independent Schr\"odinger equation ($d_n(0) = 1$). Using the chain rule, Eq.~({\ref{eq:sub_tdse}}) becomes  
+It should be noted that, in the absence of a perturbation (time $t = 0$), 
+this reduces to the time-independent Schr\"odinger equation ($d_n(0) = 1$). 
+Using the chain rule, Eq.~({\ref{eq:sub_tdse}}) becomes  
 \begin{equation} \label{eq:chain_tdse}
     (\hat{H}^{(0)} + \hat{V}(t))d_n(t)e^{-iE_nt/\hbar}\ket{n} = \left[E_n d_n(t) + i\hbar \partt{d_n(t)}\right]e^{-iE_nt/\hbar}\ket{n}.
 \end{equation}
-If we assume we have \textit{exact} eigenstates $\ket{n}$ of the molecular Hamiltonian, \textit{i.e.} exact ground- and excited-state wave functions, then the second terms of both sides of Eq.~(\ref{eq:chain_tdse}) cancel. Projecting on the left by 
-excited-states $\bra{m}$ (which contains only one state nonorthogonal to $\ket{n}$ and thus collapses the sum on the 
-right-hand side) and rearranging, we arrive at the differential equation
+If we assume we have \textit{exact} eigenstates $\ket{n}$ of the molecular Hamiltonian, 
+\textit{i.e.} exact ground- and excited-state wave functions, 
+then the first terms of both sides of Eq.~(\ref{eq:chain_tdse}) cancel. Projecting on the left by 
+the excited-state $\bra{m}$ and rearranging, we arrive at the differential equation
 \begin{equation} \label{eq:diffeq}
-    \partt{d_m(t)} = \frac{1}{i\hbar}\bra{m}\hat{V}(t)\ket{n}d_n(t)e^{i\omega_{mn} t}
+    \partt{d_m(t)} = \frac{1}{i\hbar}\sum_n\bra{m}\hat{V}(t)\ket{n}d_n(t)e^{i\omega_{mn} t}
 \end{equation}
 which describes the time evolution of the wave function coefficient $d_m(t)$. We have also introduced the angular 
-frequency $\omega_{mn} = (E_m - E_n)/\hbar$. 
+frequency $\omega_{mn} = (E_m - E_n)/\hbar$ and included the explicit sum over excited states $\ket{n}$ for clarity. 
 
 Integration of Eq.~(\ref{eq:diffeq}) from time $t' = 0$ to $t' = t$ yields a recursive equation for the 
 wave function parameter $d_m(t)$, due to the presence of $d_n(t)$ on the right-hand side. 
 However, as a consequence of our assumption that the system begins in its unperturbed ground-state, all
-coefficients at $t' = 0$ reduce to $\delta_{m,0}$. To linear order in $\hat{V}$, Eq.~(\ref{eq:diffeq}) may be written
+coefficients at $t' = 0$ reduce to $\delta_{n,0}$. To linear order in $\hat{V}$, Eq.~(\ref{eq:diffeq}) may be written
 \begin{equation} \label{eq:irt}
-    d_m(t') = \frac{1}{i\hbar}\int_0^t\bra{m}\hat{V}(t^{'})\ket{0}e^{i\omega_{m0}t^{'}}dt^{'}.
+    d_m(t) = \frac{1}{i\hbar}\int_0^t\bra{m}\hat{V}(t^{'})\ket{0}e^{i\omega_{m0}t^{'}}dt^{'}.
 \end{equation}
 %\begin{equation} \label{eq:irt}
 %    \begin{aligned}
@@ -133,7 +141,6 @@ To continue, we choose our perturbation to be a simple, time-dependent field at 
 \hat{V}(t) = \hat{v}^\omega_\alpha F^\omega_\alpha e^{-i\omega t}
 \end{equation}
 with field strength $F^\omega_\alpha$ and arbitrary field operator $\hat{v}^\omega_\alpha$, such as the electric or magnetic dipole operator. 
-Note that the implicit summation runs over both $\omega$ and $\alpha$, and the sum in Eq.~(\ref{eq:irt}) runs over excited-states $\ket{m}$.
 Finally, inserting Eq.~(\ref{eq:field}) into Eq.~(\ref{eq:irt}) and integrating, we arrive at the final expression for the
 wave function parameters
 \begin{equation} \label{eq:sot}
@@ -179,8 +186,8 @@ makes this approach prohibitively expensive for excited-state extensions to
 ground-state methods, such as equation-of-motion (EOM) CC.\cite{Wiberg2006}  
 We can avoid this
 problem by building response equations based on approximate ground-state wave
-functions, such as Eq.~(\ref{eq:cc_TISE}). This eliminates the ability to
-compute excited-state wave functions, but allows us to replace the
+functions, such as Eq.~(\ref{eq:cc_TISE}). This eliminates the requirement of 
+computing excited-state wave functions and allows us to replace the
 sum-over-states expression with a set of coupled linear equations which are far
 more computationally tractable.\cite{Norman2011,Helgaker2012}
 
