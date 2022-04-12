@@ -1,0 +1,106 @@
+%theory.tex%
+
+\section{Theory} \label{theory}
+\subsection{Electronic Structure Theory} \label{est}
+The time-independent electronic Schr\"{o}dinger equation (and, therefore, the energy) can be written generally in terms of one- and two-particle reduced density matrices (1-RDM $D$ and 2-RDM $\Gamma$)\cite{Harris1992}:
+\begin{equation} \label{eq:energy}
+    \begin{aligned}
+    E & = \bra{\Psi}\hat{H}\ket{\Psi} \\
+      & = D_{pq}h_{pq} + \Gamma_{pqrs}g_{pqrs}
+    \end{aligned}
+\end{equation}
+where implicit sums in Einstein summation notation are included over arbitrary orbitals ${p,q,r,s}$ for the one- and two-electron integrals of the electronic Hamiltonian, $h$ and $g$. 
+$D$ and $\Gamma$ are defined according to the wave function ansatz
+\begin{subequations}
+\begin{equation} \label{eq:opdm}
+    D_{pq} = \bra{\Psi}a_p^{\dagger}a_q\ket{\Psi}
+\end{equation}
+\begin{equation} \label{eq:tpdm}
+    \Gamma_{pqrs} = \bra{\Psi}a_p^{\dagger}a_q^{\dagger}a_sa_r\ket{\Psi}
+\end{equation}
+\end{subequations}
+where the excitation operators of the second-quantized electronic Hamiltonian are included in the reduced densities. 
+As molecular properties can be expressed in terms of energy derivatives, they can also be expressed in terms of these reduced density matrices. Differentiating Eq.~(\ref{eq:energy}) with respect to an arbitrary parameter $\Omega$, noting that $\ket{\Psi}$ carries no dependence on $\Omega$ (assuming the Hellmann-Feynman theorem\cite{Hellmann1937,Feynman1939} holds), 
+\begin{equation} \label{eq:energy2}
+    \begin{aligned}
+    \frac{\partial E}{\partial \Omega} &= \bra{\Psi}\frac{\partial \hat{H}}{\partial \Omega}\ket{\Psi}\\
+                                  &= D_{pq}\frac{\partial h_{pq}}{\partial \Omega} + \Gamma_{pqrs}\frac{\partial g_{pqrs}}{\partial \Omega}
+    \end{aligned}
+\end{equation}
+thus first-order molecular properties can also be described by the RDM's without their differentiation. This can be said even for time-dependent properties, in which a time-dependent Hellmann-Feynman theorem applies.\cite{Norman2011} Furthermore, one-electron properties (such as the electronic dipole moment) can be expressed solely in terms of the 1-RDM and the relevant property integrals,
+\begin{equation} \label{eq:prop}
+    \Omega = D_{pq}\bra{p}\hat{\Omega}\ket{q}.
+\end{equation}
+
+The 1-RDM is a matrix with as many elements as the number of basis functions squared, and is diagonally dominant for correlated methods in the molecular orbital (MO) basis. Matrices of this size are amenable to large-scale storage, but still hold a wealth of relevant wave function information which can be improved by simply improving the correlated method used to generate them. Additionally, the additivity of densities dictates an additivity of the property contributions, e.g. for the total CC dipole moment in one direction $\alpha$: 
+\begin{equation} \label{eq:dipole}
+    \mu_\alpha = (D^{SCF}_{pq} + D^{CC}_{pq})\bra{p}\hat{\mu}_\alpha\ket{q} + \mu_\alpha^{nuc}
+\end{equation}
+where we have separated the contributions of the uncorrelated (e.g. self-consistent field (SCF)), correlated (e.g. CC theory), and the nuclear ($\mu_\alpha^{nuc}$) components.
+This separability of uncorrelated, correlated, and nuclear contributions to the property is particularly desirable for machine-learning, as we minimize the contributions learned by the algorithm. In order to probe the efficacy of using RDMs as ``raw features'' in a machine-learning context, we will outline and employ a method used previously by Margraf and Reuter\cite{Margraf2018} for using wave function amplitudes as wave function features. The authors also acknowledge a related work\cite{Chen2020}, published on arXiv during manuscript revision, using the eigenvalues of a localized (Hartree-Fock or density functional theory) 1-RDM as the starting point for engineering features in a neural network approach to computing the correlation energy, dubbed the Deep Post-Hartree-Fock (DeePHF) method.
+
+\subsection{Machine-Learning} \label{ml}
+
+\subsubsection{Kernel Ridge Regression} \label{krr}
+We will focus on Kernel Ridge Regression (KRR), as a prototypical ML method.\cite{Murphy,Rasmussen2006} In KRR, a target property, $y$, is approximated as:
+\begin{equation} \label{eq:krr}
+y(\boldsymbol{\nu}) = \sum_i^Mk(\boldsymbol{\nu'}_i,\boldsymbol{\nu})\alpha_i.
+\end{equation}
+Here, $\boldsymbol{\nu}$ is the representation of the system of interest,
+$k(\boldsymbol{\nu}_i',\boldsymbol{\nu})$ is a kernel function which measures the similarity between two systems (with representations $\boldsymbol{\nu}$ and $\boldsymbol{\nu'}$), 
+and $\alpha_i$ is a regression coefficient corresponding to the training point with the representation $\boldsymbol{\nu'}_i$. The sum runs over $M$ training points, so that the target property can be computed as a dot-product between a kernel vector $\boldsymbol{k}$ and a coefficient vector $\boldsymbol{\alpha}$. 
+
+An advantageous feature of KRR is that the coefficients $\boldsymbol{\alpha}$ can be obtained from a closed-form linear algebra expression:
+\begin{equation} \label{eq:alpha}
+    \boldsymbol{\alpha} = (\boldsymbol{K} + \lambda\boldsymbol{I})^{-1}\boldsymbol{y}.
+\end{equation}
+Here, the regularization hyperparameter $\lambda$ is used to prevent overfitting. $\boldsymbol{K}$ is the Kernel matrix with elements containing the kernel function of all pairs of training points. Herein, we use the radial basis function (or Gaussian) kernel to measure the similarity of representations:
+
+ \begin{equation} \label{eq:rbf}
+    k(\boldsymbol{\nu'},\boldsymbol{\nu}) = exp\left(-\frac{\lvert\lvert \boldsymbol{\nu'} - \boldsymbol{\nu} \rvert\rvert^2}{2\sigma_m}\right)
+\end{equation}
+where $\sigma_m$ is another hyperparameter of the model which adds flexibility to how the kernel measures system similarity. Both hyperparameters are optimized empirically to give the best performance in leave-one-out cross-validation.
+
+Overall, it should be emphasized that the KRR model bears clear similarities to the equations we wish to approximate--- Eqs.~(\ref{eq:energy}) and (\ref{eq:energy2}) --- which contain a density-related term multiplied by an additional, property-specific term.
+
+\subsubsection{Representation} \label{rep}
+The representations used herein follow the original idea of the many-body tensor representation (MBTR) of Rupp\cite{Rupp2018}, a geometrical representation proposed as an extension to the Coulomb matrix\cite{Rupp2012}. Margraf and Reuter recently proposed a modification of the MBTR that uses wave function amplitudes from M{\o}ller-Plesset perturbation theory (MP2) or CC theory instead of geometrical features, termed the t-Amplitude Tensor Representation (TATR)\cite{Margraf2018}. 
+Simply put, these representations can be understood as discretized, broadened histograms. This is achieved via a sum of Gaussian functions (with some fixed width $\sigma$), centered on the raw features $t_i$ (i.e. wave function amplitudes). This function is evaluated for a discretized range of values $x \in \chi$: 
+\begin{equation} \label{eq:mbtr}
+    \nu(x) = \sum_{i<N}g(t_i,\sigma,x)
+\end{equation}
+where the sum runs over the $N$ raw features. The representation is thus an $l$-dimensional vector $\nu$, where $\chi$ is discretized into $l$ points with even step-size $\Delta x$. Thus the $N$ raw features are represented in a vector form which now contains $l$ new features. Though it could in theory be optimized, we will use $\sigma = 0.05$ for consistency throughout this work for simplicity. (This value was empirically determined to be optimal for diatomics in Ref.~\citenum{Margraf2018}). 
+
+In Ref.~\citenum{Margraf2018} the highest $N$ amplitudes (by magnitude) were used for each excitation level $m$ to give a TATR of fixed length $l$ times the number of excitation levels considered.
+This number of amplitudes $N$ could be chosen in a number of ways, but Margraf and Reuter chose the highest 150 for simplicity in their paper. This proved sufficient for diatomics in a reasonable basis set, but is not a universally applicable choice for larger cases (see section~\ref{cutoffs}). The discretization range $\chi$ was also fixed as [-1:1] with $l = 150$ and $\Delta x = \frac{2}{150}$, which we will also use for comparison.
+
+The main novelty of the current work is to use density matrix elements in place of $t_i$. This ``density tensor representation'' (DTR) has several advantages. For simplicity we will focus on the 1-RDM --- while this is sufficient for one-electron properties, the information stored in the 1-RDM is also necessary (and in some cases, as discussed in section \ref{comp}, perhaps sufficient) for describing the total wave function.
+The 1-RDM will thus provide much of the wave function character needed to describe the correlation energy.
+This is the first advantage of using a density matrix based representation: one-electron properties are exactly described by a product of the 1-RDM with property integrals, as seen in Eq.~(\ref{eq:prop}). 
+In analogy, Eq.~(\ref{eq:krr}) describes the target function as the product of a (now density-dependent) kernel and the regression coefficients. 
+These coefficients thus describe the property integrals and all approximations in the model (e.g. correlation beyond the level of the density matrix used to build the representation). Thus, a simple mapping from representation to target function is achieved in strict analogy to theory.
+The 1-RDM is diagonally dominant in the MO basis, meaning the number of significant ($>10^{-8}$) elements is scarcely larger than the number of basis functions. 
+This is a further advantage of using 1-RDM elements instead of t-amplitudes: even considering the entire matrix, there will never be more elements than the number of basis functions squared, far fewer than the doubles amplitudes of MP2 or CC theory. These few elements are amenable to large-scale storage, and the number of elements retained could even be reduced in the case of large systems.
+Finally, the density matrix can be easily defined for most electronic structure methods, unlike other descriptors such as the Hartree-Fock-level descriptors (Fock, Coulomb, and exchange matrix elements) employed in Refs.~\citenum{Welborn2018a} and~\citenum{Cheng2019} or wave function amplitudes which are only available for some correlated levels of theory (and depend on the level of ``excitation'' considered). The DTR is thus systematically improvable, by building it from improved wave functions. Importantly, TATR and DTR based ML models will always use two levels of theory: a lower level method (e.g. MP2) to build the representation and a higher level method (e.g. CCSD) to provide the training data. 
+
+\subsubsection{Algorithm} \label{algorithm}
+Rather than spanning chemical compound space, wave function representations span the ``wave function space'' --- that is, the space of possible wave function parameters --- of the systems we wish to describe. The space covered by a KRR model is defined by its training set, meaning that the model will be unsuitable for predicting properties of systems that are very different from the training set. Since the high-level \emph{ab initio} calculations for the construction of the training set are by far the most computationally demanding part of the process, we want to ensure that the training set efficiently spans the wave function space of interest in as few points as possible. 
+
+To this end, we apply the k-means clustering algorithm as implemented in the Scikit-Learn ML package\cite{Pedregosa2011} to an initial ``grand set'' of relevant structures. This grand set could, e.g., consist of all grid points that will be computed for a final PES of interest or to a representative MD trajectory. k-means is a multi-dimensional partitioning scheme--- $N$ initial points are partitioned into $M$ clusters by taking the norm difference of the representations and ``binning'' them based on randomly selected initial cluster centroids. 
+The cluster centers are then updated and the procedure is iterated to self-consistency. Due to the stochastic nature of choosing an initial guess, the algorithm is run repeatedly (30 times for all datasets in this manuscript) and the ``best'' set of clusters is chosen (as determined by minimizing the standard deviation of the distance between each point and its cluster centroid).
+
+This approach requires that representations (TATRs, DTRs, \textit{etc}.) for each point in the ``grand set'' of $N$ structures be calculated first (at the low level of theory). To ensure that the model is truly predictive (i.e. able to reliably predict properties of systems for which no information known during training), a test set of systems is held back from the grand dataset prior to clustering.
+For the $M$ representative data points chosen in this manner (i.e., the training set), the target function (energy, dipole, \textit{etc}.) is computed with the high-level method. Once this is complete, the model is trained and subsequent predictions at approximately high-level accuracy and low-level cost are possible.
+
+
+It should be noted here that the steps outlined in section~\ref{ml} are completely general -- no assumption was made about the level of theory besides that a density matrix can be formed. Furthermore, while KRR and k-means are used herein, alternative clustering schemes, hyperparameter optimization routines, and regression techniques can be be substituted. The optimization of these choices will be the subject of a future study.
+
+For benchmarking purposes, wave function parameters and high-level target values were computed for all datasets. The performance of a model is generally measured by the mean absolute error (MAE) of the predicted test set; however, the issues of truncation, separability, and learning rate are also considered.
+
+% This is a nice figure, but I think that it is misleading because it doesn't really reflect what is done in the paper. Looking at this figure, a reader will assume that the paper is about ML prediction across chemical space. Also, I wonder how such a large figure will look in the paper. Personally, I would leave it out or move it to the SI. The text should be clear enough to explain what we are doing.
+
+%\begin{figure}
+%    \includegraphics[angle=90,scale=0.17]{figures/algorithm.pdf}
+%    \caption{Complete MLQM algorithm: (a) MP2 representations are computed for a grand training set and the k-means clustering algorithm sorts these representations into clusters; (b) one system is selected from each cluster to form a training set, then CCSD targets are computed which are used to optimize the model hyperparameters through leave-one-out cross-validation; (c) once the final regression coefficients for the training set are calculated, prediction for any additional systems can be made using these coefficients combined with MP2 representations in Eq.~(\ref{eq:krr}).}
+%    \label{fig:algorithm}
+%\end{figure}

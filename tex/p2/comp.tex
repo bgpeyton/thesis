@@ -1,0 +1,38 @@
+%comp.tex%
+
+\section{Computational Details} \label{comp}
+Second-order MBPT using a restricted closed-shell Hartree Fock reference wave function (i.e. M{\o}ller-Plesset perturbation theory, MP2)\cite{Møller1934,Bartlett1974a}, was used to generate both TATRs and DTRs for all systems. The TATR is generated from Eq.~(\ref{eq:mbtr}) using the highest 150 (by magnitude) amplitudes of double ``excitations'' 
+$t_{ij}^{ab}$. 
+For DTRs, the elements of the MP2 1-RDM are used. This choice is advantageous not just for comparison to Ref.~\citenum{Margraf2018}, but also due to the special form of the MP2 reduced density matrices\cite{Trucks1988}:
+
+\begin{subequations} \label{eq:mp2_d}
+    \begin{equation} \label{eq:mp2_opdm}
+        D_{pq} = \bra{0}\hat T_2^{\dagger} a_p^{\dagger}a_q \hat T_2\ket{0}
+    \end{equation}
+    \begin{equation} \label{eq:mp2_tpdm}
+        \Gamma_{pqrs} = 2\bra{0}a_p^{\dagger}a_q^{\dagger}a_sa_r \hat T_2\ket{0}.
+    \end{equation}
+\end{subequations}
+where the ``excitation'' operators are defined as $\hat T_n = \left(\frac{1}{n!}\right)^2 t_{ij\ldots}^{ab\ldots}a_a^{\dagger}a_b^{\dagger}\ldots a_j a_i$, and we have again implied Einstein summation notation this time over occupied ${i,j,\ldots}$ and virtual ${a,b,\ldots}$ orbital spaces.
+The form of Eqs.~(\ref{eq:mp2_opdm}) and~(\ref{eq:mp2_tpdm}) indicates that the reduced density matrices are fully defined by the doubles amplitudes and products thereof. In this light, it is reasonable to suggest that all of the information necessary to reproduce the wave function is coded into either of these and, to reduce the size of the representation, the 1-RDM should suffice for describing the MP2-level correlated wave function. Thus, any correlated one-electron property at the MP2 level can be described by this matrix.
+
+Coupled cluster with single and double excitations (CCSD) was used to generate the high-level reference data, i.e. correlated energies and electronic dipole moments, for all systems. This method represents a marked improvement over MP2 in systems where correlation is strong, such as stretched diatomics, without incurring the additional cost of the gold-standard CCSD with perturbative triples method, CCSD(T). However, the CCSD(T) method could be used to provide higher quality targets (e.g. energies and dipoles) with no additional modifications --- as noted in section~\ref{algorithm}, the algorithm as presented is completely general. 
+
+All electronic structure calculations were performed with the Psi4\cite{Parrish2017} electronic structure package. Molecular symmetry was used to maximize TATR performance with as few amplitudes as possible (except in section \ref{cutoffs}). All data (energies, dipoles, amplitudes, and densities) were harvested in full machine precision through either the Psi4-JSON interface or the PsiAPI infrastructure, with the exception of wave function amplitudes at the MP2 level, which were printed in the output file at ten decimal places. The def2-TZVP\cite{Weigend2005} basis was employed for diatomic calculations for comparison with Ref.~\citenum{Margraf2018}, and the aug-cc-pVDZ (aDZ) basis\cite{Dunning1989,Woon1994} was used for all remaining calculations. Density-fitted integrals were used in the construction of MP2 densities using the default auxiliary basis (the so-called ``RI'' basis sets for def2-TZVP\cite{Hattig2005} and aDZ\cite{Weigend2002}, obtained from the New Basis Set Exchange\cite{Pritchard2019}). 
+
+As outlined above, the general procedure from Margraf and Reuter\cite{Margraf2018} was followed for machine-learning. 
+The hyperparameters $\sigma_m$ and $\lambda$ were optimized on a uniform grid from $10^{-8}:10^{8}$ for all models unless otherwise specified, using the ``negative-mean-squared'' loss function. 
+All regressions were performed using 20 training points, except in section \ref{cutoffs} where 12 training points were used to emphasize the difference between the two strategies considered. 
+k-means clustering was repeated 30 times to account for stochastic deviations in the algorithm. 
+Test sets consisting of $N/4$ points are held back before the clustering step.
+The radial basis function kernel (sometimes called the Gaussian kernel), Eq.~(\ref{eq:rbf}), was used for all representations. 
+Machine-learning algorithms were performed using Scikit-Learn (skl) \cite{Pedregosa2011} and the Machine-Learning Quantum Mechanics (MLQM) python package\cite{mlqm}, which generates a number of molecular representations, provides options for generating Psi4 input files and harvesting their results, and wraps some skl functions. 
+Both of these codes are open-source and freely available on GitHub.
+
+Geometries for diatomics were constructed by taking $N = 200$ uniform increments from 0.5-2.0 \AA . All other geometries were randomly selected from MD simulations ($N = 150$) carried out in the Gromacs\cite{Pronk2013} software package.
+Simulations of (\textit{S})-methyloxirane and (\textit{R})-methylthiirane surrounded by a 5\AA\ box of water molecules were executed using an all-atom OPLS/AA forcefield\cite{Jorgensen1996} for the solute and the TIP3P model for water\cite{Jorgensen1983}. Each 5 ns trajectory was carried out in the NVT
+ensemble, with the solute and solvent coupled separately to a temperature bath
+at 300 K using a modified Berendsen thermostat and a coupling time of 0.1 ps. Geometries were selected from a set of 250 evenly-spaced snapshots along the trajectory.
+
+Geometries, Psi4 input and output files, and their accompanying optimized (hyper)parameter values in JSON format can be found at the Virginia Tech Data Repository\cite{vtdata2020}   
+to permit reproducibility of our results. Scripts for harvesting and manipulating data using MLQM are also included in the form of Jupyter Notebooks.

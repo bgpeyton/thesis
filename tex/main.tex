@@ -1,4 +1,5 @@
-\documentclass[doublespace,draft,nopageskip]{VTthesis} % nopageskip - Removes arbitrary blank pages.
+\documentclass[doublespace,nopageskip]{VTthesis} % nopageskip - Removes arbitrary blank pages.
+%\documentclass[doublespace,draft,nopageskip]{VTthesis} % nopageskip - Removes arbitrary blank pages.
 % Using the following header instead will create a draft copy of your thesis
 %\documentclass[doublespace,draft]{VTthesis}
 
@@ -25,6 +26,12 @@
 
 %% ADDED PER RUHEE'S ADVICE
 \usepackage[sort&compress,numbers,super]{natbib}
+
+%% ADDED FOR PAPER 1
+%\usepackage{caption}
+%\usepackage{subcaption}
+%\usepackage{graphicx}
+%\usepackage{wrapfig}
 
 
 \title{The Efficient Computation of Field-Dependent Molecular Properties in the Frequency and Time Domains}
@@ -58,6 +65,8 @@
 	\mainmatter
     \input{intro/intro.tex}
     \input{theory/theory.tex}
+    \input{p1/p1.tex}
+    \input{p2/p2.tex}
 
     %%%% ADDING TO TRY TO FIX BIB....
     \bibliographystyle{achemso}
@@ -65,7 +74,7 @@
       
 	% This is the standard bibtex file. Do not include the .bib extension in <bib_file_name>.
 	% Uncomment the following lines to include your bibliography: 
-	\bibliography{thesis}
+	\bibliography{thesis,p1/p1,p2/p2}
 %	\bibliographystyle{plainnat}   
 
 	% This formats the chapter name to appendix to properly define the headers:
