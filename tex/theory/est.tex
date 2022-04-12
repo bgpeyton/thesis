@@ -17,7 +17,7 @@ referred to as ``excited'') into higher-energy unoccupied (or virtual)
 orbitals. These occupied and virtual orbitals are often chosen to be the
 canonical MOs of the reference wave function, which in turn are linear
 combinations of atomic orbital basis functions. However, as discussed in
-[PAPER 3], some schemes apply a different approach -- namely, localization
+Chapter~\ref{ch:p3}, some schemes apply a different approach -- namely, localization
 (and potentially truncation) of the canonical MOs prior to computing the
 correlation energy. Therefore, this chapter will focus on \textit{general}
 expressions, without assuming canonical or orthogonal orbital spaces
@@ -111,7 +111,7 @@ However, commonplace localizations of the occupied space
 \cite{Pulay1986a,Surjan1989,Boughton1993}
 require instead the iterative evaluation of 
 Eq.~(\ref{eq:mp2_res}). Furthermore, reduced nonorthogonal virtual spaces may be employed in the 
-projection basis (as will be explored in [PAPER 3]),\cite{Werner2006} which necessitates the inclusion of additional overlap 
+projection basis (as will be explored in Chapter~\ref{ch:p3}),\cite{Werner2006} which necessitates the inclusion of additional overlap 
 matrices between nonorthogonal orbital spaces in these equations. While this increases the cost by adding 
 iterations and additional expressions to evaluate, these additional costs are heavily outweighed by the 
 computational savings due to the reduction of $N$ in large systems.
@@ -158,7 +158,7 @@ $t_{ij\ldots}^{ab\ldots}$ are obtained by projection onto substituted determinan
 \end{subequations}
 Here Eq.~(\ref{eq:cc_E}) follows from the normalization condition of $\ket{0}$, 
 and Eq.~(\ref{eq:cc_res}) follows from the orthogonality condition. 
-In the case of localized orbitals, such as those used in [PAPER 3], additional terms 
+In the case of localized orbitals, such as those used in Chapter~\ref{ch:p3}, additional terms 
 involving the overlap of nonorthogonal orbitals will appear in the final expressions. 
 
 Untruncated, Eqs.~(\ref{eq:cc_E}) and (\ref{eq:cc_res}) produce exact
@@ -185,7 +185,7 @@ scales as $\mathcal{O}(N^5)$ but, unlike the similarly-scaling MP2 method,
 includes the effects of singles, which have been shown to be crucial for
 computing accurate molecular properties.
 \cite{Christiansen1995,Koch1997}
-It is important to note that while the studies in [PAPER 2] and [PAPER 3]
+It is important to note that while the studies in Chapters~\ref{ch:p2} and \ref{ch:p3}
 utilize CCSD, many other flavors of CC may be used as drop-in replacements,
 both in theory and in the implementation of their codes.
 
@@ -240,6 +240,6 @@ $\hat\Omega$ can be conveniently expressed
 without further specification of the wave function or Hamiltonian. 
 Thus, time-independent first-order properties may be expressed without 
 differentiation of the RDMs. This was a driving force behind the study in 
-[PAPER 1], and is important for the machine-learning methods discussed in [PAPER 2]. The cases of 
+Chapter~\ref{ch:p1}, and is important for the machine-learning methods discussed in Chapter~\ref{ch:p2}. The cases of 
 higher-order and time-dependent properties, which are the
-focus of [PAPER 1] and [PAPER 3], will be handled in the following section. 
+focus of Chapters~\ref{ch:p1} and \ref{ch:p3}, will be handled in the following section. 

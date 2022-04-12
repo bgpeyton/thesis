@@ -5,6 +5,9 @@
 *.log
 *.nlo
 *.out
+main.lof
+main.lot
+main.toc
 acs-*.bib
 *.pdf
 si.pdf

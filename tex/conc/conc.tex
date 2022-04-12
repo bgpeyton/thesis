@@ -1,0 +1,99 @@
+\chapter{Conclusions} \label{ch:conc} The time- or frequency-dependent
+response of a system to electromagnetic fields gives rise to many different
+dynamic properties which can be experimentally probed by various forms
+of spectroscopy. Theoretical models of electronic structure can provide
+assistance in the design and characterization of novel materials through
+\textit{ab initio} computation of the light-matter interactions which
+govern this response. The accurate computation of these properties on
+modern computing hardware with correlated methods routinely applied
+to ground-state (time-independent) properties, such as coupled cluster
+theory, is often prohibitively expensive for all but the smallest systems.
+These computations typically employ a semi-classical approach, which
+models the response of the Schr\"odinger wave equation of a molecule to
+an external electromagnetic field, represented as a classical potential.
+The current work seeks to improve the efficiency of these methods through
+considerations of both frequency- and time-domain formulations.
+
+After discussing the basics of correlated electronic structure treatments
+and the foundations of semi-classical approaches to property prediction,
+three studies are presented. First, we examine the effects of basis set
+superposition error on the many-body expansion of molecular properties,
+computed using the frequency-domain response theory approach. Previous
+efforts to apply this divide-and-conquer approach to dynamic molecular
+properties proved difficult -- specifically, slow, oscillatory convergence
+to the analytic result was observed, especially in the case of optical
+rotation calculations. Literature precedent suggests that the correction of
+basis set superposition errors, along with careful considerations of other
+methodological parameters such as numerical precision, alleviate oscillatory
+convergence issues commonly encountered when calculating binding energies of
+large water clusters through a many-body approach. While these corrections
+proved to dampen the oscillations, the troublesome case of optical rotation
+for systems in modest solvent shells could still not be reproduced with
+computationally tractable expansions. Thus, fragmentation-type approaches
+such as the many-body expansion are of limited utility in such cases.
+
+Moving beyond simple fragmentation of the system, a condensed wave function
+representation of the entire system could allow for the rapid evaluation of
+target properties. The second study utilized a machine-learning approach. The
+input would be a representation of molecular systems, developed using wave
+function-based descriptors. This representation, dubbed the density tensor
+representation, was derivative of the recently-published $t$-amplitude tensor
+representation, but unique in its construction by exploiting the naturally
+dense representation of the wave function by the reduced density matrix. A
+simple machine-learning method, kernel ridge regression, was applied to
+compute the ground-state energies and electric dipole moments of several
+small organic molecules across molecular dynamics trajectories. MP2-level
+densities were used to build representations, and the training set
+consisted of CCSD-level ground-state correlated energies and electric
+dipoles. Utilizing new implementations of both $t$-amplitude and density
+tensor representations in an open-source, python-based code proved the
+density tensor representation to be the more efficient representation
+of the two, requiring less than a dozen training calculations to provide
+results within chemical accuracy across short trajectories for the systems
+considered. Proposed extensions of the procedure to dynamic properties
+were explored, and the implementation of these methods is ongoing.
+
+Using frequency-domain response theory to compute training set values
+results in certain limitations. This perturbative approach excludes the
+possibility of strong electromagnetic fields, such as those used in ultrafast
+spectroscopy. Computing these properties requires a non-perturbative,
+explicitly time-dependent approach, referred to as real-time electronic
+structure theory. These methods require the expensive (and possibly unstable)
+propagation of the wave function in time. For real-time coupled cluster,
+this means repeatedly evaluating the high-degree polynomial-scaling residual
+expressions for long periods of time. To alleviate the cost, the third and
+final study focused on the application of the local correlation family of
+reduced-scaling methods to real-time coupled cluster.
+
+An open-source coupled cluster development code based on the Psi4 electronic
+structure package was developed which can simulate the effects of various
+local correlation schemes, namely PAO and PNO, with minimal modifications of
+the underlying expressions. The code is capable of modeling explicit electric
+fields, and simulations of both absorption and electronic circular dichroism
+spectra are used to test the efficiency of the PAO and PNO approaches. These
+tests revealed deficiencies in the virtual orbital spaces produced by
+truncating the wave function in these locally correlated bases, which are
+corroborated by recent results of their application in frequency-domain
+response theory. The explicitly time-dependent nature of the wave
+function allowed for the detailed investigation of separate wave function
+elements as they evolved in time, revealing a strong dependence on single
+substitutions, particularly in diffuse orbital spaces. These substitutions
+are not considered in the typical construction of PAOs or PNOs, and these
+bases are also incredibly spatially localized. Alternative approaches,
+such as the recently-proposed PNO++ method, may address these problems,
+allowing for more aggressive truncation of the virtual orbital space,
+leading to far cheaper evaluation of the expensive residual expressions
+required for time propagation.
+
+Active development continues on extensions to the methods described
+in Chapters~\ref{ch:p2} and \ref{ch:p3}. For the former, these
+include extensions to dynamic properties, and an integration with the
+QCArchive computing ecosystem. For the latter, the implementation of
+perturbation-aware truncation criterion and production-level algorithms is
+currently underway. The capability to use cheaper coupled cluster methods,
+such as CC2, is nearing completion. Finally, preliminary results of a pilot
+implementation of an approach specifically targeting the singles amplitudes,
+avoiding the expensive doubles residual expressions all together, have
+been encouraging. These and other improvements will continue to close the
+gap between experimental and theoretical understandings of light-matter
+interactions.

@@ -20,37 +20,36 @@ of novel systems for applications in materials, bio-organics, and more.
 Interpreting or predicting the results of such experiments requires a
 knowledge of fundamental light-matter interactions on a quantum level.
 
-A quantum description of any molecular interaction may be viewed as
-the effects of a perturbation on a quantum-mechanical system. In the
-case of EMF, this perturbation may be static (fixed) or dynamic
-(varying in frequency or time). A fully quantum-mechanical description
-of the light-matter system would require quantum electrodynamics (QED);
-however, it is often sufficient to treat the EMF from a classical
-perspective, treating only the molecular response using quantum
-mechanics.\cite{Barron2004,Helgaker2012} This allows us to utilize many
-well-established methods in the field of theoretical chemistry. These
-generally provide a representation of the system (a wave function or density)
-with which to take the expectation value of a given operator or, in some
-cases, predict the expectation value directly.\cite{Szabo1996} Methods
-which utilize only mathematical techniques (that is, no experimental
-or phenomenological parameters) are said to be \textit{ab initio}
-methods. These methods often (but not always) simplify or ignore the
-quantum effects of the nuclei and their motion, an approximation known as
-the Born-Oppenheimer approximation.\cite{born1927zur} Another subclass of
-\textit{ab initio} methods, which centers around solving the time-dependent
-or time-independent Schr\"odinger wave equation to obtain an explicit form
-of the wave function, are known as wave function-based methods. Finally,
-methods that go beyond the mean-field or Hartree-Fock approximation,
-allowing electrons to interact through more than an average self-consistent field,
-are classified as correlated methods.  It is these correlated wave
-function-based methods under the Born-Oppenheimer approximation upon which
-the bulk of the current work is built. As such, following this in Chapter
-\ref{ch:theory} is a primer in the theoretical underpinnings necessary to
-understand this work.
-The focus will be on fundamentals which are not explicitly presented in the
-publications that follow in [PAPERS 1-3]. Chapter \ref{ch:theory} is roughly
-divided into details of electronic structure theory (Section \ref{se:est})
-and molecular response properties (Section \ref{se:res}).
+A quantum description of any molecular interaction may be viewed as the
+effects of a perturbation on a quantum-mechanical system. In the case of EMF,
+this perturbation may be static (fixed) or dynamic (varying in frequency
+or time). A fully quantum-mechanical description of the light-matter
+system would require quantum electrodynamics (QED); however, it is often
+sufficient to treat the EMF from a classical perspective, treating only the
+molecular response using quantum mechanics.\cite{Barron2004,Helgaker2012}
+This allows us to utilize many well-established methods in the field of
+theoretical chemistry. These generally provide a representation of the
+system (a wave function or density) with which to take the expectation
+value of a given operator or, in some cases, predict the expectation value
+directly.\cite{Szabo1996} Methods which utilize only mathematical techniques
+(that is, no experimental or phenomenological parameters) are said to be
+\textit{ab initio} methods. These methods often (but not always) simplify or
+ignore the quantum effects of the nuclei and their motion, an approximation
+known as the Born-Oppenheimer approximation.\cite{born1927zur} Another
+subclass of \textit{ab initio} methods, which centers around solving the
+time-dependent or time-independent Schr\"odinger wave equation to obtain
+an explicit form of the wave function, are known as wave function-based
+methods. Finally, methods that go beyond the mean-field or Hartree-Fock
+approximation, allowing electrons to interact through more than an average
+self-consistent field, are classified as correlated methods.  It is
+these correlated wave function-based methods under the Born-Oppenheimer
+approximation upon which the bulk of the current work is built. As such,
+following this in Chapter \ref{ch:theory} is a primer in the theoretical
+underpinnings necessary to understand this work.  The focus will be
+on fundamentals which are not explicitly presented in the publications
+that follow in Chapters~\ref{ch:p1}-\ref{ch:p3}. Chapter \ref{ch:theory}
+is roughly divided into details of electronic structure theory (Section
+\ref{se:est}) and molecular response properties (Section \ref{se:res}).
 
 The first topic discussed is many-body perturbation theory
 (MBPT).\cite{Bartlett2009} This framework allows us to separate the quantum
@@ -59,10 +58,10 @@ force, which is expanded in orders and truncated under the assumption
 that higher-order terms become negligible.  This force is often taken to
 be electron correlation when describing the electronic ground state wave
 function;\cite{Moller1934} however, it may also be a static or dynamic
-EMF. In section (\ref{ss:mp2}) we present some basic characteristics of
+EMF. In Section (\ref{ss:mp2}) we present some basic characteristics of
 general MBPT, in preparation for its application in the chapters that follow.
 
-Second, in section (\ref{ss:cc}) we present the wave
+Second, in Section (\ref{ss:cc}) we present the wave
 function-based method which the bulk of this work is either
 based upon or seeks to approximate: coupled cluster (CC) theory.
 \cite{Sinanoglu1964,Cizek1966,Cizek1969,Crawford2000} This method,
@@ -82,9 +81,9 @@ This
 method, while accurate and systematically improvable, is notoriously
 expensive, suffering from high-order polynomial scaling. Extensions to
 excited states and molecular response properties only compound this issue;
-\cite{Hoodbhoy1979,Crawford2006,Helgaker2012,Crawford2019} as such, [PAPER 1]
-and [PAPER 2] are focused on ways to circumvent using CC on any but a small
-subset of systems. (It should be noted that, while [Paper 1] utilizes a
+\cite{Hoodbhoy1979,Crawford2006,Helgaker2012,Crawford2019} as such, Chapters~\ref{ch:p1}
+and \ref{ch:p2} are focused on ways to circumvent using CC on any but a small
+subset of systems. (It should be noted that, while Chapter~\ref{ch:p1} utilizes a
 different correlated method based on a density-functional theory approach,
 the primary goal was to ascertain the effects of fragmentation of a system
 through the many-body expansion on the computation of molecular properties.
@@ -110,6 +109,6 @@ using a Fourier transform of expressions obtained using the time-dependent Schr\
 in the time-domain.
 \cite{Goings2018,Li2020}
 In Section \ref{se:res} we focus on the frequency-domain formulation, while
-[PAPER 3] explores the recently-revived prospect of explicit time-propagation, as well as a 
+Chapter~\ref{ch:p3} explores the recently-revived prospect of explicit time-propagation, as well as a 
 technique to make this process cheaper through a well-established concept known as 
 local correlation.\cite{Werner2006} 
