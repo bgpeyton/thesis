@@ -1,0 +1,233 @@
+% Theory
+
+\section{Theoretical Background} \label{se:theory}
+\subsection{Real-Time Coupled Cluster Theory} \label{ss:rtcc}
+Conventional RTCC implementations begin by computing the ground-state right- and left-hand
+CC wave function amplitudes $t_{\mu}$ and $\lambda_{\mu}$ via the residual expressions
+\begin{subequations}
+    \begin{equation} \label{eq:t_res}
+        \bra{\mu}\bar{H}\ket{\Phi} = 0
+    \end{equation}
+    \begin{equation} \label{eq:l_res}
+        \bra{\Phi}(1 + \hat\Lambda)[\bar{H},\tau_\mu]\ket{\Phi} = 0
+    \end{equation}
+\end{subequations}
+where $\ket{\Phi}$ is the Hartree-Fock ground state determinant and $\ket{\mu}$ 
+are substituted determinants (singles, doubles, \textit{etc}.) obtained by the 
+action of the second-quantized excitation and de-excitation operators $\tau_\mu$,
+and $\bar{H}$ is the similarity transformed electronic Hamiltonian
+\begin{equation}
+    \bar{H} = e^{-\hat{T}}\hat{H}e^{\hat{T}}
+\end{equation}
+with right-hand cluster operators 
+\begin{subequations}
+    \begin{equation}
+        \hat{T} = \sum_\mu^N \hat{T}_\mu
+    \end{equation}
+    \begin{equation} \label{eq:t_mu}
+        \hat{T}_\mu = \sum_{\mu}\tau_\mu t_{\mu}
+    \end{equation}
+\end{subequations}
+and left-hand cluster operators
+\begin{subequations}
+    \begin{equation}
+        \hat{\Lambda} = \sum_\mu^N \hat{\Lambda}_\mu
+    \end{equation}
+    \begin{equation} \label{eq:l_mu}
+        \hat{\Lambda}_\mu = \sum_{\mu}\tau_\mu^\dagger\lambda_\mu.
+    \end{equation}
+\end{subequations}
+
+The time evolution of the amplitudes is governed by the nonlinear differential equations
+obtained through the time-dependent Schr\"odinger equation (in atomic units)
+\begin{subequations}
+    \begin{equation} \label{eq:diff_t}
+        i\frac{\partial t_\mu}{\partial{t}} = \bra{\mu}\bar{H}(t)\ket{\Phi}
+    \end{equation}
+    \begin{equation} \label{eq:diff_l}
+        -i\frac{\partial \lambda_\mu(t)}{\partial{t}} = \bra{\Phi}(1 + \hat\Lambda(t))[\bar{H}(t),\tau_\mu]\ket{\Phi}.
+    \end{equation}
+\end{subequations}
+The right-hand sides of Eqs.~(\ref{eq:diff_t}) and (\ref{eq:diff_l}) are simply the residual
+expressions, where we have replaced the Hamiltonian with a time-dependent Hamiltonian. By 
+including a field perturbation as a time-dependent addition to the Fock operator, the right-hand
+sides may be computed by updating the Hamiltonian from time $t$ to time $t^\prime = t + h$ and 
+recomputing the residual expressions. 
+This is achieved using a numerical integrator, which produces solutions to equations 
+of the form 
+\begin{equation}
+    \frac{dy(t)}{dt} = f(y,t).
+\end{equation}
+Here, $y$ is the amplitude tensor, and the function $f$ is the residual expression. 
+Multiple integration schemes are possible; for simplicity, we adopt the popular
+fourth-order Runge-Kutta integrator,\cite{rk} defined by 
+\begin{equation}
+\begin{aligned}
+    k_1 &= f\left(y,t\right) \\
+    k_2 &= f\left(y+\frac{1}{2}hk_1,t+\frac{1}{2}h\right) \\
+    k_3 &= f\left(y+\frac{1}{2}hk_2,t+\frac{1}{2}h\right) \\
+    k_4 &= f\left(y+hk_3,t+h\right)
+\end{aligned}
+\end{equation}
+with time step $h$, and the propagated tensor is computed as
+\begin{equation}
+    y(t+h) = y(t) + \frac{1}{6}h(k_1 + 2k_2 + 2k_3 + k4).
+\end{equation}
+%Numerical integrators are sensitive to the time step $h$. If $h$ is too large, significant
+%oscillations in the amplitudes may occur, causing unstable propagation of the amplitudes to 
+%positive or negative infinity. 
+%This may be tested by observing either the amplitude dynamics or the 
+%unphysical imaginary component of the Lagrangian energy expectation value. 
+%In our experience, time steps of $0.01$ to $0.1$a.u. are sufficient for most systems subjected
+%to a Dirac delta pulse and fields having periods significantly larger than $h$.
+
+\subsection{Properties} \label{ss:prop}
+To within the dipole approximation, 
+the complex time-domain response tensors 
+$\boldsymbol{\alpha}$ and 
+$\textbf{G}^\prime$ can be defined by low-order expansions 
+of the time-dependent electric and magnetic dipole moment expectation values 
+in an electric field $\textbf{E}$ with frequency $\omega$, \textit{viz.}
+\begin{subequations} \label{eq:exps}
+    \begin{equation} \label{eq:mu_exp}
+        \langle\mu\rangle_i = \mu_0 + \alpha_{ij}E_j
+    \end{equation}
+    \begin{equation} \label{eq:m_exp}
+        \langle m\rangle_i = -\frac{1}{\omega}\frac{\partial E_j}{\partial t}G^\prime_{ij}
+    \end{equation}
+\end{subequations}
+where $i$ and $j$ are Cartesian coordinates, and we have suppressed 
+the time dependence for clarity.  
+%The absorption cross-section $\boldsymbol{\sigma}$ 
+%in the time domain 
+The dipole strength function $S$
+is related to the 
+imaginary component of $\boldsymbol{\alpha}$ by
+\begin{equation} \label{eq:abs}
+    S(t) \propto \textrm{Tr}\left[ \textrm{Im}\left( \boldsymbol{\alpha}(t) \right) \right]. 
+\end{equation}
+Fourier transformation of $S$ from the time to frequency domain
+yields the broadband absorption spectrum. 
+The differential molar extinction coefficient is proportional to the imaginary part
+of the Rosenfeld $\textbf{G}^\prime$ tensor\cite{Rosenfeld1929} by
+\begin{equation} \label{eq:ecd}
+    \eta_i(t) \propto -\textrm{Tr}[\textrm{Im}(\textbf{G}^\prime(t))].
+\end{equation}
+The Fourier transform of Eq.~(\ref{eq:ecd}) yields the ECD spectrum.
+
+We note here two important points. First, we could just as easily
+define both $\boldsymbol{\alpha}$ and $\textbf{G}^\prime$ with respect
+to the electric dipole expectation value; however, by expanding both
+moments in an electric field, we may recover both properties by computing
+expectation values of both the electric and magnetic dipole operators
+along the same electric field-perturbed trajectory. In principle, we may
+compute \textit{any} electric-field-perturbed expectation value from a
+single propagation -- this is in contrast to the RT-EOM-CC method, which
+propagates a single moment function. Additional expectation values
+would require additional moment function propagations.
+
+%Second, the resolution of the resulting Fourier transform is directly
+%related to the excited-state lifetimes. As these simulations are
+%adiabatic, artificial lifetimes are introduced using an exponential
+%damping function (see Section \ref{se:comp}). Furthermore, stick spectra as predicted by EOM-CC
+%either contain all three components of the dipole or must be separated by
+%symmetry to include only the transitions desired (if possible). We focus on
+%the dipole component oriented along the helical axis of spatially arranged
+%hydrogen dimers, fixed to be the y-axis. This component is inseparable from
+%the x-component by symmetry; thus, we provide comparisons to EOM for only
+%a select set of parameters. [NOTE: this may may be relegated to the Comp
+%Details] [NOTE: I could probably include all of the comparisons in the SI]
+
+Second, we note that the low-order expansions in Eq.~(\ref{eq:exps}) are
+an approximation. The total dipole moments will contain many higher-order
+terms; however, at the field strengths used in this work, these effects
+are expected to be negligible. These terms can be separated and have been
+examined in the context of real-time simulations of X-ray absorption 
+spectroscopy (XAS).\cite{Park2021b}
+While very important to the advantages of the RTCC method, these effects
+are beyond the scope of the current work.
+
+\subsection{Local Correlation} \label{ss:local}
+\subsubsection{Projected Atomic Orbitals} \label{sss:pao}
+In the PAO method, the virtual space is localized using a linear combination of $N$ atom-centered 
+atomic orbital (AO) basis functions. For every occupied orbital $i$, the contribution to the 
+Mulliken charge $q$ from every atom $j$ is computed
+\begin{equation}
+    q_j = \sum_{\mu\in j}\sum_\lambda S_{\mu\lambda}C_{\lambda i}C_{\mu i}
+\end{equation}
+where $\mu$ is the set of atomic orbitals centered on atom $j$, and $\lambda$ runs over all AOs.
+$\textbf{S}$ and $\textbf{C}$ are the AO overlap matrix and 
+the Hartree-Fock molecular orbital (MO) coefficients, respectively.
+Atoms (and their AO basis functions) are 
+added to the domain of orbital $i$ one at a time based on decreasing charge contribution. 
+Each time the domain is altered, new coefficients $\textbf{C}^{\prime}$ are computed by solving
+\begin{equation}
+    \sum_{\nu\in i}S_{\mu\nu}C^{\prime}_{\nu i} = \sum_{\lambda}S_{\mu\lambda}C_{\lambda i}
+\end{equation}
+where $\mu$ and $\nu$ are atomic orbitals belonging to domain ${i}$, and $\lambda$
+runs over all AOs.
+The Boughton-Pulay completeness value $b_i$ 
+\begin{equation}
+    b_i = 1 - \sum_{\mu}\sum_{\lambda}C^{\prime}_{\mu i}S_{\mu\lambda}C_{\lambda i}
+\end{equation}
+is then compared to a chosen cutoff, $\delta_{PAO}$. If $b_i$ is above the cutoff, the 
+next atom is added to the domain of $i$, and the process is repeated until the cutoff value
+is met. Orbitals with negligible norms less than another chosen parameter $\delta_{norm}$
+(usually corresponding to contributions from core orbitals prone to linear dependencies)
+are also removed from each domain.
+
+Once the domains are assigned, occupied \textit{pairs} $ij$ are then assigned \textit{pair} 
+domains, based on the union of the domains of the two occupied orbitals. 
+An occupied-space projector $\tilde{\textbf{C}}^\prime$ is computed  
+\begin{equation}
+    \tilde{\textbf{C}}^\prime = \textbf{1} - \textbf{DS}
+\end{equation}
+where $\textbf{D}$ is (half of) the closed-shell Hartree-Fock one-particle density matrix. 
+$\tilde{\textbf{C}}^\prime$ serves to remove contributions from the occupied orbital space, creating
+the redundant PAO space. Linear dependencies are removed by diagonalizing the projected 
+overlap matrix
+\begin{equation}
+    \tilde{\textbf{S}}_{ij} = \tilde{\textbf{C}}^{\prime T}_{ij}\textbf{S}\tilde{\textbf{C}}^{\prime}_{ij}
+\end{equation}
+where $\tilde{\textbf{C}}^\prime_{ij}$ contains only the columns for atomic orbitals belonging to
+the domain of pair ${ij}$. PAOs which correspond to eigenvalues of $\tilde{\textbf{S}}_{ij}$ 
+below one final parameter, 
+$\delta_{lin}$, are then removed.
+The orbitals are normalized to yield the non-redundant PAO basis for a given pair, 
+$\tilde{\textbf{C}}_{ij}$.
+
+Two transformation matrices are required to transform MO-basis quantities 
+into the PAO basis. The first, which rotates from the MO to the redundant PAO
+basis for a given pair, is computed as
+\begin{equation} \label{eq:Q_pao}
+    \textbf{Q}^{PAO}_{ij} = \textbf{C}^{\dagger}_{ij}\textbf{S}\tilde{\textbf{C}}^\prime_{ij}.
+\end{equation}
+To facilitate the use of the usual orbital energy denominator terms during the update of the 
+amplitude equations at every iteration, a semi-canonical virtual basis for pair $ij$,
+$L^{PAO}_{ij} = \chi_{ij}\tilde{C}$,
+is found by diagonalizing the Fock matrix in the space of non-redundant PAOs $\tilde{F}$:
+\begin{equation} \label{eq:L_pao}
+    \tilde{F}\chi_{ij} = \epsilon_{ij}\chi_{ij}
+\end{equation}
+where $\epsilon_{ij}$ are the semi-canonical orbital energies for the virtual space of 
+occupied pair $ij$. 
+
+\subsubsection{Pair Natural Orbitals}
+PNOs are obtained by diagonalizing a pair density built in a space of localized occupied 
+orbital pairs. The MP2-level pair density is defined as
+\begin{equation} \label{eq:pair_D}
+    \textbf{D}_{ij} = 2\frac{\textbf{T}_{ij}\tilde{\textbf{T}}_{ij}^\dagger + \textbf{T}_{ij}^\dagger\tilde{\textbf{T}}_{ij}}{1+\delta_{ij}}
+\end{equation}
+with $\tilde{\textbf{T}}_{ij} = 2\textbf{T}_{ij} - \textbf{T}_{ij}^\dagger$.
+Diagonalizing $\textbf{D}_{ij}$ yields the transformation matrix from the MO to the PNO basis
+$\textbf{Q}^{PNO}$:
+\begin{equation} \label{eq:Q_pno}
+    \textbf{D}_{ij}\textbf{Q}^{PNO}_{ij} = \textbf{D}_{ij}n_{ij}
+\end{equation}
+with occupation numbers $n_{ij}$. Truncation of the space is done by removing PNOs which 
+correspond to occupation numbers below a cutoff, $\delta_{PNO}$. As before, the transformation
+matrix from the PNO to a semi-canonical PNO basis is found by diagonalizing the Fock matrix
+in the space of PNOs:
+\begin{equation} \label{eq:L_pno}
+    \tilde{\textbf{F}}\textbf{L}^{PNO}_{ij} = \epsilon_{ij}\textbf{L}^{PNO}_{ij}.
+\end{equation}

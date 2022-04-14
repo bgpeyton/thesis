@@ -1,0 +1,78 @@
+% Computational details
+\section{Computational Details} \label{se:comp}
+The CC wave function for a helical H$_2$ tetramer was propagated
+for 1000 a.u., with a time step of 0.02 a.u., in the presence of an explicit electric field. A short pulse
+approximating a Dirac delta pulse was applied to excite
+the system into all possible excited states. 
+To approximate a Dirac delta pulse, we apply a narrow time-dependent Gaussian field 
+of the form
+\begin{equation}
+    E(t) = \textrm{F}e^{-\frac{(t-\nu)^{2}}{2\sigma^2}}
+\end{equation}
+with field strength $\textrm{F}$, center $\nu$, and standard deviation $\sigma$.
+All calculations in this work use a field defined by $\textrm{F} = 1\times 10^{-3}$,
+$\nu = 0.05$, and $\sigma = 0.01$, all in atomic units. Electric and magnetic 
+dipoles moments were damped using a damping function of the form $e^{-t\tau}$, 
+with $\tau = 150$.
+
+The reference simulation was performed in the MO space following a localization of the occupied
+orbitals using the Pipek-Mezey procedure.\cite{Pipek1989} All PNO and PAO spaces were also 
+built following the same occupied orbital localization. These simulations
+were then repeated in both the PNO and PAO virtual spaces, with cutoffs
+corresponding to average virtual orbital domains containing roughly 20\%, 40\%, 60\%,
+80\%, and 90\% of the untruncated LMO virtual space, as well as untruncated PNO- and PAO-basis
+simulations to ascertain the effects of the virtual space localization on
+the amplitude dynamics of the wave function. 
+
+The effect of local correlation was computed using a simulation approach\cite{Hampel1996}.
+In this approach, all tensor contractions are done in the LMO basis. In every 
+CC iteration, before the 
+energy denominator is applied when computing an update to the amplitude tensors, the residuals
+are transformed into the local basis using $\textbf{Q}$ and into the semi-canonical
+basis using $\textbf{L}$. These matrices are computed from either Eqs.~(\ref{eq:Q_pno}) 
+and (\ref{eq:L_pno}), respectively, for PNOs, or Eqs.~(\ref{eq:Q_pao}) and (\ref{eq:L_pao}),
+respectively, for PAOs. The residuals in the localized basis $\tilde{r}_\mu$ are 
+computed by
+\begin{subequations} \label{eq:rotate}
+\begin{equation} \label{eq:rotate_r1}
+    \tilde{r}_i^a = \textbf{L}_{ii}^T\textbf{Q}_{ii}^Tr_i^a
+\end{equation}
+\begin{equation} \label{eq:rotate_r2}
+    \tilde{r}_{ij}^{ab} = \textbf{L}_{ij}^T\textbf{Q}_{in}^Tr_{ij}^{ab}\textbf{Q}_{in}\textbf{L}_{ij}
+\end{equation}
+\end{subequations}
+where $r_\mu$ are the residuals from Eqs.~(\ref{eq:t_res}) or (\ref{eq:l_res}). 
+Once the energy denominator is applied, the resulting amplitude step is back-transformed
+into the LMO basis. This process is also applied to the residual, without the
+application of the energy denominator, in every step of the time propagation.
+To include 
+adequately diffuse basis functions, the cc-pVDZ basis
+set augmented with diffuse functions\cite{Dunning1989,Woon1994} was used throughout.  
+
+For absorption spectra, 
+the imaginary component of the Fourier transform of the \textit{induced} electric dipole 
+$\tilde{\mu} = (\langle\mu\rangle - \mu_0)$ following an electric-field kick 
+may be directly divided by the Fourier transform of the field strength to yield the spectrum. 
+In the case of circular dichroism spectra, however, it is advantageous to first 
+analyze the Fourier transform of the derivative of the field. 
+For a Dirac delta pulse $E_\delta(t) = \kappa\delta(t)$, 
+the Fourier transform of the derivative yields
+\begin{equation}
+    \textrm{FFT}[E_\delta] = i\omega\kappa.
+\end{equation}
+Therefore, for such a field, the CD is proportional to the negative of the 
+\textit{real} part of the Fourier 
+transform of the induced magnetic dipole. 
+
+Discrete Fourier transformation was done using a wrapper to the \texttt{fft} submodule
+of the SciPy python library.\cite{scipy} 
+All methods were implemented in the Python-based coupled
+cluster package, PyCC\cite{pycc}, a NumPy-based\cite{numpy} open-source code developed 
+in the Crawford group for the testing and implementation of novel coupled cluster methods. 
+The code utilizes the Psi4 electronic
+structure package\cite{Smith2020} for integral generation and computing reference 
+wave functions. 
+The RTCC code makes use of the opt\_einsum package\cite{opteinsum} for tensor contractions,
+and time propagation is performed using an in-house suite of integrators. The integrator
+used throughout this work was the fourth-order Runge-Kutta method.\cite{rk}
+

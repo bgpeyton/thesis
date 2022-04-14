@@ -1,0 +1,403 @@
+%results.tex
+
+\section{Results and Discussion} \label{se:results} 
+Here we present results from the first applications of local correlation to RTCC.
+Results are examined
+by the convergence of absorption and ECD spectra to the reference results
+in Section \ref{ss:spectra}, followed by an analysis of the amplitude
+dynamics in Section \ref{ss:amps}. 
+%Section \ref{ss:ext} considers the
+%effects of localization on orbital spatial extent between PAO and PNO
+%virtual spaces, and contrasts these results with the amplitude data in
+%an attempt to explain their performance. 
+Section \ref{ss:alt} explores some potential solutions for building
+appropriate virtual spaces for truncation, such as considerations
+of orbital extent,
+perturbation-aware virtual spaces\cite{Crawford2019,DCunha2021}, and 
+including or focusing on the effects of the singles amplitudes. 
+%Finally, we present an alternative solution dubbed ``Semi-static RTCC'' 
+%(SS-RTCC) in Section \ref{ss:ssrtcc} in which the doubles amplitudes 
+%($t_2$ and $\lambda_2$ in Eqs.~(\ref{eq:diff_t}) and (\ref{eq:diff_l}), 
+%respectively) are frozen after the determination of the ground-state wave 
+%function, and only the singles amplitudes are allowed to respond to the 
+%incident perturbation. 
+
+\subsection{Absorption and ECD Spectra} \label{ss:spectra}
+\subsubsection{Absorption} \label{sss:abs}
+Absorption spectra are obtained from the Fourier transform of Eq.~(\ref{eq:abs}).
+Figure~\ref{fig:pno_abs} shows the normalized absorption spectrum obtained from
+a reference propagation along with five PNO cutoffs. The average truncated virtual 
+orbital spaces are from roughly 20\% to 90\% of the MO virtual space (see caption). 
+\begin{figure} 
+    \centering
+    \includegraphics[scale=.6]{p3/figures/pno_abs.png}
+    \caption{Reference and PNO absorption spectra for five cutoffs: 
+    [$1\times 10^{-10}$, $1\times 10^{-9}$, $1\times 10^{-8}$, $1\times 10^{-7}$, 
+    $2\times 10^{-6}$] corresponding to [$93\%$, $82\%$, $63\%$, $44\%$, $24\%$]
+    of the MO virtual space, respectively.}
+    \label{fig:pno_abs}
+\end{figure}
+%For all truncated PNO virtual spaces considered, the base peak appears to within 1.5 eV of the 
+%reference. 
+Overall, truncated PNO virtual spaces approximate the position of the base peak well,
+with the smallest space predicting a base peak within 1.5 eV of the reference,
+and the two largest spaces predict this peak to within 0.2 eV of the reference.
+Convergence to the reference base peak occurs from the right, indicating
+a lowering of excited state energies as the size of the virtual space increases. 
+This trend can also be seen for the smaller peak near 10 eV. However, convergence of the shoulder 
+peaks on either side of the base peak, indicated by the inset of 
+Figure~\ref{fig:pno_abs}, is less predictable. Even the largest spaces considered
+do not correctly predict the excitation energy, with no clear advantage to having
+93\% of the virtual space as compared to just 83\% for predicting these peaks.
+This trend continues into the higher-energy range of the spectrum, with the 
+performance of each cutoff being nearly indistinguishable. 
+
+Performance of the PAO space is shown in Figure~\ref{fig:pao_abs}. 
+\begin{figure} 
+    \centering
+    \includegraphics[scale=.6]{p3/figures/pao_abs.png}
+    \caption{Reference and PAO absorption spectra for five cutoffs: 
+    [$1\times 10^{-4}$, $1\times 10^{-3}$, $1\times 10^{-2}$, $5\times 10^{-2}$, 
+    $1\times 10^{-6}$] corresponding to [$95\%$,$86\%$,$63\%$,$46\%$,$23\%$]
+    of the MO virtual space, respectively.}
+    \label{fig:pao_abs}
+\end{figure}
+The largest truncated PAO virtual space, on average 95\% of the MO space, accurately 
+predicts the excitation energies for each major peak below 17 eV. Particularly around 10 eV, 
+this is noticeably improved performance relative to the largest PNO space tested, 
+with only a 2\% difference in the average size of the virtual space. 
+However, accuracy rapidly declines even at 86\% of the virtual space, where the base peak
+position is already worse than what was predicted with a PNO space of just 63\% of the 
+MO space. Performance continues to degrade as energy increases and the average size of 
+the PAO space decreases. For the final two cutoffs, at averages of 46\% and 23\% of the
+MO space, the base peaks are 3 eV or more away from the reference, and no peak is 
+exhibited near 25 eV. These spaces also fail to predict the second largest peak, the 
+excitation just below 10 eV. 
+
+\subsubsection{ECD} \label{sss:ecd}
+Overall, neither scheme produced adequate results upon truncation of the virtual space. 
+This result is not entirely surprising -- in studies of local correlation applied to 
+response theory by Crawford \textit{et al}., 
+\cite{McAlexander2016,Kumar2017,Crawford2019,DCunha2021} 
+traditional schemes proved inaccurate for another 
+electric dipole--electric dipole property, the electric polarizability.
+In terms of response theory,
+the polarizability (and the refractive index) is related to the \textit{real} part 
+of the electric dipole--electric dipole linear response tensor 
+($\boldsymbol{\alpha}_{ij}$ in Eq.~(\ref{eq:mu_exp})), 
+while absorption
+is related to the \textit{imaginary} part. Indeed, all linear absorptive properties
+such as absorption and CD 
+are related to the imaginary component of a linear response tensor, while dispersive 
+properties such as refractive index and 
+circular birefringence (also known as optical rotation)
+are related to the real component.
+\cite{Barron2004,Norman2011}
+To continue, we will look at another absorptive property which is related to the mixed
+electric dipole--magnetic dipole linear response tensor -- ECD.
+
+The ECD spectrum is obtained from the Fourier transform of Eq.~(\ref{eq:ecd}).
+Being a bisignate, mixed-response property, ECD is a considerable computational
+challenge, similar to its dispersive counterpart circular birefringence. 
+Figure~\ref{fig:pno_ecd} shows the results for an ECD spectrum in the same PNO 
+orbital spaces used in the previous section.
+\begin{figure} 
+    \centering
+    \includegraphics[scale=.6]{p3/figures/pno_ecd.png}
+    \caption{Reference and PNO ECD spectra for five cutoffs: 
+    [$1\times 10^{-10}$, $1\times 10^{-9}$, $1\times 10^{-8}$, $1\times 10^{-7}$, 
+    $2\times 10^{-6}$] corresponding to [$93\%$,$82\%$,$63\%$,$44\%$,$24\%$]
+    of the MO virtual space, respectively.}
+    \label{fig:pno_ecd}
+\end{figure}
+The dynamic response of the magnetic dipole to the electric field in this frequency 
+range is considerably more complicated than that of the electric dipole. Below 60\% of
+the MO space, virtually all distinguishing characteristics of the reference 
+spectrum are unidentifiable. Further, at 82\%, the base peak appears to be a pair of 
+peaks, more resembling the pair of peaks appearing just above 15 eV in the 
+reference spectrum, with the major peak just below 15 eV being the second strongest.
+At an average of 93\%, the overall \textit{shape} of the spectrum in the 10 eV to 
+20 eV range more closely resembles that of the reference; however, the excitation
+energies are, in some cases, even less accurate than those of smaller PNO spaces.
+The trend of lowering excited state energies with increased virtual space seen in 
+Section~\ref{sss:ecd} is no longer discernible. 
+
+As in the case of absorption, the PAO basis is not noticeably more efficient at
+approximating the full MO space than the PNO space. Figure~\ref{fig:pao_ecd} 
+shows the results using the same truncated PAO spaces as in Section~$\ref{sss:abs}$.
+\begin{figure} 
+    \centering
+    \includegraphics[scale=.6]{p3/figures/pao_ecd.png}
+    \caption{Reference and PAO ECD spectra for five cutoffs: 
+    [$1\times 10^{-4}$, $1\times 10^{-3}$, $1\times 10^{-2}$, $5\times 10^{-2}$, 
+    $1\times 10^{-6}$] corresponding to [$95\%$,$86\%$,$63\%$,$46\%$,$23\%$]
+    of the MO virtual space, respectively.}
+    \label{fig:pao_ecd}
+\end{figure}
+The performance of the PAO basis near the base peak varies wildly with truncation,
+as in the PNO case. In the low-frequency region, the PAO results are considerably 
+worse -- see the two negative peaks between 10 eV and 15 eV. Curiously, the 
+largest PAO spaces considered predict significant peaks above 25 eV that are not 
+present in the reference, any of the PNO spaces tested, or the smaller PAO
+spaces. This suggests a strong sensitivity of the response of the wave function
+to the completeness threshold used for determining the occupied domains.
+%fundamentally different electronic structure in the
+%presence of the perturbing field, which is a direct result of the charge-based 
+%completeness threshold used for determining the occupied domains.
+%albeit at very large frequencies which are of little practical use.
+
+\subsection{Amplitude Dynamics} \label{ss:amps}
+As evidenced by the preceding data, the truncated PNO and PAO virtual spaces do not
+efficiently model the wave function in the presence of a perturbing EMF. As noted in
+Section~\ref{sss:abs}, these shortcomings are well-documented in the case of response
+theory. However, a real-time formalism offers the opportunity to analyze the wave 
+function in great detail over time, perhaps shedding light on \textit{where} and 
+\textit{how} the locally correlated wave functions are deficient. The following
+section will scrutinize the $t_\mu$ and $\lambda_\mu$ amplitudes of 
+Eqs.~(\ref{eq:t_mu}) and (\ref{eq:l_mu}), respectively, in hopes of determining the 
+important fluctuations in the wave function and whether these spaces sufficiently 
+capture these changes.
+
+Response to external perturbations by the CC amplitudes give rise to
+dynamic energetics and properties. In the past, distributions of perturbed amplitudes
+(relative to their ground-state counterparts) have been used to justify the 
+difficulty in computing response functions with local correlation methods in the 
+frequency domain. 
+\cite{McAlexander2016,Crawford2019,DCunha2021} 
+However, initial findings show that in RTCC, the relative distribution of amplitudes 
+by magnitude is not significantly impacted.\cite{Crawford2019} 
+Despite this, typical means of exploiting amplitude
+sparsity have been shown to be inefficient by the preceding sections. 
+First, to understand the response of 
+the amplitudes to the external perturbation, we plot the 
+change in the norm of the amplitude tensors relative to the ground-state amplitudes 
+as a function of time in Figure~\ref{fig:norm}.
+\begin{figure} 
+    \centering
+    \includegraphics[scale=.6]{p3/figures/amp_norm.png}
+    \caption{Time-dependent change in the norm of the amplitude 
+    tensors relative to the ground-state amplitudes.
+    (Field and step parameters remain unchanged, and 
+    the amplitude norm is taken at every 1 a.u.)}
+    \label{fig:norm}
+\end{figure}
+Results for the untruncated PNO and PAO spaces are identical to those
+for the MO space, as the unitary transformations resulting from untruncated localized virtual spaces
+in Eqs.~(\ref{eq:rotate}) preserves the tensor norm.
+Amplitude norms from propagations carried out in truncated PNO and PAO spaces
+are nearly indistinguishable (see SI).
+
+Figure~\ref{fig:norm} shows that the magnitude of the response by the wave function
+is predominantly within the singles amplitudes $t_1$ and $\lambda_1$. This is 
+consistent with the notion that singles are paramount for the computation of 
+response properties.\cite{Christiansen1995,Koch1997} However, the form of Eq.~(\ref{eq:pair_D})
+does not include any contributions by singles, due to being built from MP2-level
+amplitudes where singles do not contribute until at least the second order 
+in the wave function and fourth order in the energy. This suggests that even in schemes
+which seek to include the EMF perturbation in the construction of the reduced virtual space,
+such as PNO++,\cite{DCunha2021} response of the singles should be considered.
+
+Aside from the matrix norm, we can also inspect the individual amplitudes to track
+their evolution in time. The heat maps in Figure~\ref{fig:amps} show the difference 
+in $t_1$ amplitudes, relative to the ground state, for three time steps selected 
+from the first 100 a.u. of the simulation.
+\begin{figure}
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[scale=0.5]{p3/figures/MO_delta_t1_1.png}
+        \caption{}
+        \label{fig:MO_t1_1}
+    \end{subfigure}%
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[scale=0.5]{p3/figures/MO_delta_t1_50.png}
+        \caption{}
+        \label{fig:MO_t1_50}
+    \end{subfigure}
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[scale=0.5]{p3/figures/MO_delta_t1_100.png}
+        \caption{}
+        \label{fig:MO_t1_100}
+    \end{subfigure}
+    \caption{MO-basis $t_1$ amplitude deviations from $t = 0$ after (a) 1 a.u., (b) 50 a.u., and 
+    (c) 100 a.u. of time propagation. Each row contains the same four occupied orbital indices
+    and a subset of virtual indices as indicated by the x-axis labels.}
+    \label{fig:amps}
+\end{figure}
+The amplitudes are ordered by the orbital energies of the associated MOs. 
+The amplitudes which experience significant oscillations vary throughout the simulation,
+though there are several discernible trends. First, most large amplitude deviations
+are associated with all occupied orbitals simultaneously. This is due to the relatively small size of 
+the system, with only four occupied orbitals, all of which are likely important in the
+description of the ground- and excited-state wave functions. Secondly, 
+at any given time during the propagation,
+a large number of amplitudes have not significantly deviated from their ground state values.
+This supports the notion
+that relative sparsity is maintained within the amplitudes throughout the simulation,
+but this sparsity is distributed differently throughout the amplitude tensors as
+the wave function is propagated.  
+
+A third trend is that amplitudes which respond strongly tend to be associated with 
+low-energy virtual orbitals. Chemical intuition would suggest that energetically 
+low-lying molecular orbitals will be the most involved in electronic excitations.
+However, while amplitude responses are indeed larger for lower-energy virtual orbitals, 
+smaller amplitude 
+deviations in Figure~\ref{fig:amps} extend far into the virtual space. This explains
+the difficulty of simply truncating with respect to orbital energy: the 
+high-energy MOs are still important to the time-evolution of the wave function 
+in the presence of an EMF. 
+
+Figure~\ref{fig:pno_amps} shows the $t_1$ amplitudes for the same simulation,
+rotated into the untruncated PNO basis using $Q_{ii}$ as defined in
+Eq.~(\ref{eq:Q_pno}).
+\begin{figure}
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[scale=0.5]{p3/figures/PNO_delta_t1_1.png}
+        \caption{}
+        \label{fig:PNO_t1_1}
+    \end{subfigure}%
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[scale=0.5]{p3/figures/PNO_delta_t1_50.png}
+        \caption{}
+        \label{fig:PNO_t1_50}
+    \end{subfigure}
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[scale=0.5]{p3/figures/PNO_delta_t1_100.png}
+        \caption{}
+        \label{fig:PNO_t1_100}
+    \end{subfigure}
+    \caption{PNO-basis $t_1$ amplitude deviations from $t = 0$ after (a) 1 a.u., (b) 50 a.u., and 
+    (c) 100 a.u. of time propagation. Each row contains the same four occupied orbital indices
+    and a subset of virtual indices as indicated by the x-axis labels.}
+    \label{fig:pno_amps}
+\end{figure}
+(It should be noted that, due to redundancy in the AO-based virtual 
+spaces for each pair, PAO-basis amplitudes cannot be compared directly in 
+this manner.)
+It can be immediately seen that the amplitude deviations
+are less sparse in the PNO basis after the application of the EMF. 
+Many more amplitudes exhibit
+perceivable differences, and strong deviations (magnitudes approaching 
+$1\times 10^{-5}$) are no longer present. This is a clear demonstration
+of the issue with truncating orbital spaces based on the present criterion ---
+rather than exploiting sparsity, the amplitude tensors have become less sparse.
+It may also suggest a recipe for building a more appropriate 
+virtual space for truncation. 
+In the following section, we propose some alternative schemes based on the 
+literature and the results of this study.
+%In the following section, we compare a selection
+%of orbitals which correspond to strong amplitude deviations in the MO basis 
+%(specifically virtuals 3, 4, 7, and 15)
+%based on orbital spatial extent to determine if this may be a possible criterion 
+%for truncation of the virtual space.
+
+\subsection{Possible Alternatives} \label{ss:alt}
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.75]{p3/figures/extent.png}
+    \caption{Virtual MO energy $\epsilon_a$ and the
+    occupation number $n_a$ (plotted on a log scale)
+    for unique PNO spaces $i_1$ and $i_2$ 
+    versus orbital extent in arbitrary units.
+    Virtual MOs 7 and 15 are denoted by a solid $\boldsymbol{+}$ 
+    and $\boldsymbol{\times}$, respectively.
+    The horizontal line denotes a PNO cutoff 
+    of $1\times 10^{-7}$.}
+    \label{fig:extent}
+\end{figure}
+Figure~\ref{fig:extent} shows the virtual MO energy $\epsilon_a$ and the 
+PNO occupation number $n_a$ plotted against the orbital extent
+$\langle r^2 \rangle$ in arbitrary units. 
+In the PNO basis, a unique virtual space is prepared
+for every occupied pair, resulting in 16 unique spaces for the four occupied
+spatial orbitals $i$. However, for transforming
+a single orbital index, we only require the diagonal rotation matrices,
+\textit{i.e.}, $Q_{ii}$. There are four such spaces; however, by symmetry,
+only two are unique. Both are included in Figure~\ref{fig:extent}. 
+
+Truncation of the PNO space begins from the bottom of Figure~\ref{fig:extent}. 
+At an occupation number cutoff of $1\times 10^{-7}$ (indicated by a horizontal
+line), all orbitals below this line are neglected in the PNO space. Roughly
+66\% of the virtual space lies in this region. From these data, it is clear
+that even modest truncation of the virtual space neglects the diffuse 
+regions of the wave function, which are important for excited-state
+properties in systems with significantly delocalized characteristics,
+such as systems containing Rydberg-type excitations.
+
+%Table~\ref{ta:ext} reports the orbital extent $\langle r\rangle$ for virtual orbitals $a$
+%corresponding to four of the strongest deviations in Figure~\ref{fig:amps}. 
+%These orbitals are labeled 4, 7, 8, and 15, in
+%both the MO and PNO basis. In the PNO basis, a unique virtual space is prepared
+%for every occupied pair, resulting in 16 unique spaces for the four occupied
+%spatial orbitals $i$. However, for transforming
+%a single orbital index, we only require the diagonal rotation matrices,
+%\textit{i.e.}, $Q_{ii}$. There are four such spaces; however, by symmetry, the domains of occupied
+%orbitals 1 and 4 are the same, as are 2 and 3. Thus, orbital extents for only those
+%two unique orbital spaces $i_1$ and $i_2$  are shown.
+%\begin{table}
+%    \centering
+%    \begin{tabular}{|c|c|c|c|}
+%        \hline
+%%        $a$ &   MO  &   PNO   &        \\  
+%        $a$ &  MO  &   \multicolumn{2}{c|}{PNO} \\  
+%        \hline
+%%        \multicolumn{2}{|c|}{}  & $i_1$   & $i_2$  \\ 
+%            &       & $i_1$   & $i_2$  \\
+%        \hline
+%%         3  & 59.23 & 7.9     & -24.67 \\ 
+%%        \hline
+%         4  & 88.76 & -13.08  & -3.13  \\ 
+%        \hline
+%         7  & 66.00 & 0.73    & -0.07  \\ 
+%        \hline
+%         8  & 65.56 & -3.91   & -10.35 \\ 
+%        \hline
+%         15 & 37.39 & -15.11  &  1.32  \\
+%        \hline
+%    \end{tabular}
+%    \caption{Orbital spatial extent of four selected virtual orbitals in the MO
+%    and PNO spaces.}
+%    \label{ta:ext}
+%\end{table}
+%A full table of virtual orbital extents can be found in the SI. 
+%In the MO basis, the orbitals in Table~\ref{ta:ext} 
+%correspond to the strongest amplitude deviations in Figure~\ref{fig:amps}.
+%These are also some of the most diffuse orbitals in this basis,
+%far larger than the average orbital extent of 26.62.
+%As expected, the spatial extent of the PNOs built upon the MOs
+%are much more localized. This shows that, in the MO basis,
+%strong deviations are predominantly exhibited by amplitudes 
+%corresponding to virtual orbitals with a larger spatial extent,
+%creating sparsity. In the PNO basis, however, the deviations 
+%are evenly spread across a large number of amplitudes corresponding
+%to orbitals with relatively small spatial extent, resulting in 
+%less sparsity in the amplitude tensor. 
+%These findings suggest that virtual domains built for excited state
+%properties should seek to include orbitals with large spatial extent,
+%and any truncation criterion should preserve these orbitals.
+
+Spatial extent alone may not be a suitable criterion for truncation -- 
+this would have obvious a negative impact on the accuracy of the 
+correlation energy, which is inherently local in nature. 
+Additionally, Figure~\ref{fig:extent} highlights virtual MOs 7 
+($\boldsymbol{+}$) and 15 ($\boldsymbol{\times}$),
+which correspond to the strongest deviations in 
+Figures~\ref{fig:MO_t1_50} and \ref{fig:MO_t1_100}, respectively.
+That these orbitals are of varying extent
+demonstrates that both diffuse and contracted orbitals play a role in 
+the wave function dynamics.
+In order to attain a balanced description of wave function components 
+important for both energy and property calculations, the combination 
+of appropriately determined spaces such as the combined PNO++ approach
+has been fruitful. Still neglected in this approach
+are the singles amplitudes, which are absent in the MP2 wave functions
+used to approximate the occupied pair domains. Schemes to include 
+these effects, such as approximate CC2-level $t_1$ guess amplitudes,
+may further improve the space and allow greater flexibility for 
+truncation. The prospect of utilizing these 
+methodologies within the current framework is promising, and work is 
+underway to explore their efficiency.

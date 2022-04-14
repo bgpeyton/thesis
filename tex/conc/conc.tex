@@ -5,8 +5,7 @@ of spectroscopy. Theoretical models of electronic structure can provide
 assistance in the design and characterization of novel materials through
 \textit{ab initio} computation of the light-matter interactions which
 govern this response. The accurate computation of these properties on
-modern computing hardware with correlated methods routinely applied
-to ground-state (time-independent) properties, such as coupled cluster
+modern computing hardware with correlated methods, such as coupled cluster
 theory, is often prohibitively expensive for all but the smallest systems.
 These computations typically employ a semi-classical approach, which
 models the response of the Schr\"odinger wave equation of a molecule to
@@ -67,33 +66,41 @@ reduced-scaling methods to real-time coupled cluster.
 
 An open-source coupled cluster development code based on the Psi4 electronic
 structure package was developed which can simulate the effects of various
-local correlation schemes, namely PAO and PNO, with minimal modifications of
-the underlying expressions. The code is capable of modeling explicit electric
-fields, and simulations of both absorption and electronic circular dichroism
-spectra are used to test the efficiency of the PAO and PNO approaches. These
-tests revealed deficiencies in the virtual orbital spaces produced by
-truncating the wave function in these locally correlated bases, which are
-corroborated by recent results of their application in frequency-domain
-response theory. The explicitly time-dependent nature of the wave
-function allowed for the detailed investigation of separate wave function
-elements as they evolved in time, revealing a strong dependence on single
-substitutions, particularly in diffuse orbital spaces. These substitutions
-are not considered in the typical construction of PAOs or PNOs, and these
-bases are also incredibly spatially localized. Alternative approaches,
-such as the recently-proposed PNO++ method, may address these problems,
-allowing for more aggressive truncation of the virtual orbital space,
-leading to far cheaper evaluation of the expensive residual expressions
-required for time propagation.
+local correlation schemes, namely PAO and PNO, with minimal modifications
+of the underlying expressions. The code is capable of modeling explicit
+electric fields, and simulations of both absorption and electronic
+circular dichroism spectra are used to test the efficiency of the PAO and
+PNO approaches. These tests revealed deficiencies in the virtual orbital
+spaces produced by truncating the wave function in these locally correlated
+bases, which are corroborated by recent results of their application in
+frequency-domain response theory. The explicitly time-dependent nature of
+the wave function allowed for the detailed investigation of separate wave
+function elements as they evolved in time, revealing a strong dependence
+on single substitutions, particularly in diffuse orbital spaces. These
+substitutions are not considered in the typical construction of PAOs
+or PNOs. These bases are also intentionally spatially localized, since
+they are designed to capture the correlation energy, which is inherently
+local. Alternative approaches, such as the recently-proposed PNO++ method,
+may address these problems, allowing for more aggressive truncation of the
+virtual orbital space, leading to far cheaper evaluation of the expensive
+residual expressions required for time propagation.
 
-Active development continues on extensions to the methods described
-in Chapters~\ref{ch:p2} and \ref{ch:p3}. For the former, these
-include extensions to dynamic properties, and an integration with the
-QCArchive computing ecosystem. For the latter, the implementation of
-perturbation-aware truncation criterion and production-level algorithms is
-currently underway. The capability to use cheaper coupled cluster methods,
-such as CC2, is nearing completion. Finally, preliminary results of a pilot
-implementation of an approach specifically targeting the singles amplitudes,
-avoiding the expensive doubles residual expressions all together, have
-been encouraging. These and other improvements will continue to close the
+The work presented here comprises several different methods for improving
+the efficiency of accurate, systematically improvable computations of 
+field-dependent molecular properties. All solutions have been implemented
+as open-source software, which can be freely accessed, used, and extended.
+Continued development on the methods presented in Chapters~\ref{ch:p2} 
+and \ref{ch:p3}, in particular, are encouraging. 
+%Active development continues on extensions to the methods described
+%in Chapters~\ref{ch:p2} and \ref{ch:p3}. For the former, these
+%include extensions to dynamic properties, and an integration with the
+%QCArchive computing ecosystem. For the latter, the implementation of
+%perturbation-aware truncation criterion and production-level algorithms is
+%currently underway. The capability to use cheaper coupled cluster methods,
+%such as CC2, is nearing completion. Finally, preliminary results of a pilot
+%implementation of an approach specifically targeting the singles amplitudes,
+%avoiding the expensive doubles residual expressions all together, have
+%been encouraging. 
+These and other improvements will continue to close the
 gap between experimental and theoretical understandings of light-matter
 interactions.

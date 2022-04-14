@@ -1,0 +1,140 @@
+% Introduction
+
+\section{Introduction} \label{se:intro} Dynamic molecular properties induced
+by the absorption, scattering, or refraction of an electromagnetic field
+(EMF) give rise to a number of experimental techniques for the detailed
+investigation and characterization of molecular light-matter interactions
+and structure.\cite{Barron2004} Among these properties are absorbance,
+circular dichroism (CD) and birefringence, Raman scattering, and many more.
+These techniques are essential for modern synthetic chemistry in both
+research and industrial settings.
+
+Theoretical chemistry has become a ``full partner with experiment''
+\cite{Goddard1985} in this regard, providing high-quality benchmark
+calculations for affirming or even predicting many molecular properties,
+saving time and increasing certainty in spectral assignments and
+molecular structure determination. Computing dynamic properties with
+current \textit{ab initio} methods generally involves frequency-domain
+perturbation theory, referred to as response theory, to directly calculate
+the quantity of interest. \cite{Crawford2006,Norman2011,Helgaker2012}
+Coupled cluster (CC) response theory\cite{Koch1990,Pedersen1997} has
+emerged as a robust solution to frequency-domain property calculations,
+when its cost is not prohibitive.\cite{Crawford2018,Crawford2019} Many
+techniques for circumventing the high-degree polynomial scaling of
+coupled cluster methods exist, with extensions of these to property
+calculations and response theory providing promising results.
+\cite{McAlexander2016,Kumar2017,Howard2018,DCunha2021}
+
+However, there are several drawbacks to the response
+formalism.\cite{Langhoff,Goings2018,Li2020} First and foremost, the
+perturbations must be ``small'' relative to the intermolecular forces
+present in the system. This immediately precludes the possibility of
+simulating high-energy experiments such as X-ray spectroscopy, which
+have numerous applications in materials science and beyond. Second,
+only broadband excitations can be modeled straightforwardly: response
+theory typically assumes a single, uniform ``kick'' perturbation
+across all frequencies. Experimental apparatus, on the other hand,
+can make use of complex, multi-phase procedures involving tuned laser
+pulses, pump-probe analysis, \textit{etc}.\cite{Maiuri2020} Finally,
+temporally-controlled multi-photon events such as high harmonic generation
+(HHG)\cite{Lewenstein1994,Gorlach} lie outside the realm of the response
+formalism. Together, these drawbacks mean a wide variety of experiments
+cannot be predicted or supplemented with response theory calculations. To
+overcome this, we must move to non-perturbative, time-domain electronic
+structure theory, \cite{Goings2018,Crawford2019,Li2020} where there are
+fewer limitations on the form of the perturbing EMF.
+
+The alternative of real-time CC (RTCC) methods has been discussed
+nearly as far back as the origins of CC itself in the realm of nuclear
+physics.\cite{Hoodbhoy1978,Hoodbhoy1979,Gunnarsson78} More recently, a
+renewed interest in real-time coupled cluster has developed for the reasons
+discussed above. In the past 10 years, several implementations have been
+reported, \cite{Huber2011,Kvaal2012,Nascimento2019,Pedersen2019,Park2019}
+with new insights into the aspects of numerical
+integration\cite{Pedersen2019,Kristiansen2020} and
+interpretation\cite{Pedersen2019,Pedersen2021} as
+well as applications for a number of spectral properties.
+\cite{Nascimento2016,Nascimento2017,Nascimento2019,Park2019,Park2021b}
+Orbital adaptive\cite{Kvaal2012} and orbital optimized\cite{Sato2018}
+variants have also explored the limitations of unrelaxed canonical
+Hartree Fock orbitals, and the effects of alternative reference
+orbitals on the propagation of unphysical imaginary components to
+energetics and electric dipole moments. 
+Notably absent are studies
+on the ability to \textit{reduce} the cost of real-time coupled
+cluster methods. 
+% TDC comment: "Wouldn't Padé approximants fall into this category?"  
+% answer: yes, but no one has used Padé for CC yet (to my knowledge) 
+
+Real-time time-dependent density functional theory
+(RT-TDDFT) calculations, a cheaper alternative introduced in the 1990s
+(then called the \textit{time-dependent local-density approximation}),
+\cite{Yabana1996,Yabana1997,Yabana1999,Bertsch2000} have become routine.
+\cite{Lopata2011,Castro2015,Tussupbayev2015,Goings2016a,Bruner2016,Goings2018,Sun2019a,Li2020}
+Efforts to reduce the cost of RT-TDDFT have largely focused on reducing
+simulation time, utilizing techniques such as Pad\'e approximants to
+accelerate the convergence of the Fourier transform \cite{Bruner2016},
+and fitting schemes to avoid the Fourier transform all together,
+eliminating the problem of short trajectories resulting in low-resolution
+spectra.\cite{Ding2013} Repisky \textit{et al} introduced the concept of 
+dipole pair contributions,\cite{Repisky2015,Kadek2015}
+which are typically less complicated than the total electric dipole,
+and so these may be individually approximated efficiently using the 
+techniques mentioned above.   
+\cite{Bruner2016} However, the problems of frequency-domain DFT carry
+over directly to the time domain, such as the underestimation of excited
+state energies\cite{Peach2008} and difficulties arising from the adiabatic
+approximation.\cite{Fuks2013,Fuks2015,Bruner2016} We refer the reader to
+a recent, comprehensive review article\cite{Li2020} and citations therein
+for a more complete discussion of these challenges. Regardless, the success
+of RT-TDDFT under most conditions combined with its drastically reduced
+computational cost make it the only viable method for large molecules
+at present.
+
+Borrowing from the vast literature of reduced-scaling ground-state or
+frequency-domain CC, there are numerous potential candidates for reducing the
+cost of RTCC, besides adapting the successful approaches implemented for RT-TDDFT.
+First, the standard non-perturbative truncated approaches used
+for properties such as CC2\cite{Christiansen1995} and CC3\cite{Koch1997}
+are immediately possible, as are property-optimized basis sets
+\cite{Wolinski1990,Sadlej1977,Roos1985,Sadlej1991a,Benkova2005,Baranowska2010,Baranowska2013,Aharon2020a,Howard2018}.
+Further, details of implementation such as choice of intermediates, the
+effects of single- or mixed-precision, or the use of graphical processing
+units have only just begun to be explored. \cite{Wang2022} 
+An alternative formulation developed by DePrince and Bartlett, 
+dubbed the time-dependent equation-of-motion CC (TD-EOM-CC)
+\cite{Nascimento2016,Nascimento2017,Nascimento2019,Park2019,Park2021b}
+method, reduces the cost by targeting the difficulty of
+numerical integration of multiple ``stiff'' coupled differential
+equations. By selecting a given moment function to propagate in time,
+the coupled sets of $t$- and $\lambda$-amplitude expressions do
+not have to be propagated, reducing both the number and difficulty
+of numerical integrations required. 
+
+Absent from this list are the family of local correlation methods,\cite{Werner2006}
+which have been wildly successful for reduced-scaling approaches to
+ground state energies for correlated methods and selected properties.
+\cite{Crawford2019,Aharon2020a,DCunha2021,Kodrycka2022} These methods seek to
+build a reduced virtual orbital space based on lower-cost criteria, such
+as (pair) energies from low-order perturbation theory or atomic orbital
+charge analysis. While still only routine for ground-state calculations,
+these methods and variants thereof have shown promise in the calculation
+of selected response properties.
+
+In this work, we report the first application of local correlation to 
+RTCC. This is achieved through a simulation approach\cite{Hampel1996}, 
+which forgoes computational savings in favor of algorithmic simplicity, 
+for the purposes of rapid exploration and development. 
+The effects of occupied and virtual space localization are considered for the simulations of small
+hydrogen clusters in the presence of electric field perturbations. Absorption cross sections as
+well as ECD spectra are computed using successively smaller fractions of the canonical
+orbital space using the popular 
+projected atomic orbital (PAO)
+\cite{Pulay1983,Saebo1985,Saebo1986,Saebo1993}
+and pair natural orbital (PNO)
+\cite{Neese2009,Neese2009a}
+schemes. The results are analyzed with respect to full-space simulations. 
+Finally, wave function amplitude dynamics are investigated
+in order to determine the extent to which these schemes suppress or cause large amplitude 
+deviations, which cause instabilities in numerical integration and spurious oscillations in the 
+dipole trajectory.
