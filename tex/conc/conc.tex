@@ -8,14 +8,15 @@ govern this response. The accurate computation of these properties on
 modern computing hardware with correlated methods, such as coupled cluster
 theory, is often prohibitively expensive for all but the smallest systems.
 These computations typically employ a semi-classical approach, which
-models the response of the Schr\"odinger wave equation of a molecule to
-an external electromagnetic field, represented as a classical potential.
+models the response of a system, typically treated as a quantum-mechanical
+wave function or density,
+to an external electromagnetic field, represented as a classical potential.
 The current work seeks to improve the efficiency of these methods through
 considerations of both frequency- and time-domain formulations.
 
 After discussing the basics of correlated electronic structure treatments
 and the foundations of semi-classical approaches to property prediction,
-three studies are presented. First, we examine the effects of basis set
+three studies were presented. First, we examine the effects of basis set
 superposition error on the many-body expansion of molecular properties,
 computed using the frequency-domain response theory approach. Previous
 efforts to apply this divide-and-conquer approach to dynamic molecular
@@ -34,7 +35,7 @@ such as the many-body expansion are of limited utility in such cases.
 Moving beyond simple fragmentation of the system, a condensed wave function
 representation of the entire system could allow for the rapid evaluation of
 target properties. The second study utilized a machine-learning approach. The
-input would be a representation of molecular systems, developed using wave
+input is a representation of molecular systems, developed using wave
 function-based descriptors. This representation, dubbed the density tensor
 representation, was derivative of the recently-published $t$-amplitude tensor
 representation, but unique in its construction by exploiting the naturally
@@ -80,7 +81,8 @@ on single substitutions, particularly in diffuse orbital spaces. These
 substitutions are not considered in the typical construction of PAOs
 or PNOs. These bases are also intentionally spatially localized, since
 they are designed to capture the correlation energy, which is inherently
-local. Alternative approaches, such as the recently-proposed PNO++ method,
+local for insulators and other weakly-correlated systems. Alternative 
+approaches, such as the recently-proposed PNO++ method,
 may address these problems, allowing for more aggressive truncation of the
 virtual orbital space, leading to far cheaper evaluation of the expensive
 residual expressions required for time propagation.

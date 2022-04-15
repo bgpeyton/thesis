@@ -1,35 +1,51 @@
 %conc.tex
 
-\section{Conclusions} \label{conc}
-Here we present the first application of local correlation to RTCC
-simulations. The popular PNO and PAO virtual space localization schemes are
-applied to the calculation of dynamic electric and magnetic dipole moments
-in the presence of an explicit electric field, providing absorption and
-ECD spectra, respectively.  Truncation of the localized virtual space to
-successively larger fractions of the canonical virtual space result in
-convergence to the canonical result; however, this convergence is slow,
-and errors in excitation energies and intensity are present even in the
-largest spaces tested, especially for ECD. This corroborates the results
-of recent studies applying locally correlated methods to the prediction
-of dynamic properties in the frequency domain using response theory.
+\section{Conclusions} \label{conc} Here we present the first application
+of local correlation to RTCC simulations. The popular PNO and PAO virtual
+space localization schemes are applied to the calculation of dynamic electric
+and magnetic dipole moments in the presence of an explicit electric field,
+providing absorption and ECD spectra, respectively. 
+For a helical H$_2$ tetramer, truncation of the
+localized virtual space to successively larger fractions of the canonical
+virtual space resulted in convergence to the canonical result; however, this
+convergence is slow, and errors in excitation energies and intensity are
+present even in some of the largest spaces tested, especially for ECD. This
+corroborates the results of recent studies applying locally correlated
+methods to the prediction of dynamic properties in the frequency domain
+using response theory.
 
-As in the frequency domain, there are a number of possible approaches
-to building a more appropriate virtual space which preserves accuracy in
-response properties upon aggressive truncation. Examining the amplitude
+%As in the frequency domain, there are a number of possible approaches
+%to building a more appropriate virtual space which preserves accuracy in
+%response properties upon aggressive truncation. 
+Examining the amplitude
 dynamics during the propagation, it is shown that the $t_1$ and $\lambda_1$
 amplitudes respond most strongly to the field -- a large increase in the
 norm of these matrices is observed upon application of the field, followed
 by a steady oscillation. The $t_2$ and $\lambda_2$ tensors, by comparison,
 remain relatively static throughout. 
 These oscillations are largely, but not completely, localized to a selection 
-of only a few orbitals.
-%of orbitals with large spatial extent in the LMO basis. 
+of only a few orbitals, as evidenced by consideration of 
+time-dependent deviations in the $t_1$ amplitudes from the ground-state.
 In the localized virtual spaces tested,
 these oscillations are delocalized throughout the $t_1$ and $\lambda_1$
-matrices. Orbital extent alone cannot explain the shortcomings of 
+matrices. 
+
+Orbital extent alone cannot explain the shortcomings of 
 the PNO space; however, its effect is significant. 
 These results provide an insight into the importance of 
 singly-substituted determinants in the time-dependent wave function in the 
 presence of an electric field, as well as a potential metric to gauge the 
 performance of new localization schemes for frequency- or time-domain 
 calculations of dynamic response properties.
+In order to attain a balanced description of wave function components 
+important for both energy and property calculations, the combination 
+of appropriately determined spaces such as the combined PNO++ approach
+has been fruitful.\cite{DCunha2021} 
+Still neglected in this approach
+are the singles amplitudes, which are absent in the MP2 wave functions
+used to approximate the occupied pair domains. Schemes to include 
+these effects, such as approximate CC2-level $t_1$ guess amplitudes,
+may further improve the space and allow greater flexibility for 
+truncation. The prospect of utilizing these 
+methodologies within the current framework is promising, and work is 
+underway to explore their efficiency.

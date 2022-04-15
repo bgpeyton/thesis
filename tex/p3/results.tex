@@ -5,22 +5,16 @@ Here we present results from the first applications of local correlation to RTCC
 Results are examined
 by the convergence of absorption and ECD spectra to the reference results
 in Section \ref{ss:spectra}, followed by an analysis of the amplitude
-dynamics in Section \ref{ss:amps}. 
-%Section \ref{ss:ext} considers the
-%effects of localization on orbital spatial extent between PAO and PNO
-%virtual spaces, and contrasts these results with the amplitude data in
-%an attempt to explain their performance. 
-Section \ref{ss:alt} explores some potential solutions for building
-appropriate virtual spaces for truncation, such as considerations
-of orbital extent,
-perturbation-aware virtual spaces\cite{Crawford2019,DCunha2021}, and 
-including or focusing on the effects of the singles amplitudes. 
-%Finally, we present an alternative solution dubbed ``Semi-static RTCC'' 
-%(SS-RTCC) in Section \ref{ss:ssrtcc} in which the doubles amplitudes 
-%($t_2$ and $\lambda_2$ in Eqs.~(\ref{eq:diff_t}) and (\ref{eq:diff_l}), 
-%respectively) are frozen after the determination of the ground-state wave 
-%function, and only the singles amplitudes are allowed to respond to the 
-%incident perturbation. 
+dynamics in Section \ref{ss:amps}. Also explored is the effect
+of localization and truncation on the orbital extent, in an
+attempt to explain the deficiencies of the PNO space, in light of 
+variations in the time-dependent deviations in the amplitudes from the 
+ground-state.
+%Section \ref{ss:alt} explores some potential solutions for building
+%appropriate virtual spaces for truncation, such as considerations
+%of orbital extent,
+%perturbation-aware virtual spaces\cite{Crawford2019,DCunha2021}, and 
+%including or focusing on the effects of the singles amplitudes. 
 
 \subsection{Absorption and ECD Spectra} \label{ss:spectra}
 \subsubsection{Absorption} \label{sss:abs}
@@ -285,33 +279,32 @@ perceivable differences, and strong deviations (magnitudes approaching
 $1\times 10^{-5}$) are no longer present. This is a clear demonstration
 of the issue with truncating orbital spaces based on the present criterion ---
 rather than exploiting sparsity, the amplitude tensors have become less sparse.
-It may also suggest a recipe for building a more appropriate 
-virtual space for truncation. 
-In the following section, we propose some alternative schemes based on the 
-literature and the results of this study.
-%In the following section, we compare a selection
-%of orbitals which correspond to strong amplitude deviations in the MO basis 
-%(specifically virtuals 3, 4, 7, and 15)
-%based on orbital spatial extent to determine if this may be a possible criterion 
-%for truncation of the virtual space.
+%It may also suggest a recipe for building a more appropriate 
+%virtual space for truncation. 
+%In the following section, we propose some alternative schemes based on the 
+%literature and the results of this study.
 
-\subsection{Possible Alternatives} \label{ss:alt}
+%\subsection{Possible Alternatives} \label{ss:alt}
 \begin{figure}
     \centering
     \includegraphics[scale=0.75]{p3/figures/extent.png}
     \caption{Virtual MO energy $\epsilon_a$ and the
     occupation number $n_a$ (plotted on a log scale)
     for unique PNO spaces $i_1$ and $i_2$ 
-    versus orbital extent in arbitrary units.
+    versus orbital extent.
     Virtual MOs 7 and 15 are denoted by a solid $\boldsymbol{+}$ 
     and $\boldsymbol{\times}$, respectively.
     The horizontal line denotes a PNO cutoff 
     of $1\times 10^{-7}$.}
     \label{fig:extent}
 \end{figure}
+Virtual orbital extent has been used previously\cite{Kumar2017,DCunha2021} 
+to estimate the ability of locally correlated spaces to describe the 
+diffuse regions of electron density which are important for response
+properties. 
 Figure~\ref{fig:extent} shows the virtual MO energy $\epsilon_a$ and the 
 PNO occupation number $n_a$ plotted against the orbital extent
-$\langle r^2 \rangle$ in arbitrary units. 
+$\langle r^2 \rangle$ in a.u. 
 In the PNO basis, a unique virtual space is prepared
 for every occupied pair, resulting in 16 unique spaces for the four occupied
 spatial orbitals $i$. However, for transforming
@@ -328,76 +321,23 @@ regions of the wave function, which are important for excited-state
 properties in systems with significantly delocalized characteristics,
 such as systems containing Rydberg-type excitations.
 
-%Table~\ref{ta:ext} reports the orbital extent $\langle r\rangle$ for virtual orbitals $a$
-%corresponding to four of the strongest deviations in Figure~\ref{fig:amps}. 
-%These orbitals are labeled 4, 7, 8, and 15, in
-%both the MO and PNO basis. In the PNO basis, a unique virtual space is prepared
-%for every occupied pair, resulting in 16 unique spaces for the four occupied
-%spatial orbitals $i$. However, for transforming
-%a single orbital index, we only require the diagonal rotation matrices,
-%\textit{i.e.}, $Q_{ii}$. There are four such spaces; however, by symmetry, the domains of occupied
-%orbitals 1 and 4 are the same, as are 2 and 3. Thus, orbital extents for only those
-%two unique orbital spaces $i_1$ and $i_2$  are shown.
-%\begin{table}
-%    \centering
-%    \begin{tabular}{|c|c|c|c|}
-%        \hline
-%%        $a$ &   MO  &   PNO   &        \\  
-%        $a$ &  MO  &   \multicolumn{2}{c|}{PNO} \\  
-%        \hline
-%%        \multicolumn{2}{|c|}{}  & $i_1$   & $i_2$  \\ 
-%            &       & $i_1$   & $i_2$  \\
-%        \hline
-%%         3  & 59.23 & 7.9     & -24.67 \\ 
-%%        \hline
-%         4  & 88.76 & -13.08  & -3.13  \\ 
-%        \hline
-%         7  & 66.00 & 0.73    & -0.07  \\ 
-%        \hline
-%         8  & 65.56 & -3.91   & -10.35 \\ 
-%        \hline
-%         15 & 37.39 & -15.11  &  1.32  \\
-%        \hline
-%    \end{tabular}
-%    \caption{Orbital spatial extent of four selected virtual orbitals in the MO
-%    and PNO spaces.}
-%    \label{ta:ext}
-%\end{table}
-%A full table of virtual orbital extents can be found in the SI. 
-%In the MO basis, the orbitals in Table~\ref{ta:ext} 
-%correspond to the strongest amplitude deviations in Figure~\ref{fig:amps}.
-%These are also some of the most diffuse orbitals in this basis,
-%far larger than the average orbital extent of 26.62.
-%As expected, the spatial extent of the PNOs built upon the MOs
-%are much more localized. This shows that, in the MO basis,
-%strong deviations are predominantly exhibited by amplitudes 
-%corresponding to virtual orbitals with a larger spatial extent,
-%creating sparsity. In the PNO basis, however, the deviations 
-%are evenly spread across a large number of amplitudes corresponding
-%to orbitals with relatively small spatial extent, resulting in 
-%less sparsity in the amplitude tensor. 
-%These findings suggest that virtual domains built for excited state
-%properties should seek to include orbitals with large spatial extent,
-%and any truncation criterion should preserve these orbitals.
-
-Spatial extent alone may not be a suitable criterion for truncation -- 
-this would have obvious a negative impact on the accuracy of the 
+Spatial extent alone may not be a suitable criterion for truncation --- 
+this would have a negative impact on the accuracy of the 
 correlation energy, which is inherently local in nature. 
-Additionally, Figure~\ref{fig:extent} highlights virtual MOs 7 
-($\boldsymbol{+}$) and 15 ($\boldsymbol{\times}$),
-which correspond to the strongest deviations in 
+Additionally, contracted orbitals may very well contribute 
+significantly to the response of the wave function. 
+Figure~\ref{fig:extent} highlights virtual MOs 7 
+($\boldsymbol{+}$) and 15 ($\boldsymbol{\times}$).
+These orbitals correspond to the strongest deviations in 
 Figures~\ref{fig:MO_t1_50} and \ref{fig:MO_t1_100}, respectively.
-That these orbitals are of varying extent
+These deviations represent a strong response of the wave function
+to the perturbing field, implying they are of particular importance
+when computing dynamic properties. 
+Examination of the spatial extents of these orbitals in particular 
+may shed light on the nature of the spatial distribution of 
+orbitals necessary to describe the wave function response.
+Virtual MO 7 appears at 66 a.u., while MO 15 is nearly half that at 37 a.u.
+That these orbitals are of such varying extent
 demonstrates that both diffuse and contracted orbitals play a role in 
 the wave function dynamics.
-In order to attain a balanced description of wave function components 
-important for both energy and property calculations, the combination 
-of appropriately determined spaces such as the combined PNO++ approach
-has been fruitful. Still neglected in this approach
-are the singles amplitudes, which are absent in the MP2 wave functions
-used to approximate the occupied pair domains. Schemes to include 
-these effects, such as approximate CC2-level $t_1$ guess amplitudes,
-may further improve the space and allow greater flexibility for 
-truncation. The prospect of utilizing these 
-methodologies within the current framework is promising, and work is 
-underway to explore their efficiency.
+
