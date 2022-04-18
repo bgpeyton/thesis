@@ -45,8 +45,64 @@
 
 %\dedication{This is where you put your dedications.}
 %\acknowledge{This is where you put your acknowledgments.}
-%\abstract{Give a brief description of your thesis here.}
-%\abstractgenaud{You are also required as of Spring 2016 to include a general audience abstract. This should be geared towards individuals outside of your field that may be reading seeking information about your work. You should avoid language that is particular to your field and clearly define any terms that may have special meaning in your discipline.}
+\abstract{
+The efficient computation of dynamic (time-dependent) molecular properties is
+a broad field with numerous applications in aiding molecular synthesis and
+design, with a particular prevalence in spectroscopic predictions. 
+Typical methods for computing the response of a molecular system to
+an electromagnetic field (EMF) considers a quantum mechanical description
+of the molecule and a classical approximation for the EMF. Methods
+for describing light-matter interactions with high-accuracy electronic 
+structure methods, such as coupled cluster (CC), are discussed, with a focus on 
+improving the efficiency of such methods.\\
+The CC method suffers from high-degree polynomial scaling.
+In addition to the ground-state calculation, computing dynamic properties 
+requires the description of sensitive excited-state effects. 
+The cost of such methods often prohibits the accurate calculation
+of response properties for systems of significant importance, such
+as large-molecule drug candidates or chiral species present in biological
+systems. While the literature is ripe with reduced-scaling methods
+for CC ground-state calculations, considerably fewer approaches
+have been applied to excited-state properties, with even fewer still
+providing adequate results for realistic systems. This work presents
+three studies on the reduction of the cost of molecular property
+evaluations, in the hopes of closing this gap in the literature and
+widening the scope of current theoretical methods.\\
+There are two main ways of simulating time-dependent light-matter
+interactions: one may consider these effects in the frequency domain,
+where the response of the system to an EMF is computed directly; or, the
+response may be considered explicitly in the time domain, where wave
+function (or density) parameters can be propagated in time and examined in detail.
+Each methodology has unique advantages and computational bottlenecks.
+The first two studies focus on frequency-domain calculations, and employ
+fragmentation and machine-learning techniques to reduce the cost of
+single-molecule calculations or sets of calculations across a series of
+geometric conformations. The third study presents a novel application of
+the local correlation technique to real-time CC calculations, and highlights
+deficiencies and possible solutions to the approach.
+}
+\abstractgenaud{
+Theoretical chemistry plays a key role in connecting experimental results
+with physical interpretation. Paramount to the success of theoretical
+methods is the ability to predict molecular properties without the need for
+costly high-throughput synthesis, aiding in the determination of molecular
+structure and the design of new materials. Light-matter interactions,
+which govern spectroscopic techniques, are particularly complicated,
+and sensitive to the theoretical tools employed in their prediction.
+Compounding the issue of accuracy is one of efficiency --- accurate
+theoretical methods typically incur steep scaling of computational cost
+(memory and processor time) with respect to the size of the system.\\
+An important aspect in improving the efficiency of these methods is
+understanding the nature of light-matter interactions at a quantum
+level. Many unanswered questions still remain, such as, ``Can light-matter
+interactions be thought of as a sum of interactions between smaller
+fragments of the system?'' and ``Can conventional methods of accelerating
+ground-state calculations be expected to perform well for spectroscopic
+properties?'' The present work seeks to answer these questions through
+three studies, focusing on improving the efficiency of these techniques,
+while simultaneously addressing their fundamental flaws and providing
+reasonable alternatives.
+}
 
 \begin{document}
 % The following lines set up the front matter of your thesis or dissertation and are required to ensure proper formatting per the VT ETD standards. 
@@ -84,13 +140,9 @@
         \input{p1/si.tex}
         \chapter{Supporting Information for Machine-Learning Coupled Cluster Properties through a Density Tensor Representation} \label{si:ml}
         \input{p2/si.tex}
+        \chapter{Supporting Information for Locally Correlated Real-Time Coupled Cluster Theory}
+        \input{p3/si.tex}
 	\end{appendices}
-%			\section{Section one} \label{ase:app_one_sect_1}
-%				\lipsum[1-3]
-%			\section{Section two} \label{ase:app_one_sect_2}
-%				\lipsum[1-3]
-%		\chapter{Second Appendix} \label{app:appendix_two}
-%			\lipsum[2]
 
 \end{document}
 
