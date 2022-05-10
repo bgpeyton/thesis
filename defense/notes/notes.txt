@@ -1,0 +1,18 @@
+The Efficient Computation of Field-Dependent Molecular Properties in the
+Frequency and Time Domains
+
+Limiting cases:
+MBE
+- solvent shell n=8 or so
+DTR
+- MP2 implementation
+- - QCarchive
+- dynamic properties
+- - perturbed densities
+RTCC
+- simulation time
+- - (semi)-static RTCC
+- - Pade
+- - GPUs + mixed precision
+- memory
+- - implementation...
