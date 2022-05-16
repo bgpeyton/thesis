@@ -1,16 +1,17 @@
 `lualatex main.tex` for compilation
 
 to get citations right:
->>> cleantex
 
-# this is a custom command in my .bash_profile, which runs
+`>>> cleantex`
 
-# `rm *.aux *.lof *.log *.lot *.nlo *.out *.toc *.bbl *.blg`
+`# this is a custom command in my .bash_profile, which runs`
 
->>> lualatex main.tex
+`# rm *.aux *.lof *.log *.lot *.nlo *.out *.toc *.bbl *.blg`
 
->>> bibtex main
+`>>> lualatex main.tex`
 
->>> lualatex main.tex
+`>>> bibtex main`
 
->>> lualatex main.tex
+`>>> lualatex main.tex`
+
+`>>> lualatex main.tex`
