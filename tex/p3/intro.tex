@@ -5,14 +5,14 @@ by the absorption, scattering, or refraction of an electromagnetic field
 (EMF) give rise to a number of experimental techniques for the detailed
 investigation and characterization of molecular light-matter interactions
 and structure.\cite{Barron2004} Among these properties are absorbance,
-circular dichroism (CD) and birefringence, Raman scattering, and many more.
+circular dichroism (CD), birefringence, Raman scattering, and many more.
 These techniques are essential for modern synthetic chemistry in both
 research and industrial settings.
 
 Theoretical chemistry has become a ``full partner with experiment''
 \cite{Goddard1985} in this regard, providing high-quality benchmark
 calculations for affirming or even predicting many molecular properties,
-saving time and increasing certainty in spectral assignments and
+saving time, and increasing certainty in spectral assignments and
 molecular structure determination. Computing dynamic properties with
 current \textit{ab initio} methods generally involves frequency-domain
 perturbation theory, referred to as response theory, to directly calculate
@@ -27,7 +27,7 @@ calculations and response theory providing promising results.
 
 However, there are several drawbacks to the response
 formalism.\cite{Langhoff,Goings2018,Li2020} First and foremost, the
-perturbations must be ``small'' relative to the intermolecular forces
+perturbations must be ``small'' relative to the intramolecular forces
 present in the system. This immediately precludes the possibility of
 simulating high-energy experiments such as X-ray spectroscopy, which
 have numerous applications in materials science and beyond. Second,
@@ -36,7 +36,7 @@ theory typically assumes a single, uniform ``kick'' perturbation
 across all frequencies. Experimental apparatus, on the other hand,
 can make use of complex, multi-phase procedures involving tuned laser
 pulses, pump-probe analysis, \textit{etc}.\cite{Maiuri2020} Finally,
-temporally-controlled multi-photon events such as high harmonic generation
+temporally controlled multi-photon events such as high harmonic generation
 (HHG)\cite{Lewenstein1994,Gorlach} lie outside the realm of the response
 formalism. Together, these drawbacks mean a wide variety of experiments
 cannot be predicted or supplemented with response theory calculations. To
@@ -73,10 +73,10 @@ Real-time time-dependent density functional theory
 \cite{Lopata2011,Castro2015,Tussupbayev2015,Goings2016a,Bruner2016,Goings2018,Sun2019a,Li2020}
 Efforts to reduce the cost of RT-TDDFT have largely focused on reducing
 simulation time, utilizing techniques such as Pad\'e approximants to
-accelerate the convergence of the Fourier transform \cite{Bruner2016},
+accelerate the convergence of the Fourier transform,\cite{Bruner2016}
 and fitting schemes to avoid the Fourier transform all together,
 eliminating the problem of short trajectories resulting in low-resolution
-spectra.\cite{Ding2013} Repisky \textit{et al} introduced the concept of 
+spectra.\cite{Ding2013} Repisky \textit{et al.} introduced the concept of 
 dipole pair contributions,\cite{Repisky2015,Kadek2015}
 which are typically less complicated than the total electric dipole,
 and so these may be individually approximated efficiently using the 
@@ -96,8 +96,8 @@ frequency-domain CC, there are numerous potential candidates for reducing the
 cost of RTCC, besides adapting the successful approaches implemented for RT-TDDFT.
 First, the standard non-perturbative truncated approaches used
 for properties such as CC2\cite{Christiansen1995} and CC3\cite{Koch1997}
-are immediately possible, as are property-optimized basis sets
-\cite{Wolinski1990,Sadlej1977,Roos1985,Sadlej1991a,Benkova2005,Baranowska2010,Baranowska2013,Aharon2020a,Howard2018}.
+are immediately possible, as are property-optimized basis sets.
+\cite{Wolinski1990,Sadlej1977,Roos1985,Sadlej1991a,Benkova2005,Baranowska2010,Baranowska2013,Aharon2020a,Howard2018}
 Further, details of implementation such as choice of intermediates, the
 effects of single- or mixed-precision, or the use of graphical processing
 units have only just begun to be explored. \cite{Wang2022} 
@@ -111,7 +111,7 @@ the coupled sets of $t$- and $\lambda$-amplitude expressions do
 not have to be propagated, reducing both the number and difficulty
 of numerical integrations required. 
 
-Absent from this list are the family of local correlation methods,\cite{Werner2006}
+Absent from this list is the family of local correlation methods,\cite{Werner2006}
 which have been wildly successful for reduced-scaling approaches to
 ground state energies for correlated methods and selected properties.
 \cite{Crawford2019,Aharon2020a,DCunha2021,Kodrycka2022} These methods seek to
@@ -122,12 +122,12 @@ these methods and variants thereof have shown promise in the calculation
 of selected response properties.
 
 In this work, we report the first application of local correlation to 
-RTCC. This is achieved through a simulation approach\cite{Hampel1996}, 
+RTCC. This is achieved through a simulation approach,\cite{Hampel1996} 
 which forgoes computational savings in favor of algorithmic simplicity, 
 for the purposes of rapid exploration and development. 
 The effects of occupied and virtual space localization are considered for the simulations of small
 hydrogen clusters in the presence of electric field perturbations. Absorption cross sections as
-well as ECD spectra are computed using successively smaller fractions of the canonical
+well as electronic CD (ECD) spectra are computed using successively smaller fractions of the canonical
 orbital space using the popular 
 projected atomic orbital (PAO)
 \cite{Pulay1983,Saebo1985,Saebo1986,Saebo1993}

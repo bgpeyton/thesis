@@ -48,7 +48,7 @@ and expanding the electronic energy $E$ and wave function $\ket{\Psi}$ similarly
     \end{equation}
 \end{subequations}
 contributions to the correlation energy are obtained order-by-order. $\ket{\Psi^{(0)}}$ is taken to be $\ket{0}$, 
-and $\lambda$ to be one.
+and $\lambda^0$ to be one.
 Implicit here is the assumption that the perturbation is small relative to the reference -- \textit{i.e.}, 
 the correlation energy is several orders of magnitude smaller than the HF energy.
 %Specifying the Hylleraas partitioning of the normal-ordered electronic Hamiltonian,
@@ -90,7 +90,7 @@ Since the Hamiltonian does not connect
 $\ket{0}$ to singly-substituted determinants due to the Brillouin
 condition,\cite{Szabo1996} it follows that only double substitutions are
 present in $\ket{\Psi^{(1)}}$. Projection of Eq.~(\ref{eq:mp2_res}) onto a
-basis of doubly-substituted determinants yields programmable expressions
+basis of doubly substituted determinants yields programmable expressions
 for $t^{ab}_{ij}$.
 In the limit of canonical HF orbitals, Eq.~(\ref{eq:hyll}) reduces to the more commonly known second-order M{\o}ller-Plesset perturbation theory (MP2)\cite{Moller1934,Bartlett1974a} expressions,
 \begin{subequations}
@@ -182,7 +182,7 @@ full singles expressions from CCSD are retained by considering $\hat{T}_1$
 to be first order, and the one- and two-electron terms of the Hamiltonian are
 still considered to be zeroth and first order, respectively, as in Section
 \ref{ss:mp2}. Solving the resulting iterative amplitude expressions for CC2
-scales as $\mathcal{O}(N^5)$ but, unlike the similarly-scaling MP2 method,
+scales as $\mathcal{O}(N^5)$ but, unlike the similarly scaling MP2 method,
 includes the effects of singles, which have been shown to be crucial for
 computing accurate molecular properties.
 \cite{Christiansen1995,Koch1997}
@@ -197,9 +197,9 @@ two-particle reduced density matrices (1-RDM $D$ and 2-RDM $\Gamma$):
 \cite{Harris1992,Trucks1988}
 \begin{equation} \label{eq:pdm_e}
     \begin{aligned} E & = \bra{\Psi}\hat{H}\ket{\Psi} \\
-      & = D_{pq}h_{p}^{q} + \Gamma_{pqrs}\bra{pq}\ket{rs}
+      & = D_{pq}h_{p}^{q} + \Gamma_{pqrs}g_{pqrs}
     \end{aligned}
-\end{equation} where $h_{p}^{q}$ are the one-electron integrals of the
+\end{equation} where $h_{p}^{q}$ and $g_{pqrs}$ are the one- and two-electron integrals of the
 electronic Hamiltonian, and $D$ and $\Gamma$ are defined according to the
 form of $\ket{\Psi}$ and the excitation operators of the second quantized
 Hamiltonian: \begin{subequations} \begin{equation} \label{eq:opdm}
@@ -215,7 +215,7 @@ CC methods due to the similarity transformation of the Hamiltonian in
 Eq.~(\ref{eq:Hbar}).\cite{Crawford2000} It is therefore necessary to solve for the CC left-hand
 wave function, \begin{equation} \label{eq:cc_lwfn}
     \bra{\mathcal{L}} = \bra{\Psi}\hat{\mathcal{L}}
-\end{equation} where $\hat{mathcal{L}}$ is a left-hand cluster
+\end{equation} where $\hat{\mathcal{L}}$ is a left-hand cluster
 operator analogous to Eq.~(\ref{eq:T_n}), with analogous amplitudes
 $\lambda_{ij\ldots}^{ab\ldots}$. This additional set of coupled
 equations can be solved in the same manner as the right-hand amplitude

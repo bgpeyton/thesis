@@ -151,7 +151,7 @@ are beyond the scope of the current work.
 \subsubsection{Projected Atomic Orbitals} \label{sss:pao}
 In the PAO method, the virtual space is localized using a linear combination of $N$ atom-centered 
 atomic orbital (AO) basis functions. For every occupied orbital $i$, the contribution to the 
-Mulliken charge $q$ from every atom $j$ is computed
+Mulliken charge $q$ from every atom $j$ is computed as:
 \begin{equation}
     q_j = \sum_{\mu\in j}\sum_\lambda S_{\mu\lambda}C_{\lambda i}C_{\mu i}
 \end{equation}
@@ -196,7 +196,7 @@ $\delta_{lin}$, are then removed.
 The orbitals are normalized to yield the non-redundant PAO basis for a given pair, 
 $\tilde{\textbf{C}}_{ij}$.
 
-Two transformation matrices are required to transform MO-basis quantities 
+Two matrices are required to transform MO-basis quantities 
 into the PAO basis. The first, which rotates from the MO to the redundant PAO
 basis for a given pair, is computed as
 \begin{equation} \label{eq:Q_pao}

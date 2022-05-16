@@ -1,7 +1,7 @@
 \section{Response theory} \label{se:res}
 Response theory combines adiabatic perturbation theory with a Fourier transform of the 
-time-dependent equations into the frequency domain\cite{Barron2004,Pedersen2021}. 
-The prediction of the response of molecular systems to an electromagnetic field (EMF) has 
+time-dependent equations into the frequency domain.\cite{Barron2004,Pedersen2021} 
+The prediction of the response of molecular systems to an electromagnetic field has 
 important applications in organic synthesis and characterization. To explore these 
 effects, we may relate properties to a perturbative expansion of a total electric or 
 magnetic multipole moment, from which response tensors related to a host of properties 
@@ -99,7 +99,8 @@ we will, without loss of generality, assume a time-dependent wave function expan
     \end{equation}
 \end{subequations}
 where $\ket{\psi(t)}$ is an approximate wave function consisting of a weighted sum of known, time-independent functions $\ket{n}$
-and an exponentiated phase. Expressing the Hamiltonian as in Eq.~(\ref{eq:H}) as a sum of the time-independent molecular
+and an exponentiated phase. As in Eq.~(\ref{eq:H}), we will express the Hamiltonian as 
+a sum of the time-independent molecular
 Hamiltonian $\hat{H}^{(0)}$ with a time-dependent perturbation $\hat{V}(t)$
 (generally taken to be an EMF) and inserting this and the wave function expansion into Eq.~({\ref{eq:tdse}) yields
 \begin{equation} \label{eq:sub_tdse}
@@ -146,20 +147,21 @@ Finally, inserting Eq.~(\ref{eq:field}) into Eq.~(\ref{eq:irt}) and integrating,
 wave function parameters
 \begin{equation} \label{eq:sot}
     \begin{aligned}
-        d_m(t) = \frac{1}{\hbar}\frac{\bra{m}\hat{v}^\omega_\alpha\ket{0}e^{i(\omega_{m0}-\omega)t}}{\hbar(\omega_{m0}-\omega)}F^{\omega}_{\alpha}.
+        d_m(t) = -\frac{\bra{m}\hat{v}^\omega_\alpha\ket{0}e^{i(\omega_{m0}-\omega)t}}{\hbar(\omega_{m0}-\omega)}F^{\omega}_{\alpha}.
 %        d_m(t') = 1 &+ \frac{-1}{\hbar}\frac{\bra{m}\hat{v}^\omega_\alpha\ket{n}}{\omega_{mn} - \omega_1}e^{-i\omega_{mn}t}e^{-i\omega_1t} \\
 %                &- \frac{1}{\hbar}\frac{\bra{m}\hat{v}^{\omega1}_\alpha\ket{l}\bra{l}\hat{v}^{\omega2}_\beta\ket{n}}{(\omega_{ml}-\omega_1)(\omega_{ln}-\omega_2)}e^{-i(\omega_{ml}-\omega_{ln})t}e^{-i(\omega_1-\omega_2)t} \\
 %                &+ \ldots
     \end{aligned}
 \end{equation}
  
-To arrive at a dipole expression in the form of Eq.~(\ref{eq:mu_tot}), we may compute the expectation 
-value of the electric dipole operator $\hat{\mu}$. After rearrangement, we arrive at
+To obtain a dipole expression in the form of Eq.~(\ref{eq:mu_tot}), we may compute the expectation 
+value of the electric dipole operator $\hat{\mu}$. After rearrangement, the expectation value
+can be written:
 \begin{equation} \label{eq:sos}
     \begin{aligned}
     \bra{\Psi(t)}\hat\mu\ket{\Psi(t)} &= \bra{0}\hat\mu\ket{0} \\ 
-    &- \sum_{m\neq0}\left[\frac{\bra{m}\hat\mu\ket{0}\bra{0}\hat{v}^\omega_\alpha\ket{m}}{\hbar(\omega_{mo}+\omega)}
-        + \frac{\bra{0}\hat\mu\ket{m}\bra{m}\hat{v}^\omega_\alpha\ket{0}}{\hbar(\omega_{mo}-\omega)}\right]
+    &- \sum_{m\neq0}\left[\frac{\bra{m}\hat\mu\ket{0}\bra{0}\hat{v}^\omega_\alpha\ket{m}}{\hbar(\omega_{m0}+\omega)}
+        + \frac{\bra{0}\hat\mu\ket{m}\bra{m}\hat{v}^\omega_\alpha\ket{0}}{\hbar(\omega_{m0}-\omega)}\right]
     e^{-i\omega t}F^\omega_\alpha
     \end{aligned}
 \end{equation}
@@ -192,7 +194,7 @@ computing excited-state wave functions and allows us to replace the
 sum-over-states expression with a set of coupled linear equations which are far
 more computationally tractable.\cite{Norman2011,Helgaker2012}
 
-Beginning with a time-dependent wave function $\ket{\Psi(t)}$, we may separate this into two time-dependent pieces - the exponential of a phase factor $\phi(t)$, and a phase-isolated wave function $\ket{\piw}$:
+Beginning with a time-dependent wave function $\ket{\Psi(t)}$, we may separate it into two time-dependent pieces - the exponential of a phase factor $\phi(t)$, and a phase-isolated wave function $\ket{\piw}$:
 \begin{equation} \label{total_psi}
     \ket{\Psi(t)} = e^{-i\phi(t)}\ket{\piw}.
 \end{equation}
@@ -221,7 +223,7 @@ time-averaged quasi-energy $Q_T$. The variational and Hellmann-Feynman theorems 
 \end{equation}
 and
 \begin{equation} \label{eq:hf-theorem}
-    \frac{dQ_T}{d\hat\Omega} = \frac{1}{T}\int_{t^{'}}^{t^{'}+T}\bra{\piw}\frac{\partial \hat{H}}{\partial\hat\Omega}\ket{\piw}dt^{'},
+    \frac{dQ_T}{d\hat\Omega} = \frac{1}{T}\int_{t^{'}}^{t^{'}+T}\bra{\piw}\frac{\partial \hat{H}}{\partial\hat\Omega}\ket{\piw}dt,
 \end{equation}
 respectively, for an arbitrary perturbation $\hat\Omega$ (usually taken to be an 
 electromagnetic field). Thus, the quasi-energy is a well-defined dynamic analogue to the

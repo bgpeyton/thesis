@@ -288,7 +288,7 @@ frame=single,
 
 %Set up title page, abstract page, dedication page, and acknowledgement page
 \def\titlepage{
-  \thispagestyle{empty}
+%  \thispagestyle{empty}
   \begin{center}
   {\Large \@title}\\
   \vfill
@@ -334,7 +334,7 @@ frame=single,
 }
 
 \def\abspage{
-\pagestyle{empty} % Suppresses page numbers for all abstract pages.
+  \pagestyle{empty} % Suppresses page numbers for all abstract pages.
   \noindent {\Large \@title} \\
     
   \vfill
@@ -351,7 +351,7 @@ frame=single,
 }
 
 \def\absgapage{
-\pagestyle{empty} % Suppresses page numbers for all general audience abstract pages.
+  \pagestyle{empty} % Suppresses page numbers for all general audience abstract pages.
   \noindent {\Large \@title} \\
 
   \vfill
@@ -366,13 +366,14 @@ frame=single,
 }
 
 \def\ackpage{
+  \pagestyle{fancy} % Restores all page numbers going forward, beginning at the acknowledgements. 
   \chapter*{Acknowledgments}
   \@acknowledge
   \newpage
 }
 
 \def\dedpage{
-\pagestyle{fancy} % Restores all page numbers going forward, beginning at the dedication.
+%\pagestyle{fancy} % Restores all page numbers going forward, beginning at the dedication.
 \chapter*{Dedication}
   \vspace*{\fill}
   \begingroup

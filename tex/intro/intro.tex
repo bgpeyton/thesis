@@ -35,16 +35,17 @@ directly.\cite{Szabo1996} Methods which utilize only mathematical techniques
 (that is, no experimental or phenomenological parameters) are said to be
 \textit{ab initio} methods. These methods often (but not always) simplify or
 ignore the quantum effects of the nuclei and their motion, an approximation
-known as the Born-Oppenheimer approximation.\cite{born1927zur} Another
-subclass of \textit{ab initio} methods, which centers around solving the
+known as the Born-Oppenheimer approximation.\cite{born1927zur} 
+Wave function-based methods are a subclass of \textit{ab initio} methods 
+which center around solving the
 time-dependent or time-independent Schr\"odinger wave equation to obtain
-an explicit form of the wave function, are known as wave function-based
-methods. Finally, methods that go beyond the mean-field or Hartree-Fock
+an explicit form of the wave function.
+Finally, methods that go beyond the mean-field or Hartree-Fock
 approximation, allowing electrons to interact through more than an average
 self-consistent field, are classified as correlated methods.  It is
 these correlated wave function-based methods under the Born-Oppenheimer
 approximation upon which the bulk of the current work is built. As such,
-following this in Chapter \ref{ch:theory} is a primer in the theoretical
+Chapter \ref{ch:theory} is a primer in the theoretical
 underpinnings necessary to understand this work.  The focus will be
 on fundamentals which are not explicitly presented in the publications
 that follow in Chapters~\ref{ch:p1}-\ref{ch:p3}. Chapter \ref{ch:theory}
@@ -83,13 +84,13 @@ expensive, suffering from high-order polynomial scaling. Extensions to
 excited states and molecular response properties only compound this issue;
 \cite{Hoodbhoy1979,Crawford2006,Helgaker2012,Crawford2019} as such, Chapters~\ref{ch:p1}
 and \ref{ch:p2} are focused on ways to circumvent using CC on any but a small
-subset of systems. (It should be noted that, while Chapter~\ref{ch:p1} utilizes a
+subset of systems. It should be noted that, while Chapter~\ref{ch:p1} utilizes a
 different correlated method based on a density-functional theory approach,
 the primary goal was to ascertain the effects of fragmentation of a system
 through the many-body expansion on the computation of molecular properties.
 This is a benchmark study, whose conclusions are understood to be applicable
 to more expensive methods such as CC, where such benchmark studies could
-not be performed.)  Additional considerations of reduced density matrices,
+not be performed.  Additional considerations of reduced density matrices,
 \cite{RDM1976,Harris1992,pinkbook} which are used throughout the work to
 refer to correlated wave functions, follows in Section \ref{ss:rdm}.
 
@@ -109,6 +110,6 @@ using a Fourier transform of expressions obtained using the time-dependent Schr\
 in the time-domain.
 \cite{Goings2018,Li2020}
 In Section \ref{se:res} we focus on the frequency-domain formulation, while
-Chapter~\ref{ch:p3} explores the recently-revived prospect of explicit time-propagation, as well as a 
+Chapter~\ref{ch:p3} explores the recently revived prospect of explicit time-propagation, as well as a 
 technique to make this process cheaper through a well-established concept known as 
 local correlation.\cite{Werner2006} 

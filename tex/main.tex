@@ -1,4 +1,5 @@
-\documentclass[doublespace,nopageskip]{VTthesis} % nopageskip - Removes arbitrary blank pages.
+%\documentclass[doublespace,nopageskip]{VTthesis} % nopageskip - Removes arbitrary blank pages.
+\documentclass[doublespace]{VTthesis} % nopageskip - Removes arbitrary blank pages.
 %\documentclass[doublespace,draft,nopageskip]{VTthesis} % nopageskip - Removes arbitrary blank pages.
 % Using the following header instead will create a draft copy of your thesis
 %\documentclass[doublespace,draft]{VTthesis}
@@ -33,18 +34,38 @@
 
 \title{The Efficient Computation of Field-Dependent Molecular Properties in the Frequency and Time Domains}
 \keywords{Electronic structure theory, machine learning, coupled cluster, local correlation}
-\author{Benjamin G. Peyton}
+\author{Benjamin Gilbert Peyton}
 \program{Chemistry} 
 \degree{Doctor of Philosophy} 
-\submitdate{April 15, 2022} 
+\submitdate{May 11, 2022} 
 
-\principaladvisor{T. Daniel Crawford}
+\principaladvisor{Daniel Crawford}
 \firstreader{Nicholas Mayhall}
 \secondreader{Diego Troya}
 \thirdreader{John Morris}
 
 %\dedication{This is where you put your dedications.}
-%\acknowledge{This is where you put your acknowledgments.}
+\acknowledge{
+    I would like to acknowledge several people without whom this work would not have been possible:
+    \begin{itemize}
+        \item My brother, for never giving up on me, and assuring me that the sun will shine on us again. 
+        \item My parents, for their unconditional love and support.
+        \item My grandparents, for keeping me on this path and being there for me from start to finish. I miss you dearly.
+        \item Ruhee, for improving my science and my life in every aspect.
+        \item Josh and Mike, for being the greatest friends and allowing me to become part of the family.
+        \item Memaw and WC, for providing an example and a warm home. We all love you.
+        \item The Mage and the CCG, for cultivating my love of science and teaching me the importance of camaraderie. 
+        \item Doc Ozz, for showing me The Way. 
+        \item Conrad and Amber, for challenging me to do better, and putting up with me for so long. 
+        \item Vibin and Shannon, for jumping every grad school hurdle together with me.
+        \item Past and present members of the Crawford group: Coleman, Ashutosh, AJ, Kirk, Zhe, Roberto, Alex, Monika, Susana, Jose, and Brendan, for being the best coworkers I could have asked for.
+        \item Mayhall group members: Daniel and Harper, for reminding me CI and quantum computing are, in fact, useful. 
+        \item Valeev group members: Kalyani, Karl, Nakul, Marjory, and Varun, for providing outside input and being a great source of knowledge in programming and electronic structure.
+        \item My committee members: Profs. Mayhall, Troya, and Morris, for seeing me through each milestone.
+        \item Prof. Crawford, for everything I could have asked for as a mentor, an advisor, and a lifelong colleague. 
+        \item And to all the children, congratulations!
+    \end{itemize}
+        }
 \abstract{
 The efficient computation of dynamic (time-dependent) molecular properties is
 a broad field with numerous applications in aiding molecular synthesis and
@@ -113,6 +134,14 @@ reasonable alternatives.
 % The list of figures and tables are now optional per the official ETD standards.  Unless you have a very good reason for removing them, you should leave these lists in the document. Comment them out to remove them.
 	\listoffigures
 	\listoftables
+
+% Attributions
+    \chapter*{Attribution}
+Chapters 3, 4, and 5 are coauthored by Prof. T. Daniel Crawford. Chapter 4 is additionally coauthored
+by Connor Briggs, Dr. Ruhee D'Cunha, and Dr. Johannes T. Margraf. Chapter 5 is additionally coauthored 
+by Zhe Wang. 
+Calculations, figures, and a majority of the text for these chapters was contributed by myself. Prof. Crawford served as a mentor for all projects and edited these chapters. For Chapter 4, Connor Briggs contributed 
+machine learning code, Dr. D'Cunha provided molecular geometries, and Dr. Margraf provided TATR comparison data and editing support. For Chapter 5, Zhe Wang contributed to the Python packaged used, PyCC. 
 
 % The following sets up the document for the main part of the thesis or dissertation. Do not comment out or remove this line.
 	\mainmatter

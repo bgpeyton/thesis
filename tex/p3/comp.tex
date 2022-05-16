@@ -3,7 +3,8 @@
 The CC wave function for a helical H$_2$ tetramer was propagated
 for 1000 a.u., with a time step of 0.02 a.u., in the presence of an explicit electric field. A short pulse
 approximating a Dirac delta pulse was applied to generate all possible excited states. Atomic coordinates
-are found in the supplementary information (SI).
+are found in the supplementary information (SI). Nuclear coordinates were frozen throughout
+these simulations.
 
 To approximate a Dirac delta pulse, we apply a narrow time-dependent Gaussian field 
 of the form
@@ -26,7 +27,7 @@ corresponding to average virtual orbital domains containing roughly 20\%, 40\%, 
 simulations to ascertain the effects of the virtual space localization on
 the amplitude dynamics of the wave function. 
 
-The effect of local correlation was computed using a simulation approach\cite{Hampel1996},
+The effect of local correlation was computed using a simulation approach,\cite{Hampel1996}
 in which all tensor contractions are done in the MO basis. In every 
 CC iteration, before the 
 energy denominator is applied when computing an update to the amplitude tensors, the residuals
@@ -45,10 +46,10 @@ computed by
 \end{subequations}
 where $r_\mu$ are the residuals from Eqs.~(\ref{eq:t_res}) or (\ref{eq:l_res}). 
 Once the energy denominator is applied, the resulting amplitude step is back-transformed
-into the MO basis. This process is also applied to the residual, without the
+into the MO basis, effectively filtering out non-local components. 
+The residual is also filtered in this way, without the
 application of the energy denominator, in every step of the time propagation.
-To include 
-adequately diffuse basis functions, the cc-pVDZ basis
+The cc-pVDZ basis
 set augmented with diffuse functions\cite{Dunning1989,Woon1994} was used throughout.  
 
 For absorption spectra, 
